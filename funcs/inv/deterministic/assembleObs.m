@@ -14,7 +14,7 @@
 %%% =======================================================================
 
 function [ out ] = assembleObs( in )
-out = [in.nh_ch4;in.nh_ch4c13;in.nh_mcf;in.sh_ch4;in.sh_ch4c13;in.sh_mcf];
+out = [in.nh_ch4;in.sh_ch4;in.nh_ch4c13;in.sh_ch4c13;in.nh_mcf;in.sh_mcf;in.nh_n2o;in.sh_n2o;in.nh_c2h6;in.sh_c2h6;in.nh_co;in.sh_co];
 end
 
 

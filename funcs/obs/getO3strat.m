@@ -8,15 +8,40 @@
 %%% =----------------------------------------------------------------------
 %%% = INPUTS
 %%% =  ( 1): dataDir -- Directory containing the data.
+%%% =  ( 2): reread  -- Structure that says if we'll re-read the data.
 %%% =----------------------------------------------------------------------
 %%% = OUTPUTS
 %%% =  ( 1): out -- A structure containing the observation information.
 %%% =======================================================================
 
-function [ out ] = getO3strat( dataDir )
+function [ out ] = getO3strat( dataDir, reread )
 
 %%% Diagnostic
 fprintf('   * STRATOSPHERIC OZONE\n');
+
+
+%%% =======================================================================
+%%% HAVE WE READ THIS DATA BEFORE?
+%%% =======================================================================
+
+%%% Build the filename
+OutName = sprintf('%sobs/StoredData/o3strat_%4i-%4i_%s-%s.mat',...
+                  reread.dir,reread.sYear,reread.eYear,reread.tRes,reread.tAvg);
+
+%%% Load pre-existing data file
+if ~reread.flag
+    % Check if a file exists
+    if exist(OutName, 'file') == 2
+        fprintf('   * LOADING OLD OBS STRUCTURE\n');
+        load(OutName);
+        return % Don't need to read the data
+    end
+end
+
+
+%%% =======================================================================
+%%% READ DATA
+%%% =======================================================================
 
 %%% Append the directory onto the dataDir
 dataDir = sprintf('%sobs/o3_strat/NOAA/',dataDir);
@@ -64,6 +89,18 @@ for i = 1:length(sNames)
         out.lat.(sprintf('%s_NOAA',sNames{i})) = sLat(i);
     end
 end
+
+
+%%% =======================================================================
+%%% SAVE THIS OBSERVATION FILE
+%%% =======================================================================
+
+%%% Save the structure
+fprintf('   * SAVING OBS STRUCTURE\n');
+if exist(OutName, 'file') == 2
+    delete(OutName);
+end
+save(OutName,'out');
 
 end
 

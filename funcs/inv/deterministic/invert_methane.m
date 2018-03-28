@@ -1,5 +1,3 @@
-%%% =======================================================================
-%%% = invert_methane.m
 %%% = Alex Turner
 %%% = 04/12/2016
 %%% =----------------------------------------------------------------------
@@ -71,7 +69,7 @@ while iter
     IC_i  = soln{2};
     chi2o = LM_param.chi2;
     % Get new solution
-    [K_ems,K_IC]     = define_Jacobian(St,ems_i,IC_i,params,run_parallel);
+    [K_ems,K_IC]    = define_Jacobian(St,ems_i,IC_i,params,run_parallel);
     [soln,LM_param] = update_solution(St,ems_i,IC_i,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
     % Get new relative difference
     absdiff_ems = abs(soln{1}(:) - ems_i(:));
@@ -105,18 +103,27 @@ if onlyCH4
     obs.sh_ch4c13(:) = NaN;
     obs.nh_mcf(:)    = NaN;
     obs.sh_mcf(:)    = NaN;
+    obs.nh_co(:)     = NaN;
+    obs.sh_co(:)     = NaN;
 end
 if onlyMCF
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
     obs.nh_ch4(:)    = NaN;
     obs.sh_ch4(:)    = NaN;
+    obs.nh_co(:)     = NaN;
+    obs.sh_co(:)     = NaN;
 end
 if schaefer
     obs.nh_mcf(:) = NaN;
     obs.sh_mcf(:) = NaN;
+    obs.nh_co(:)  = NaN;
+    obs.sh_co(:)  = NaN;
     fixedOH       = true;
 end
+% Don't use ethane observations for inversion
+obs.nh_c2h6(:) = NaN;
+obs.sh_c2h6(:) = NaN;
 
 %%% Get dimensions
 nY = size(jacobian_ems,1);
@@ -156,14 +163,22 @@ K = K(indGood,:);
 % Components
 Sa_ch4     =    20^2*ones(nT,1);
 Sa_ch4c13  =    10^2*ones(nT,1);
-Sa_mcf_nh  = max([1.5*ones(size(ems_p(:,3))),.2*ems_p(:,3)],[],2).^2;
+Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;
 Sa_mcf_sh  =   0.5^2*ones(nT,1);
+Sa_n2o     =   2.0^2*ones(nT,1);
+Sa_c2h6    =  5000^2*ones(nT,1);
 Sa_oh      =  0.10^2*ones(nT,1);
-Sa_IC      =    [30,10,15,30,10,15].^2;
+Sa_tau     =   3.0^2*ones(nT,1);
+Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
+                 30,30,10,10,15,15,5,5,100,100].^2;
 tau_ch4    = 5; % yr
 tau_ch4c13 = 0; % yr
 tau_mcf    = 3; % yr
+tau_n2o    = 5; % yr
+tau_c2h6   = 3; % yr
 tau_oh     = 3; % yr
+tau_co     = 3; % yr
+tau_tau    = 0; % yr
 % Alternate cases
 if fixedCH4
     Sa_ch4 = eps^2*ones(nT,1); % Fixed CH4
@@ -185,14 +200,16 @@ if schaefer
     Sa_mcf_nh = eps^2*ones(nT,1); Sa_mcf_sh = Sa_mcf_nh; % Fixed MCF
 end
 % Construct matrix
-Sa_ems = [Sa_ch4,Sa_ch4c13,Sa_mcf_nh,Sa_ch4,Sa_ch4c13,Sa_mcf_sh,Sa_oh,Sa_oh];
+Sa_ems = [Sa_ch4,Sa_ch4,Sa_ch4c13,Sa_ch4c13,Sa_mcf_nh,Sa_mcf_sh,...
+          Sa_n2o,Sa_n2o,Sa_c2h6,  Sa_c2h6,  Sa_oh,    Sa_oh,    Sa_tau];
 Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
-tau    = [tau_ch4,tau_ch4c13,tau_mcf,tau_ch4,tau_ch4c13,tau_mcf,tau_oh,tau_oh]*365.25;
+tau    = [tau_ch4,tau_ch4,tau_ch4c13,tau_ch4c13,tau_mcf,tau_mcf,...
+          tau_n2o,tau_n2o,tau_c2h6,  tau_c2h6,  tau_oh, tau_oh, tau_co, tau_co, tau_tau]*365.25;
 Sa     = fillDiagonalsAnal(Sa,tau,St);
 
 %%% Construct the observational error covariance matrix
-So = [obs.nh_ch4_err;obs.nh_ch4c13_err;obs.nh_mcf_err;...
-      obs.sh_ch4_err;obs.sh_ch4c13_err;obs.sh_mcf_err].^2;
+So = [obs.nh_ch4_err;obs.sh_ch4_err;obs.nh_ch4c13_err;obs.sh_ch4c13_err;obs.nh_mcf_err;obs.sh_mcf_err;...
+      obs.nh_n2o_err;obs.sh_n2o_err;obs.nh_c2h6_err;  obs.sh_c2h6_err;obs.nh_co_err;obs.sh_co_err].^2;
 So = diag(So(indGood));
 
 %%% Get inverse covariance matrices
@@ -207,6 +224,26 @@ SoI = diag(1./SoI);
 
 %%% Invert with the n-form from Rodgers
 gamma = LM_param.gamma;
+fprintf('Matrix Dimensions are as follows:')
+fprintf('size of SaI=')
+size(SaI)
+fprintf('Size of SoI=')
+size(SoI)
+fprintf('Size of k = ')
+size(k)
+fprintf('Size of gamma=')
+fprintf('Size of gamma=')
+size(gamma)
+fprintf('size of F=')
+size(F)
+fprintf('size of y=')
+size(y)
+fprintf('size of xi=')
+size(xi)
+fprintf('size of xa=')
+size(xa)
+
+
 LHS   = (SaI + K'*SoI*K + gamma*SaI);
 RHS   = (K'*SoI * (y - F) - SaI*(xi - xa));
 dx    = LHS \ RHS;
@@ -268,3 +305,4 @@ end
 %%% =======================================================================
 %%% = END
 %%% =======================================================================
+

@@ -13,14 +13,17 @@
 %%% =  ( 3): ch4_obs    -- Structure containing the methane obs.
 %%% =  ( 4): ch4c13_obs -- Structure containing the d13C obs.
 %%% =  ( 5): mcf_obs    -- Structure containing the methylchloroform obs.
-%%% =  ( 6): dataDir    -- Directory containing the data.
-%%% =  ( 7): reread     -- Structure the says if we'll re-read the data.
+%%% =  ( 6): n2o_obs    -- Structure containing the nitrous oxide obs.
+%%% =  ( 7): c2h6_obs   -- Structure containing the ethane obs.
+%%% =  ( 7): co_obs     -- Structure containing the carbon monoxide obs.
+%%% =  ( 8): dataDir    -- Directory containing the data.
+%%% =  ( 9): reread     -- Structure that says if we'll re-read the data.
 %%% =----------------------------------------------------------------------
 %%% = OUTPUTS
 %%% =  ( 1): out -- A structure containing the observation information.
 %%% =======================================================================
 
-function [ out ] = makeObs( St, tAvg, ch4_obs, ch4c13_obs, mcf_obs, dataDir, reread )
+function [ out ] = makeObs( St, tAvg, ch4_obs, ch4c13_obs, mcf_obs, n2o_obs, c2h6_obs, co_obs, dataDir, reread )
 
 %%% Diagnostic
 fprintf('\n *** MAKING THE OBSERVATION STRUCTURE *** \n');
@@ -94,6 +97,10 @@ out.sh_ch4_err = eDat_SH;
 fprintf('   * CH4C13\n');
 [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4c13_obs);
 
+%%% Add a "Historic Spline" like Schaefer et al.
+NH_SH_diff = oDat_NH - oDat_SH;
+NH_SH_diff = mean(NH_SH_diff(~isnan(NH_SH_diff)));
+
 %%% Make sure the errors aren't overly optimistic
 min_err = [9999, 0.03;... % [year and permil]
            1998, 0.03;...
@@ -137,6 +144,94 @@ out.nh_mcf     = oDat_NH;
 out.sh_mcf     = oDat_SH;
 out.nh_mcf_err = eDat_NH;
 out.sh_mcf_err = eDat_SH;
+
+
+%%% =======================================================================
+%%% N2O
+%%% =======================================================================
+
+%%% Read the observation structure
+fprintf('   * N2O\n');
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,n2o_obs);
+
+%%% Make sure the errors aren't overly optimistic
+[eDat_NH,eDat_SH] = ReadN2Oerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+
+%%% Put the data in the output structure
+out.nh_n2o     = oDat_NH;
+out.sh_n2o     = oDat_SH;
+out.nh_n2o_err = eDat_NH;
+out.sh_n2o_err = eDat_SH;
+
+
+%%% =======================================================================
+%%% C2H6
+%%% =======================================================================
+
+%%% Read the observation structure
+fprintf('   * C2H6\n');
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
+
+%%% Make sure the errors aren't overly optimistic
+min_err = [9999, 2;... % [year and ppb]
+           1998, 2;...
+           1988, 2];
+for i = 1:size(min_err,1);
+    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+    eDat_NH(ind) = min_err(i,2);
+    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+    eDat_SH(ind) = min_err(i,2);
+end
+% Make sure older obs are always less certain than new obs
+for i = length(St)-1:-1:1
+    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+    end
+    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+    end
+end
+
+%%% Put the data in the output structure
+out.nh_c2h6     = oDat_NH;
+out.sh_c2h6     = oDat_SH;
+out.nh_c2h6_err = eDat_NH;
+out.sh_c2h6_err = eDat_SH;
+
+
+%%% =======================================================================
+%%% CO
+%%% =======================================================================
+
+%%% Read the observation structure
+fprintf('   * CO\n');
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,co_obs);
+
+%%% Make sure the errors aren't overly optimistic
+min_err = [9999, 2;... % [year and ppb]
+           1998, 2;...
+           1988, 2];
+for i = 1:size(min_err,1);
+    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+    eDat_NH(ind) = min_err(i,2);
+    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+    eDat_SH(ind) = min_err(i,2);
+end
+% Make sure older obs are always less certain than new obs
+for i = length(St)-1:-1:1
+    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+    end
+    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+    end
+end
+
+%%% Put the data in the output structure
+out.nh_co     = oDat_NH;
+out.sh_co     = oDat_SH;
+out.nh_co_err = eDat_NH;
+out.sh_co_err = eDat_SH;
 
 
 %%% =======================================================================
@@ -187,17 +282,19 @@ for i = 1:length(sNames);
     % Require at least a 5-year record
     tDat        = tDat(ind);
     yDat_noSeas = yDat_noSeas(ind);
-    if ( abs(tDat(end) - tDat(1)) > 365.25*5 )
-        % Sort by latitude
-        if lat > 0 % NH
-            tDat_NH = [tDat_NH;tDat];
-            yDat_NH = [yDat_NH;yDat_noSeas];
-            iDat_NH = [iDat_NH;repmat(i,size(tDat))];
-        end
-        if lat < 0 % SH
-            tDat_SH = [tDat_SH;tDat];
-            yDat_SH = [yDat_SH;yDat_noSeas];
-            iDat_SH = [iDat_SH;repmat(i,size(tDat))];
+    if sum(ind) > 0
+        if ( abs(tDat(end) - tDat(1)) > 365.25*5 )
+            % Sort by latitude
+            if lat > 0 % NH
+                tDat_NH = [tDat_NH;tDat];
+                yDat_NH = [yDat_NH;yDat_noSeas];
+                iDat_NH = [iDat_NH;repmat(i,size(tDat))];
+            end
+            if lat < 0 % SH
+                tDat_SH = [tDat_SH;tDat];
+                yDat_SH = [yDat_SH;yDat_noSeas];
+                iDat_SH = [iDat_SH;repmat(i,size(tDat))];
+            end
         end
     end
 end
@@ -322,6 +419,62 @@ end
 [tDat_SH, eMCF_SH] = BlockAverage(tDat_SH,eMCF_SH,ones(size(tDat_SH)),fDays);
 eOut_NH = interp1(tDat_NH,eMCF_NH,t);
 eOut_SH = interp1(tDat_SH,eMCF_SH,t);
+
+%%% Assume errors before the first obs are twice the max
+eOut_NH(isnan(eOut_NH)) = 2*nanmax(eOut_NH);
+eOut_SH(isnan(eOut_SH)) = 2*nanmax(eOut_SH);
+
+%%% Compare this to our previously estimated errors
+eOut_NH = nanmax([eOut_NH,eDat_NH],[],2);
+eOut_SH = nanmax([eOut_SH,eDat_SH],[],2);
+
+%%% Make sure this is more than the absolute min value
+eOut_NH(eOut_NH < min_err) = min_err;
+eOut_SH(eOut_SH < min_err) = min_err;
+
+end
+
+
+%%% Read the NH/SH errors from the NOAA network
+function [ eOut_NH, eOut_SH ] = ReadN2Oerr( t, tAvg, eDat_NH, eDat_SH, dataDir )
+
+%%% Define the minimum error
+min_err = 0.2; % ppt
+
+%%% Append the directory onto the dataDir
+dataDir = sprintf('%sobs/N2O/NOAA/combined/',dataDir);
+
+%%% Define the site names, header lengths, and latitudes
+% Filename structure
+fName = 'GMD_global_N2O.txt';
+nHDR  = 85;
+
+%%% Load the data
+dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
+dat     = dat.data;
+tDatO   = datenum(dat(:,1),dat(:,2),ones(size(dat(:,1))));
+eN2O_NH = dat(:,4); % NH uncertainty
+eN2O_SH = dat(:,6); % SH uncertainty
+
+%%% Get the observations onto my temporal grid
+tDat_NH = tDatO;
+tDat_SH = tDatO;
+% Remove NaNs
+ind_NH  = ~isnan(tDat_NH) & ~isnan(eN2O_NH);
+ind_SH  = ~isnan(tDat_SH) & ~isnan(eN2O_SH);
+tDat_NH = tDat_NH(ind_NH);
+eN2O_NH = eN2O_NH(ind_NH);
+tDat_SH = tDat_SH(ind_SH);
+eN2O_SH = eN2O_SH(ind_SH);
+% Put it on my grid (Smooth it first)
+fDays = 365; % Number of days in the block average
+if strcmp(tAvg,'month') || strcmp(tAvg,'MONTH') || strcmp(tAvg,'monthly')
+    fDays = fDays / 12;
+end
+[tDat_NH, eN2O_NH] = BlockAverage(tDat_NH,eN2O_NH,ones(size(tDat_NH)),fDays);
+[tDat_SH, eN2O_SH] = BlockAverage(tDat_SH,eN2O_SH,ones(size(tDat_SH)),fDays);
+eOut_NH = interp1(tDat_NH,eN2O_NH,t);
+eOut_SH = interp1(tDat_SH,eN2O_SH,t);
 
 %%% Assume errors before the first obs are twice the max
 eOut_NH(isnan(eOut_NH)) = 2*nanmax(eOut_NH);

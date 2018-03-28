@@ -45,10 +45,10 @@ yrs       = datevec(St);
 xLims     = [datenum(yrs(1,1),1,1),datenum(yrs(end,1),1,1)]';
 title_ch4 = sprintf('S_x = NH EMISSION CHANGE AT 1988 %s',pTime);
 title_oh  = sprintf('S_x = NH OH CHANGE AT 1988 %s',pTime);
-yLab_ch4a = 'dCH_4/dS_x (ppb/Tg)';
-yLab_ch4b = sprintf('d\\delta^{13}CH_4/dS_x (%s/Tg)',char(8240));
-yLab_oha  = 'dCH_4/dS_x (ppb/%OH)';
-yLab_ohb  = sprintf('d\\delta^{13}CH_4/dS_x (%s/%%OH)',char(8240));
+yLab_ch4a = 'dCH_4/dS_x (ppb/Tg CH_4)';
+yLab_ch4b = sprintf('d\\delta^{13}CH_4/dS_x (%s/Tg CH_4)',char(8240));
+yLab_oha  = 'dCH_4/dS_x (ppb/Tg OH)';
+yLab_ohb  = sprintf('d\\delta^{13}CH_4/dS_x (%s/Tg OH)',char(8240));
 
 %%% Set the plot options
 nhCol    = [204, 179, 102]./256;
@@ -68,8 +68,8 @@ hold on
 set(gca,pOpts{:})
 ylabel(yLab_ch4a,tOpts{:})
 title(title_ch4,tOpts{:})
-plot(St,jacobian_ems(0*nT+0*nT+[1:nT],9*yrFac,1),lOpts{:},nhCol)
-plot(St,jacobian_ems(0*nT+3*nT+[1:nT],9*yrFac,1),lOpts{:},shCol)
+plot(St,jacobian_ems(0*nT+[1:nT],9*yrFac,1),lOpts{:},nhCol)
+plot(St,jacobian_ems(1*nT+[1:nT],9*yrFac,1),lOpts{:},shCol)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 print(h,printOpts{:}, sprintf(baseName,'CH4ems_CH4'))
@@ -81,8 +81,8 @@ hold on
 set(gca,pOpts{:})
 ylabel(yLab_ch4b,tOpts{:})
 title(title_ch4,tOpts{:})
-plot(St,jacobian_ems(1*nT+0*nT+[1:nT],9*yrFac,1),lOpts{:},nhCol)
-plot(St,jacobian_ems(1*nT+3*nT+[1:nT],9*yrFac,1),lOpts{:},shCol)
+plot(St,jacobian_ems(2*nT+[1:nT],9*yrFac,1),lOpts{:},nhCol)
+plot(St,jacobian_ems(3*nT+[1:nT],9*yrFac,1),lOpts{:},shCol)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 print(h,printOpts{:}, sprintf(baseName,'CH4ems_CH4C13'))
@@ -94,8 +94,8 @@ hold on
 set(gca,pOpts{:})
 ylabel(yLab_oha,tOpts{:})
 title(title_oh,tOpts{:})
-plot(St,jacobian_ems(0*nT+0*nT+[1:nT],9*yrFac,7),lOpts{:},nhCol)
-plot(St,jacobian_ems(0*nT+3*nT+[1:nT],9*yrFac,7),lOpts{:},shCol)
+plot(St,jacobian_ems(0*nT+[1:nT],9*yrFac,11),lOpts{:},nhCol)
+plot(St,jacobian_ems(1*nT+[1:nT],9*yrFac,11),lOpts{:},shCol)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 print(h,printOpts{:}, sprintf(baseName,'OH_CH4'))
@@ -107,8 +107,8 @@ hold on
 set(gca,pOpts{:})
 ylabel(yLab_ohb,tOpts{:})
 title(title_oh,tOpts{:})
-plot(St,jacobian_ems(1*nT+0*nT+[1:nT],9*yrFac,7),lOpts{:},nhCol)
-plot(St,jacobian_ems(1*nT+3*nT+[1:nT],9*yrFac,7),lOpts{:},shCol)
+plot(St,jacobian_ems(2*nT+[1:nT],9*yrFac,11),lOpts{:},nhCol)
+plot(St,jacobian_ems(3*nT+[1:nT],9*yrFac,11),lOpts{:},shCol)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 print(h,printOpts{:}, sprintf(baseName,'OH_CH4C13'))

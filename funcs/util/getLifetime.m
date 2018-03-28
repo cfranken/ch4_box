@@ -20,8 +20,8 @@ function [ tau ] = getLifetime( St, ems )
 params = getParameters(St);
 
 %%% Get time-dependent OH reaction rate
-R_NH = ems(:,7) * params.k_12ch4; % NH
-R_SH = ems(:,8) * params.k_12ch4; % SH
+R_NH = ems.nh_oh * params.k_12ch4; % NH
+R_SH = ems.sh_oh * params.k_12ch4; % SH
 
 %%% Get the lifetimes
 tau_NH  = 1 ./ ( R_NH .* params.YrToDay );  % yr

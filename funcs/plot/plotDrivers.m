@@ -8,8 +8,8 @@
 %%% =----------------------------------------------------------------------
 %%% = INPUTS
 %%% =  ( 1): St       -- Our time vector.
-%%% =  ( 2): ems_post -- Matrix with the posterior emissions.
-%%% =  ( 3): ems_pri  -- Matrix with the prior emissions.
+%%% =  ( 2): ems_post -- Structure with the posterior emissions.
+%%% =  ( 3): ems_pri  -- Structure with the prior emissions.
 %%% =  ( 4): baseName -- Prefix for the plots.
 %%% =  ( 5): dataDir  -- Directory containing the data.
 %%% =----------------------------------------------------------------------
@@ -18,6 +18,10 @@
 %%% =======================================================================
 
 function [ ] = plotDrivers( St, ems_post, ems_pri, baseName, dataDir )
+
+%%% Convert the matrix to a structure
+ems_post = disassembleEms(ems_post);
+ems_pri  = disassembleEms(ems_pri);
 
 %%% Get file extension
 fExten = strsplit(baseName,'.');
@@ -39,7 +43,7 @@ oh_dat(oh_dat == 0) = NaN;
 oh_time = datenum(oh_dat(:,1),ones(size(oh_dat,1),1),ones(size(oh_dat,1),1));
 % Get the OH offset
 ind       = oh_time(1) <= St & St <= oh_time(end);
-oh_offset = mean((mean([ems_post(ind,7),ems_post(ind,8)],2)-1)*100);
+oh_offset = mean((mean([ems_post.nh_oh(ind),ems_post.sh_oh(ind)],2)-1)*100);
 
 %%% Turn 
 yrs          = datevec(St);
@@ -108,9 +112,9 @@ box on
 set(ax(1),'yaxislocation','left','YTick',yLims_Dch4,'YTickLabel',yLims_Dch4_lab)
 ylabel(ax(1),sprintf('\\Delta %s',title_ch4),tOpts{:})
 hold on
-plot(St,ems_post(:,1) - ems_pri(:,1),nhOptsA{:})
-plot(St,ems_post(:,4) - ems_pri(:,4),shOptsA{:})
-plot(St,(ems_post(:,1)+ems_post(:,4)) - (ems_pri(:,1)+ems_pri(:,4)),gloOptsA{:})
+plot(St,ems_post.nh_ch4 - ems_pri.nh_ch4,nhOptsA{:})
+plot(St,ems_post.sh_ch4 - ems_pri.sh_ch4,shOptsA{:})
+plot(St,(ems_post.nh_ch4+ems_post.sh_ch4) - (ems_pri.nh_ch4+ems_pri.sh_ch4),gloOptsA{:})
 xlim(xLims)
 ylim([yLims_Dch4(1),yLims_Dch4(end)])
 datetick('x','yyyy','keeplimits')
@@ -123,8 +127,8 @@ box on
 set(ax(2),'yaxislocation','right','YTick',yLims_d13C,'YTickLabel',yLims_d13C_lab)
 ylabel(ax(2),title_ch4c13,tOpts{:})
 hold on
-plot(St,ems_post(:,2),nhOptsA{:})
-plot(St,ems_post(:,5),shOptsA{:})
+plot(St,ems_post.nh_ch4c13,nhOptsA{:})
+plot(St,ems_post.sh_ch4c13,shOptsA{:})
 xlim(xLims)
 ylim([yLims_d13C(1),yLims_d13C(end)])
 datetick('x','yyyy','keeplimits')
@@ -137,14 +141,14 @@ box on
 set(ax(3),'yaxislocation','left','YTick',yLims_oh,'YTickLabel',yLims_oh_lab)
 ylabel(ax(3),title_oh,tOpts{:})
 hold on
-if any(~isnan(ems_pri));
+if any(~isnan(ems_pri.nh_oh)) || any(~isnan(ems_pri.sh_oh));
     for i = 2:size(oh_dat,2)
         plot(oh_time,oh_offset + oh_dat(:,i),'k-','LineWidth',1,'Color',obsCol)
     end
 end
-plot(St,(ems_post(:,7)-1)*100,nhOptsA{:})
-plot(St,(ems_post(:,8)-1)*100,shOptsA{:})
-plot(St,(mean([ems_post(:,7),ems_post(:,8)],2)-1)*100,gloOptsA{:})
+plot(St,(ems_post.nh_oh-1)*100,nhOptsA{:})
+plot(St,(ems_post.sh_oh-1)*100,shOptsA{:})
+plot(St,(mean([ems_post.nh_oh,ems_post.sh_oh],2)-1)*100,gloOptsA{:})
 text(xloc,yloc_ALL-0*spac_ALL,'Northern Hemisphere','Color', nhCol,lOpts{:})
 text(xloc,yloc_ALL-1*spac_ALL,'Southern Hemisphere','Color', shCol,lOpts{:})
 text(xloc,yloc_ALL-2*spac_ALL,             'Global','Color',gloCol,lOpts{:})
@@ -160,12 +164,12 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',yLims_ch4)
 ylabel(title_ch4,tOpts{:})
-plot(St,ems_post(:,1),nhOptsA{:})
-plot(St,ems_post(:,4),shOptsA{:})
-plot(St,ems_post(:,1)+ems_post(:,4),gloOptsA{:})
-plot(St,ems_pri(:,1),nhOptsB{:})
-plot(St,ems_pri(:,4),shOptsB{:})
-plot(St,ems_pri(:,1)+ems_pri(:,4),gloOptsB{:})
+plot(St,ems_post.nh_ch4,nhOptsA{:})
+plot(St,ems_post.sh_ch4,shOptsA{:})
+plot(St,ems_post.nh_ch4+ems_post.sh_ch4,gloOptsA{:})
+plot(St,ems_pri.nh_ch4,nhOptsB{:})
+plot(St,ems_pri.sh_ch4,shOptsB{:})
+plot(St,ems_pri.nh_ch4+ems_pri.sh_ch4,gloOptsB{:})
 text(xloc,yloc_ch4+2*spac_ch4,             'Global','Color',gloCol,lOpts{:})
 text(xloc,yloc_ch4+1*spac_ch4,'Northern Hemisphere','Color', nhCol,lOpts{:})
 text(xloc,yloc_ch4+0*spac_ch4,'Southern Hemisphere','Color', shCol,lOpts{:})
@@ -180,10 +184,10 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',yLims_ch4c13)
 ylabel(title_ch4c13,tOpts{:})
-plot(St,ems_post(:,2),nhOptsA{:})
-plot(St,ems_post(:,5),shOptsA{:})
-plot(St,ems_pri(:,2),nhOptsB{:})
-plot(St,ems_pri(:,5),shOptsB{:})
+plot(St,ems_post.nh_ch4c13,nhOptsA{:})
+plot(St,ems_post.sh_ch4c13,shOptsA{:})
+plot(St,ems_pri.nh_ch4c13,nhOptsB{:})
+plot(St,ems_pri.sh_ch4c13,shOptsB{:})
 text(xloc,yloc_ch4c13+1*spac_ch4c13,'Northern Hemisphere','Color', nhCol,lOpts{:})
 text(xloc,yloc_ch4c13+0*spac_ch4c13,'Southern Hemisphere','Color', shCol,lOpts{:})
 xlim(xLims)
@@ -197,10 +201,10 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',yLims_mcf)
 ylabel(title_mcf,tOpts{:})
-plot(St,ems_post(:,3),nhOptsA{:})
-plot(St,ems_post(:,6),shOptsA{:})
-plot(St,ems_pri(:,3),nhOptsB{:})
-plot(St,ems_pri(:,6),shOptsB{:})
+plot(St,ems_post.nh_mcf,nhOptsA{:})
+plot(St,ems_post.sh_mcf,shOptsA{:})
+plot(St,ems_pri.nh_mcf,nhOptsB{:})
+plot(St,ems_pri.sh_mcf,shOptsB{:})
 text(xloc,yloc_mcf+1*spac_mcf,'Northern Hemisphere','Color', nhCol,lOpts{:})
 text(xloc,yloc_mcf+0*spac_mcf,'Southern Hemisphere','Color', shCol,lOpts{:})
 xlim(xLims)
@@ -214,8 +218,8 @@ box on
 hold on
 set(gca,pOpts{:},'YScale','log')
 ylabel(title_mcf,tOpts{:})
-mcf_A = ems_post(:,3);mcf_A(mcf_A<=0) = NaN;
-mcf_B = ems_pri(:,3);mcf_B(mcf_B<=0) = NaN;
+mcf_A = ems_post.nh_mcf;mcf_A(mcf_A<=0) = NaN;
+mcf_B = ems_pri.nh_mcf;mcf_B(mcf_B<=0) = NaN;
 plot(St,mcf_A,nhOptsA{:})
 plot(St,mcf_B,nhOptsB{:})
 xlim(xLims)
@@ -229,17 +233,17 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',yLims_oh)
 ylabel(title_oh,tOpts{:})
-if any(~isnan(ems_pri));
+if any(~isnan(ems_pri.nh_oh)) || any(~isnan(ems_pri.sh_oh));
     for i = 2:size(oh_dat,2)
         plot(oh_time,oh_offset + oh_dat(:,i),'k-','LineWidth',1,'Color',obsCol)
     end
 end
-plot(St,(ems_post(:,7)-1)*100,nhOptsA{:})
-plot(St,(ems_pri(:,7)-1)*100,nhOptsB{:})
-plot(St,(ems_post(:,8)-1)*100,shOptsA{:})
-plot(St,(ems_pri(:,8)-1)*100,shOptsB{:})
-plot(St,(mean([ems_post(:,7),ems_post(:,8)],2)-1)*100,gloOptsA{:})
-plot(St,(mean([ems_pri(:,7),ems_pri(:,8)],2)-1)*100,gloOptsB{:})
+plot(St,(ems_post.nh_oh-1)*100,nhOptsA{:})
+plot(St,(ems_pri.nh_oh-1)*100,nhOptsB{:})
+plot(St,(ems_post.sh_oh-1)*100,shOptsA{:})
+plot(St,(ems_pri.sh_oh-1)*100,shOptsB{:})
+plot(St,(mean([ems_post.nh_oh,ems_post.sh_oh],2)-1)*100,gloOptsA{:})
+plot(St,(mean([ems_pri.nh_oh,ems_pri.sh_oh],2)-1)*100,gloOptsB{:})
 text(xloc,yloc_oh+2*spac_oh,             'Global','Color',gloCol,lOpts{:})
 text(xloc,yloc_oh+1*spac_oh,'Northern Hemisphere','Color', nhCol,lOpts{:})
 text(xloc,yloc_oh+0*spac_oh,'Southern Hemisphere','Color', shCol,lOpts{:})
@@ -254,8 +258,8 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',[.85:.05:1.15])
 ylabel('NH/SH OH Ratio',tOpts{:})
-plot(St,ems_post(:,7)./ems_post(:,8),gloOptsA{:})
-plot(St,ems_pri(:,7)./ems_pri(:,8),gloOptsB{:})
+plot(St,ems_post.nh_oh./ems_post.sh_oh,gloOptsA{:})
+plot(St,ems_pri.nh_oh./ems_pri.sh_oh,gloOptsB{:})
 % Patra
 plot(xLims,.97*[1,1],'k-','LineWidth',1,'Color',obsCol)
 xlim(xLims)
@@ -307,9 +311,9 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',yLims_Dch4)
 ylabel(sprintf('\\Delta %s',title_ch4),tOpts{:})
-plot(St,ems_post(:,1) - ems_pri(:,1),nhOptsA{:})
-plot(St,ems_post(:,4) - ems_pri(:,4),shOptsA{:})
-plot(St,(ems_post(:,1)+ems_post(:,4)) - (ems_pri(:,1)+ems_pri(:,4)),gloOptsA{:})
+plot(St,ems_post.nh_ch4 - ems_pri.nh_ch4,nhOptsA{:})
+plot(St,ems_post.sh_ch4 - ems_pri.sh_ch4,shOptsA{:})
+plot(St,(ems_post.nh_ch4+ems_post.sh_ch4) - (ems_pri.nh_ch4+ems_pri.sh_ch4),gloOptsA{:})
 xlim(xLims)
 ylim([yLims_Dch4(1),yLims_Dch4(end)])
 datetick('x','yyyy','keeplimits')
@@ -321,7 +325,7 @@ box on
 hold on
 set(gca,pOpts{:},'YTick',[500:10:620])
 ylabel(title_ch4,tOpts{:})
-plot(St,ems_post(:,1)+ems_post(:,4),gloOptsA{:})
+plot(St,ems_post.nh_ch4+ems_post.sh_ch4,gloOptsA{:})
 xlim(xLims)
 ylim([500,600])
 datetick('x','yyyy','keeplimits')
@@ -337,14 +341,14 @@ box on
 set(ax(1),'yaxislocation','left','YTick',yLims_oh,'YTickLabel',yLims_oh_lab)
 ylabel(ax(1),title_oh,tOpts{:})
 hold on
-if any(~isnan(ems_pri));
+if any(~isnan(ems_pri.nh_oh)) || any(~isnan(ems_pri.sh_oh));
     for i = 2:size(oh_dat,2)
         plot(oh_time,oh_offset + oh_dat(:,i),'k-','LineWidth',1,'Color',[0,0,0])
     end
 end
-plot(St,(ems_post(:,7)-1)*100,nhOptsA{:})
-plot(St,(ems_post(:,8)-1)*100,shOptsA{:})
-plot(St,(mean([ems_post(:,7),ems_post(:,8)],2)-1)*100,gloOptsA{:})
+plot(St,(ems_post.nh_oh-1)*100,nhOptsA{:})
+plot(St,(ems_post.sh_oh-1)*100,shOptsA{:})
+plot(St,(mean([ems_post.nh_oh,ems_post.sh_oh],2)-1)*100,gloOptsA{:})
 xlim(xLims)
 ylim([yLims_oh(1),yLims_oh(end)])
 datetick('x','yyyy','keeplimits')
@@ -358,7 +362,7 @@ set(ax(2),'yaxislocation','right','YTick',[.9:.05:1.1])
 ylabel(ax(2),'NH/SH OH Ratio',tOpts{:})
 hold on
 set(gca,pOpts{:},'YTick',[.9:.05:1.1])
-plot(St,ems_post(:,7)./ems_post(:,8),gloOptsA{:})
+plot(St,ems_post.nh_oh./ems_post.sh_oh,gloOptsA{:})
 plot(xLims,.97*[1,1],'k-','LineWidth',1,'Color',obsCol)% Patra
 xlim(xLims)
 ylim([0.9,1.1])

@@ -47,14 +47,26 @@ elseif strcmp(type,'d13C')
     yLims  = [-48.0 : .20 : -46.8]';
     yTitle = sprintf('\\delta^{13}CH_{4} (%s)',char(8240));
     inputN = 'ch4c13';
+elseif strcmp(type,'dD')
+    yLims  = [-110.0 : 5 : -70.0]';
+    yTitle = sprintf('\\delta^{2}H (%s)',char(8240));
+    inputN = 'ch4h2';
 elseif strcmp(type,'mcf')
     yLims  = [ 0 : 50 : 200]';
     yTitle = 'CH_3CCl_3 (ppt)';
     inputN = 'mcf';
+elseif strcmp(type,'n2o')
+    yLims  = [ 300 : 5 : 330]';
+    yTitle = 'N_2O (ppb)';
+    inputN = 'n2o';
 elseif strcmp(type,'c2h6')
-    yLims  = [ 0 : 1000 : 9000]';
+    yLims  = [ 0 : 200 : 2000]';
     yTitle = 'C_2H_6 (ppt)';
     inputN = 'c2h6';
+elseif strcmp(type,'co')
+    yLims  = [ 0 : 50 : 300]';
+    yTitle = 'CO (ppb)';
+    inputN = 'co';
 end
 yrs   = datevec(St);
 xLims = [datenum(yrs(1,1),1,1),datenum(yrs(end,1),1,1)]';
@@ -138,20 +150,18 @@ for i = 1:length(sNames)
     end
     plot(tDat,yDat,'-',lOpts{:},'Color',col);
 end
-if ~strcmp(type,'c2h6')% We don't actually have the hemispheric averages for C2H6
-    for i = 1:length(St)
-        yV = avg_obs.(sprintf('nh_%s',inputN))(i); yE = avg_obs.(sprintf('nh_%s_err',inputN))(i);
-        if ~isnan(yV) && ~isnan(yE)
-            plot([St(i),St(i)],[yV-yE,yV+yE],'k-','Color',obsCol)
-        end
-        yV = avg_obs.(sprintf('sh_%s',inputN))(i); yE = avg_obs.(sprintf('sh_%s_err',inputN))(i);
-        if ~isnan(yV) && ~isnan(yE)
-            plot([St(i),St(i)],[yV-yE,yV+yE],'k-','Color',obsCol)
-        end
+for i = 1:length(St)
+    yV = avg_obs.(sprintf('nh_%s',inputN))(i); yE = avg_obs.(sprintf('nh_%s_err',inputN))(i);
+    if ~isnan(yV) && ~isnan(yE)
+        plot([St(i),St(i)],[yV-yE,yV+yE],'k-','Color',obsCol)
     end
-    plot(St,avg_obs.(sprintf('nh_%s',inputN)),'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor','k','MarkerEdgeColor','none')
-    plot(St,avg_obs.(sprintf('sh_%s',inputN)),'v','Color',obsCol,'MarkerSize',6,'MarkerFaceColor','k','MarkerEdgeColor','none')
+    yV = avg_obs.(sprintf('sh_%s',inputN))(i); yE = avg_obs.(sprintf('sh_%s_err',inputN))(i);
+    if ~isnan(yV) && ~isnan(yE)
+        plot([St(i),St(i)],[yV-yE,yV+yE],'k-','Color',obsCol)
+    end
 end
+plot(St,avg_obs.(sprintf('nh_%s',inputN)),'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor','k','MarkerEdgeColor','none')
+plot(St,avg_obs.(sprintf('sh_%s',inputN)),'v','Color',obsCol,'MarkerSize',6,'MarkerFaceColor','k','MarkerEdgeColor','none')
 datetick('x','yyyy','keeplimits')
 print(h,printOpts{:},sprintf(baseName,type,'MEAN'))
 % Individually

@@ -14,7 +14,7 @@
 %%% =  ( 5): run_parallel -- Are we running in parallel?  (True/False).
 %%% =----------------------------------------------------------------------
 %%% = OUTPUTS
-%%% =  ( 1): jacobian_ems -- Jacobian for the emission sources (and OH).
+%%% =  ( 1): jacobian_ems -- Jacobian for the emission sources.
 %%% =  ( 2): jacobian_IC  -- Jacobian for the ICs.
 %%% =======================================================================
 
@@ -33,15 +33,25 @@ jacobian_ems = zeros(nY,nT,nE);
 jacobian_IC  = zeros(nY,nI);
 
 %%% Perturbation for the Jacobian
-delta.ems = [5,1,5,5,1,5,0.01,0.01];
-delta.IC  = [1,1,1,1,1,1];
+%            ch4, d13c, mcf, n2o,    c2h6,  oh,  co, tau_TS, kX_NH, kX_SH
+delta.ems = [5,5,  1,1, 5,5, 1,1, 500,500, 1,1, 5,5,      1,     1,     1];
+delta.IC  = ones(1,nI);
 
-%%% Jacobian for ICs
-for i = 1:nI
-    IC_pert          = IC;
-    IC_pert(i)       = IC(i) + delta.IC(i);
-    out_plus         = assembleObs(boxModel_wrapper(St,ems,IC_pert,params));
-    jacobian_IC(:,i) = (out_plus - out_base)./delta.IC(i);
+%%% Jacobian for ICs (compute it in parallel?)
+if run_parallel % Parallel
+    parfor i = 1:nI
+        IC_pert          = IC;
+        IC_pert(i)       = IC(i) + delta.IC(i);
+        out_plus         = assembleObs(boxModel_wrapper(St,ems,IC_pert,params));
+        jacobian_IC(:,i) = (out_plus - out_base)./delta.IC(i);
+    end
+else
+    for i = 1:nI
+        IC_pert          = IC;
+        IC_pert(i)       = IC(i) + delta.IC(i);
+        out_plus         = assembleObs(boxModel_wrapper(St,ems,IC_pert,params));
+        jacobian_IC(:,i) = (out_plus - out_base)./delta.IC(i);
+    end
 end
 
 %%% Jacobian for sources (compute it in parallel?)

@@ -59,6 +59,8 @@ end
 % Make the structure
 out.prinn     = outS(:,1);
 out.mcculloch = outS(:,2);
+out.nh        = out.prinn;
+out.sh        = zeros(size(outS(:,i)));
 
 end
 

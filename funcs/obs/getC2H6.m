@@ -8,15 +8,40 @@
 %%% =----------------------------------------------------------------------
 %%% = INPUTS
 %%% =  ( 1): dataDir -- Directory containing the data.
+%%% =  ( 2): reread  -- Structure that says if we'll re-read the data.
 %%% =----------------------------------------------------------------------
 %%% = OUTPUTS
 %%% =  ( 1): out -- A structure containing the observation information.
 %%% =======================================================================
 
-function [ out ] = getC2H6( dataDir )
+function [ out ] = getC2H6( dataDir, reread )
 
 %%% Diagnostic
 fprintf('   * C2H6\n');
+
+
+%%% =======================================================================
+%%% HAVE WE READ THIS DATA BEFORE?
+%%% =======================================================================
+
+%%% Build the filename
+OutName = sprintf('%sobs/StoredData/c2h6_%4i-%4i_%s-%s.mat',...
+                  reread.dir,reread.sYear,reread.eYear,reread.tRes,reread.tAvg);
+
+%%% Load pre-existing data file
+if ~reread.flag
+    % Check if a file exists
+    if exist(OutName, 'file') == 2
+        fprintf('   * LOADING OLD OBS STRUCTURE\n');
+        load(OutName);
+        return % Don't need to read the data
+    end
+end
+
+
+%%% =======================================================================
+%%% READ DATA
+%%% =======================================================================
 
 %%% Create the output structure
 out = struct;
@@ -74,6 +99,20 @@ for i = 1:nFiles
     end
     yDat(~ind) = NaN;
     tDat(~ind) = NaN;
+    % Throw out an ethane site obs if the mean concentration is greater than 3000 ppt (800 ppt) in the NH (SH)
+    if sLat(i) > 0
+        if sum(yDat > 3000)
+            yDat(:) = NaN;
+        end
+    else
+        if sum(yDat > 800)
+            yDat(:) = NaN;
+        end
+    end
+    % Throw out tropical ethane sites
+    if abs(sLat(i)) < 20
+        yDat(:) = NaN;
+    end
     % Check for negatives (non-physical)
     yDat(yDat <= 0) = NaN;
     % Remove NaNs
@@ -87,6 +126,18 @@ for i = 1:nFiles
         out.lat.(sprintf('%s_%s_%s',sNames{i,1},sNames{i,2},sNames{i,3})) = sLat(i);
     end
 end
+
+
+%%% =======================================================================
+%%% SAVE THIS OBSERVATION FILE
+%%% =======================================================================
+
+%%% Save the structure
+fprintf('   * SAVING OBS STRUCTURE\n');
+if exist(OutName, 'file') == 2
+    delete(OutName);
+end
+save(OutName,'out');
 
 end
 

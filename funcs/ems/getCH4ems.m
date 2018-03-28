@@ -28,18 +28,22 @@ edgar     = false;
 const_ems = true;
 if cfranken
     % Total methane source
-    tot_ch4 = 550;  % Tg/yr
+    tot_ch4 = 580;  % Tg/yr
     frac_nh = 0.7;  % Fraction of emissions in the NH
     % CH4 Emissions
     ems_nh = zeros(size(St)) + tot_ch4 * frac_nh;
     ems_sh = zeros(size(St)) + tot_ch4 * (1 - frac_nh);
-    % Add a step change of emissions after 2006
-    ems_nh(St>datenum(2006,1,1)) = ems_nh(St>datenum(2006,1,1)) + 15/2;
-    ems_sh(St>datenum(2006,1,1)) = ems_sh(St>datenum(2006,1,1)) + 15/2;
+    % Add a step change of emissions after 2050
+    yr_CHANGE = 2030;
+    ems_add   = 50;
+    ems_nh(St>=datenum(yr_CHANGE,1,1)) = ems_nh(St>=datenum(yr_CHANGE,1,1)) + ems_add/2;
+    ems_sh(St>=datenum(yr_CHANGE,1,1)) = ems_sh(St>=datenum(yr_CHANGE,1,1)) + ems_add/2;
+%     ems_nh(St==datenum(yr_CHANGE,1,1)) = ems_nh(St==datenum(yr_CHANGE,1,1)) + ems_add/2;
+%     ems_sh(St==datenum(yr_CHANGE,1,1)) = ems_sh(St==datenum(yr_CHANGE,1,1)) + ems_add/2;
 end
 if edgar
     % Read in EDGAR
-    fname       = sprintf('%s/ems/ch4/%s',dataDir,'edgarv42ft2010.xls');
+    fname       = sprintf('%s/ems/ch4/%s',dataDir,'EDGARv42FT2012_CH4.xls');
     [dat, ~, ~] = xlsread(fname,'CH4_timeseries');
     tDat        = dat(8,:);     % Year
     tDat        = datenum(tDat,ones(size(tDat)),ones(size(tDat)));
@@ -63,7 +67,7 @@ if edgar
 end
 if const_ems
     % Total methane source (constant)
-    tot_ch4 = 550;  % Tg/yr
+    tot_ch4 = 580;  % Tg/yr
     frac_nh = 0.75; % Fraction of emissions in the NH
     % CH4 Emissions
     ems_nh = zeros(size(St)) + tot_ch4 * frac_nh;

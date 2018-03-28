@@ -70,15 +70,40 @@ mu       = obs.sh_mcf;
 sig      = obs.sh_mcf_err;
 ind      = ~isnan(mu) & ~isnan(y) & ~isnan(sig);
 p_sh_mcf = p_normal(y(ind),mu(ind),diag(sig(ind).^2));
+% NH N2O (normal)
+y        = out.nh_n2o;
+mu       = obs.nh_n2o;
+sig      = obs.nh_n2o_err;
+ind      = ~isnan(mu) & ~isnan(y) & ~isnan(sig);
+p_nh_n2o = p_normal(y(ind),mu(ind),diag(sig(ind).^2));
+% SH N2O (normal)
+y        = out.sh_n2o;
+mu       = obs.sh_n2o;
+sig      = obs.sh_n2o_err;
+ind      = ~isnan(mu) & ~isnan(y) & ~isnan(sig);
+p_sh_n2o = p_normal(y(ind),mu(ind),diag(sig(ind).^2));
+% NH C2H6 (normal)
+y         = out.nh_c2h6;
+mu        = obs.nh_c2h6;
+sig       = obs.nh_c2h6_err;
+ind       = ~isnan(mu) & ~isnan(y) & ~isnan(sig);
+p_nh_c2h6 = p_normal(y(ind),mu(ind),diag(sig(ind).^2));
+% SH C2H6 (normal)
+y         = out.sh_c2h6;
+mu        = obs.sh_c2h6;
+sig       = obs.sh_c2h6_err;
+ind       = ~isnan(mu) & ~isnan(y) & ~isnan(sig);
+p_sh_c2h6 = p_normal(y(ind),mu(ind),diag(sig(ind).^2));
 
 %%% Construct the full likelihood distribution
 likeli = [p_nh_ch4,    p_sh_ch4,    ...
           p_nh_ch4c13, p_sh_ch4c13, ...
-          p_nh_mcf,    p_sh_mcf];
+          p_nh_mcf,    p_sh_mcf,    ...
+          p_nh_n2o,    p_sh_n2o];
 % Diagnostic
 if any(isnan(likeli))
-    fprintf('NH ch4 = %4.0f, ch4c13 = %4.0f, mcf = %4.0f | ch4 = %4.0f, ch4c13 = %4.0f, mcf = %4.0f SH\n',...
-             likeli(1),likeli(3),likeli(5),likeli(2),likeli(4),likeli(6));
+    fprintf('NH ch4 = %4.0f, ch4c13 = %4.0f, mcf = %4.0f, n2o = %4.0f | ch4 = %4.0f, ch4c13 = %4.0f, mcf = %4.0f, n2o = %4.0f SH\n',...
+             likeli(1),likeli(3),likeli(5),likeli(7),likeli(2),likeli(4),likeli(6),likeli(8));
 end
 if use_log
     p_like = sum(likeli);

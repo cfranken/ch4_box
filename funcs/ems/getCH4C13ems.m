@@ -23,8 +23,8 @@ fprintf('   * CH4C13\n');
 
 %%% Define the delta13C composition
 % delta13C source
-nh_ch4c13 = -52.15; % permil
-sh_ch4c13 = -51.25; % permil
+nh_ch4c13 = -51.90; % permil
+sh_ch4c13 = -51.00; % permil
 % delta13C composition
 ems_nh = zeros(size(St)) + nh_ch4c13;
 ems_sh = zeros(size(St)) + sh_ch4c13;
