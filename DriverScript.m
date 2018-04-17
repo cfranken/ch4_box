@@ -56,16 +56,18 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 %%% Define the time period
 sYear = 1980;
 eYear = 2016;
-eYear = 2100;
-tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
+%eYear = 2100;
+tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
 %%% Execute in parallel?
 run_parallel = true;
-nWorkers     = 16;
+if run_parallel 
+nWorkers     = 4;
 setupParallel(run_parallel,nWorkers);
+end
 
 %%% What kind of inversions do we want to do?
 do_deterministic = true;    % Rodgers (2000)
@@ -96,7 +98,7 @@ use_strat       = false;     % Use a stratosphere?
 interactive_OH  = true;     % Allow OH feedbacks?
 use_other_sinks = true;     % Use non-OH sinks?
 % Linear inversion flags
-det_linear      = true;     % Use a linear deterministic inversion?
+det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = false;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
@@ -285,7 +287,9 @@ end
 %%% Strat-trop exchange
 tau_TS = 9.0 * ones(nT,1); % years
 if ~use_strat
-    tau_TS(:) = Inf; % No exchange with stratosphere
+    % Set this to something high, Inf results in trouble:
+    %tau_TS(:) = Inf; % No exchange with stratosphere
+    tau_TS(:) = 1e4;
 end
 
 %%% Arbitrary reactions with OH
@@ -353,9 +357,9 @@ if do_deterministic
     fprintf('\n *** DETERMINISTIC INVERSION *** \n');
 
     %%% Invert
-    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
-jacobian_ems
-jacobian_IC
+% Newton: here is the problem 
+    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
+
 
     %%% Plot the Jacobians
     %[jacobian_ems,jacobian_IC] = define_Jacobian( St, ems, IC, params, run_parallel );
@@ -364,6 +368,7 @@ jacobian_IC
     %%% Try plotting the solution
     ems_anal = anal_soln{1};
     IC_anal  = anal_soln{2};
+    % Comment this out for now:
     out_anal = boxModel_wrapper(St,ems_anal,IC_anal,params);
     plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
     %writeData(St,obs,out_anal,ems_anal,IC_anal,sprintf('%s/%s/anal_%%s.csv',outDir,tRes));
