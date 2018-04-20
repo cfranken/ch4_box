@@ -7,7 +7,7 @@
 %%% =        non-linear inversion.  The non-linear inversion can use either
 %%% =        Gauss-Newton or Levenberg-Marquardt.
 %%% =  ( 3): Prior covariance matrix is defined in the subfunction called:
-%%% =        "update_solution".
+%%% =        "update_solution".cd ,,.
 %%% =----------------------------------------------------------------------
 %%% = INPUTS
 %%% =  ( 1): St           -- Our time vector.
@@ -26,12 +26,12 @@
 %%% =  ( 5): absdiff -- Vector of absolute differences while iterating.
 %%% =======================================================================
 
-function [ soln, K_ems, K_IC, reldiff, absdiff ] = invert_methane( St, obs, ems_p, IC_p, params, linear, run_parallel )
+function [ soln, K_ems, K_IC, reldiff, absdiff, matr] = invert_methane( St, obs, ems_p, IC_p, params, linear, run_parallel )
 
 %%% Define tolerances
 reltol  = 1e-6;
 abstol  = 1e-6;
-kmax    = 100;
+kmax    = 5;
 k       = 1;
 iter    = true;
 reldiff = nan(kmax,1);
@@ -39,7 +39,7 @@ absdiff = nan(kmax,1);
 
 %%% Initialize the Levenberg-Marquardt parameters (gamma = zero reverts to IMAP)
 LM_param.chi2  = NaN;
-LM_param.gamma = 1d4;
+LM_param.gamma = 10;
 LM_param.gamma = 0;
 
 %%% Are we doing a linear or nonlinear inversion?
@@ -61,7 +61,7 @@ end
 
 %%% Get the solution for the first step
 [K_ems,K_IC]    = define_Jacobian(St,ems_p,IC_p,params,run_parallel);
-[soln,LM_param] = update_solution(St,ems_p,IC_p,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
+[soln,LM_param, matr] = update_solution(St,ems_p,IC_p,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
 
 while iter
     % Update solution
@@ -70,7 +70,10 @@ while iter
     chi2o = LM_param.chi2;
     % Get new solution
     [K_ems,K_IC]    = define_Jacobian(St,ems_i,IC_i,params,run_parallel);
-    [soln,LM_param] = update_solution(St,ems_i,IC_i,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
+    
+    [soln,LM_param, matr] = update_solution(St,ems_i,IC_i,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
+    % save iteration steps
+    FF(:,k) = matr.F;
     % Get new relative difference
     absdiff_ems = abs(soln{1}(:) - ems_i(:));
     absdiff_IC  = abs(soln{2}(:) -  IC_i(:));
@@ -91,13 +94,13 @@ while iter
     fprintf('ITERATION %3i/%3i: reldiff = %3.2e & absdiff = %3.2e\n',k,kmax,reldiff(k),absdiff(k))
     k = k + 1;
 end
-
+%matr.FF = FF;
 end
 
-function [ out, LM_param ] = update_solution( St, ems_i, IC_i, ems_p, IC_p, LM_param, jacobian_ems, jacobian_IC, obs, params )
+function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p, LM_param, jacobian_ems, jacobian_IC, obs, params )
 
 %%% Alternate cases to run
-global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer
+global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -163,21 +166,28 @@ K = K(indGood,:);
 % Components
 Sa_ch4     =    20^2*ones(nT,1);
 Sa_ch4c13  =    10^2*ones(nT,1);
-Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;
+%Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;
+Sa_mcf_nh  = max([.02*ems_p(:,5),0.15*ones(nT,1)],[],2).^2;
 Sa_mcf_sh  =   0.5^2*ones(nT,1);
 Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
-Sa_oh      =  0.10^2*ones(nT,1);
-Sa_tau     =   3.0^2*ones(nT,1);
+Sa_oh      =  500^2*ones(nT,1);
+Sa_co      =    500^2*ones(nT,1);
+Sa_tau     =   3.0^2*ones(nT,1); % Newton: What is this for?
+
+% Newton: problem may be here. IC has size 28 in DriverScript. Here size = 20
 Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
                  30,30,10,10,15,15,5,5,100,100].^2;
-tau_ch4    = 5; % yr
+% CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
+% now:
+Sa_IC = (0.000005*params.IC).^2;
+tau_ch4    = 1; % yr
 tau_ch4c13 = 0; % yr
 tau_mcf    = 3; % yr
 tau_n2o    = 5; % yr
 tau_c2h6   = 3; % yr
 tau_oh     = 3; % yr
-tau_co     = 3; % yr
+tau_co     = 2; % yr
 tau_tau    = 0; % yr
 % Alternate cases
 if fixedCH4
@@ -199,10 +209,21 @@ if schaefer
     Sa_oh     = eps^2*ones(nT,1); % Fixed OH
     Sa_mcf_nh = eps^2*ones(nT,1); Sa_mcf_sh = Sa_mcf_nh; % Fixed MCF
 end
+% CF: Just create some arbitrary prior uncertainty for the arbitrary
+% reaction rates here as well, as those were missing:
+Sa_kx_NH = eps^2*ones(nT,1); % Fixed K
+Sa_kx_SH = eps^2*ones(nT,1); % Fixed K 
+% We can add flags later if we want to fit kx instead of OH sources!
+
 % Construct matrix
+% Newton: Is there supposed to be stratosphere emissions here as well?
 Sa_ems = [Sa_ch4,Sa_ch4,Sa_ch4c13,Sa_ch4c13,Sa_mcf_nh,Sa_mcf_sh,...
-          Sa_n2o,Sa_n2o,Sa_c2h6,  Sa_c2h6,  Sa_oh,    Sa_oh,    Sa_tau];
+          Sa_n2o,Sa_n2o,Sa_c2h6,  Sa_c2h6,  Sa_oh,    Sa_oh,...
+	  Sa_co, Sa_co, Sa_tau, Sa_kx_NH, Sa_kx_SH];
 Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
+
+% Newton: What is this tau array for?; CF: Tau is the temporal correlation
+% within species.
 tau    = [tau_ch4,tau_ch4,tau_ch4c13,tau_ch4c13,tau_mcf,tau_mcf,...
           tau_n2o,tau_n2o,tau_c2h6,  tau_c2h6,  tau_oh, tau_oh, tau_co, tau_co, tau_tau]*365.25;
 Sa     = fillDiagonalsAnal(Sa,tau,St);
@@ -230,7 +251,7 @@ size(SaI)
 fprintf('Size of SoI=')
 size(SoI)
 fprintf('Size of k = ')
-size(k)
+size(K)
 fprintf('Size of gamma=')
 fprintf('Size of gamma=')
 size(gamma)
@@ -242,7 +263,16 @@ fprintf('size of xi=')
 size(xi)
 fprintf('size of xa=')
 size(xa)
-
+% Write out some diagnostics to see what was wrong
+matr.SaI = SaI;
+matr.K = K;
+matr.gamma = gamma;
+matr.SoI = SoI;
+matr.y = y;
+matr.F = F;
+matr.xi = xi;
+matr.xa = xa;
+matrx.Sa = Sa
 
 LHS   = (SaI + K'*SoI*K + gamma*SaI);
 RHS   = (K'*SoI * (y - F) - SaI*(xi - xa));

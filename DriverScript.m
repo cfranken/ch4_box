@@ -63,11 +63,9 @@ St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
 %%% Execute in parallel?
-run_parallel = true;
-if run_parallel 
+run_parallel = false;
 nWorkers     = 4;
 setupParallel(run_parallel,nWorkers);
-end
 
 %%% What kind of inversions do we want to do?
 do_deterministic = true;    % Rodgers (2000)
@@ -90,13 +88,13 @@ global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
 global k_co_flag use_strat interactive_OH use_other_sinks % Other
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
-plot_prior      = true;     % Plot the prior?
+plot_prior      = false;     % Plot the prior?
 plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
 interactive_OH  = true;     % Allow OH feedbacks?
-use_other_sinks = true;     % Use non-OH sinks?
+use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
@@ -253,7 +251,8 @@ oh_ems = getOHems(St,tRes,dataDir);
 % - "nh": CO emissions from the Northern hemisphere (Tg/yr)
 % - "sh": CO emissions from the Southern hemisphere (Tg/yr)
 co_ems = getCOems(St,tRes,dataDir);
-
+% somehow, the NH emissions are way too low:
+co_ems.nh(:) = 1400;
 
 %%
 %%% =======================================================================
@@ -293,8 +292,10 @@ if ~use_strat
 end
 
 %%% Arbitrary reactions with OH
-kX_NH = 2*ones(nT,1); % s^-1
-kX_SH = 2*ones(nT,1); % s^-1
+% CF Needed to adapt NH as there would otherwise be a rather large IH
+% difference in OH
+kX_NH = 1.81*ones(nT,1); % s^-1
+kX_SH = 2.17*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -363,7 +364,7 @@ if do_deterministic
 
     %%% Plot the Jacobians
     %[jacobian_ems,jacobian_IC] = define_Jacobian( St, ems, IC, params, run_parallel );
-    plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
+    %plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
 
     %%% Try plotting the solution
     ems_anal = anal_soln{1};
