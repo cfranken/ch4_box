@@ -103,7 +103,7 @@ for i = 1:nFiles
         % Check for negatives (non-physical)
         yDat(yDat <= 0) = NaN;
         % Throw out tropical sites
-        if abs(sLat(i)) < 20
+        if abs(sLat(i)) < 18
             yDat(:) = NaN;
         end
         % Remove NaNs
