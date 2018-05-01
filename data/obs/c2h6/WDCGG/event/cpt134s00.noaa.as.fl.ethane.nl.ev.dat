@@ -1,0 +1,76 @@
+C01 TITLE: ethane event sampling data 
+C02 FILE NAME: cpt134s00.noaa.as.fl.ethane.nl.ev.dat 
+C03 DATA FORMAT: Version 1.0
+C04 TOTAL LINES: 76
+C05 HEADER LINES: 38
+C06 DATA VERSION: 201512
+C07 STATION NAME: Cape Point 
+C08 STATION CATEGORY: Global
+C09 OBSERVATION CATEGORY: Air sampling observation at a stationary platform
+C10 COUNTRY/TERRITORY: South Africa
+C11 CONTRIBUTOR: NOAA/ESRL
+C12 LATITUDE: -34.35
+C13 LONGITUDE: 18.48
+C14 ALTITUDE: 230
+C15 NUMBER OF SAMPLING HEIGHTS: 1
+C16 SAMPLING HEIGHTS: 
+C17 CONTACT POINT: detlev.helmig@colorado.edu
+C18 PARAMETER: ethane
+C19 COVERING PERIOD: 2014-04-17 2015-06-23
+C20 TIME INTERVAL: event
+C21 MEASUREMENT UNIT: pmol/mol
+C22 MEASUREMENT METHOD: Gas Chromatography (FID)
+C23 SAMPLING TYPE: flask
+C24 TIME ZONE: UTC
+C25 MEASUREMENT SCALE: 
+C26 DATA POLICY: This is a formal notification for data users. "For scientific purposes, access to these data is unlimited
+C27 and provided without charge. By their use you accept that an offer of co-authorship will be made through personal contact
+C28 with the data providers or owners whenever substantial use is made of their data. In all cases, an acknowledgement
+C29 must be made to the data providers or owners and the data centre when these data are used within a publication."
+C30 COMMENT:
+C31 # comment:  ************ COLLABORATORS ***************
+C32 # comment: 
+C33 # comment: NOAA thanks the following collaborators without
+C34 # comment: whom these measurements would not be possible.
+C35 # comment: 
+C36 # collaborator_name: South African Weather Service [SAWS]
+C37 # comment: 
+C38   DATE  TIME       DATE  TIME           ethane    ND      SD     F CS       REM
+2014-04-17 09:05 9999-99-99 99:99          234.888 -9999 -99999.   ...  0   2560-99
+2014-04-17 09:05 9999-99-99 99:99          228.105 -9999 -99999.   ...  0   4688-99
+2014-05-05 09:35 9999-99-99 99:99          186.704 -9999 -99999.   ...  0   2856-99
+2014-05-05 09:35 9999-99-99 99:99          204.417 -9999 -99999.   ...  0   6493-66
+2014-12-01 09:48 9999-99-99 99:99          171.368 -9999 -99999.   ...  0   3006-99
+2014-12-01 09:48 9999-99-99 99:99          184.327 -9999 -99999.   ...  0   4992-99
+2014-12-10 09:00 9999-99-99 99:99          183.005 -9999 -99999.   ...  0    257-99
+2014-12-10 09:00 9999-99-99 99:99          158.498 -9999 -99999.   ...  0   4136-99
+2014-12-12 08:55 9999-99-99 99:99          214.742 -9999 -99999.   ...  0   2182-99
+2014-12-12 08:55 9999-99-99 99:99          218.543 -9999 -99999.   ...  0   3661-99
+2014-12-31 07:53 9999-99-99 99:99          184.036 -9999 -99999.   ...  0   1428-99
+2014-12-31 07:53 9999-99-99 99:99          175.000 -9999 -99999.   ...  0   2172-99
+2015-01-19 09:40 9999-99-99 99:99          122.601 -9999 -99999.   ...  0   3042-99
+2015-01-19 09:40 9999-99-99 99:99          123.890 -9999 -99999.   ...  0    352-99
+2015-01-26 09:20 9999-99-99 99:99          162.668 -9999 -99999.   ...  0    426-99
+2015-01-26 09:20 9999-99-99 99:99          155.168 -9999 -99999.   ...  0   4713-99
+2015-02-05 09:35 9999-99-99 99:99          124.967 -9999 -99999.   ...  0   1751-99
+2015-02-05 09:35 9999-99-99 99:99          111.219 -9999 -99999.   ...  0   1981-99
+2015-03-05 08:55 9999-99-99 99:99           96.853 -9999 -99999.   ...  0   1356-99
+2015-03-05 08:55 9999-99-99 99:99           83.884 -9999 -99999.   ...  0   1755-99
+2015-03-16 08:57 9999-99-99 99:99          176.774 -9999 -99999.   ...  0   2657-99
+2015-03-16 08:57 9999-99-99 99:99          154.168 -9999 -99999.   ...  0   3041-99
+2015-03-26 09:05 9999-99-99 99:99          152.883 -9999 -99999.   ...  0   1647-99
+2015-03-26 09:05 9999-99-99 99:99          174.099 -9999 -99999.   ...  0   2445-99
+2015-04-02 09:11 9999-99-99 99:99          154.932 -9999 -99999.   ...  0    171-99
+2015-04-02 09:11 9999-99-99 99:99          158.311 -9999 -99999.   ...  0   1794-99
+2015-04-16 08:40 9999-99-99 99:99          129.487 -9999 -99999.   ...  0   2531-99
+2015-04-16 08:40 9999-99-99 99:99          143.460 -9999 -99999.   ...  0   4127-99
+2015-04-23 10:55 9999-99-99 99:99          142.522 -9999 -99999.   ...  0   1642-99
+2015-04-23 10:55 9999-99-99 99:99          123.125 -9999 -99999.   ...  0   2804-99
+2015-04-29 10:08 9999-99-99 99:99          157.846 -9999 -99999.   ...  0    289-99
+2015-04-29 10:08 9999-99-99 99:99          171.696 -9999 -99999.   ...  0   5198-99
+2015-05-26 09:14 9999-99-99 99:99          188.614 -9999 -99999.   ...  0   4579-99
+2015-05-26 09:14 9999-99-99 99:99          196.763 -9999 -99999.   ...  0   4885-99
+2015-06-01 08:40 9999-99-99 99:99          176.607 -9999 -99999.   ...  0   2859-99
+2015-06-01 08:40 9999-99-99 99:99          177.361 -9999 -99999.   ...  0   3868-99
+2015-06-23 09:13 9999-99-99 99:99          254.978 -9999 -99999.   ...  0    151-99
+2015-06-23 09:13 9999-99-99 99:99          277.417 -9999 -99999.   ...  0   2553-99

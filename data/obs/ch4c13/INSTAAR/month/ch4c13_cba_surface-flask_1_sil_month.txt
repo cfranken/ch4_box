@@ -1,0 +1,155 @@
+# number_of_header_lines: 69
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4C13 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: U.S. National Weather Service [NWS]
+# collaborator_url: www.nws.noaa.gov
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: cba
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2018-01-31 16:23:35
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+CBA 2009  4  -47.415
+CBA 2009  5  -47.342
+CBA 2009  6  -47.296
+CBA 2009  7  -47.376
+CBA 2009  8  -47.568
+CBA 2009  9  -47.724
+CBA 2009 10  -47.755
+CBA 2009 11  -47.642
+CBA 2009 12  -47.497
+CBA 2010  1  -47.424
+CBA 2010  2  -47.424
+CBA 2010  3  -47.428
+CBA 2010  4  -47.378
+CBA 2010  5  -47.293
+CBA 2010  6  -47.262
+CBA 2010  7  -47.355
+CBA 2010  8  -47.545
+CBA 2010  9  -47.703
+CBA 2010 10  -47.726
+CBA 2010 11  -47.641
+CBA 2010 12  -47.530
+CBA 2011  1  -47.475
+CBA 2011  2  -47.471
+CBA 2011  3  -47.456
+CBA 2011  4  -47.391
+CBA 2011  5  -47.313
+CBA 2011  6  -47.294
+CBA 2011  7  -47.401
+CBA 2011  8  -47.576
+CBA 2011  9  -47.744
+CBA 2011 10  -47.801
+CBA 2011 11  -47.759
+CBA 2011 12  -47.671
+CBA 2012  1  -47.593
+CBA 2012  2  -47.541
+CBA 2012  3  -47.488
+CBA 2012  4  -47.425
+CBA 2012  5  -47.368
+CBA 2012  6  -47.367
+CBA 2012  7  -47.455
+CBA 2012  8  -47.630
+CBA 2012  9  -47.793
+CBA 2012 10  -47.851
+CBA 2012 11  -47.811
+CBA 2013  7  -47.341
+CBA 2013  8  -47.540
+CBA 2013  9  -47.713
+CBA 2013 10  -47.737
+CBA 2013 11  -47.632
+CBA 2013 12  -47.515
+CBA 2014  1  -47.438
+CBA 2014  2  -47.415
+CBA 2014  3  -47.404
+CBA 2014  4  -47.381
+CBA 2014  5  -47.365
+CBA 2014  6  -47.408
+CBA 2014  7  -47.542
+CBA 2014  8  -47.719
+CBA 2014  9  -47.829
+CBA 2014 10  -47.818
+CBA 2014 11  -47.692
+CBA 2014 12  -47.567
+CBA 2015  1  -47.498
+CBA 2015  2  -47.497
+CBA 2015  3  -47.497
+CBA 2015  4  -47.453
+CBA 2015  5  -47.397
+CBA 2015  6  -47.409
+CBA 2015  7  -47.532
+CBA 2015  8  -47.708
+CBA 2015  9  -47.811
+CBA 2015 10  -47.800
+CBA 2015 11  -47.706
+CBA 2015 12  -47.619
+CBA 2016  1  -47.582
+CBA 2016  2  -47.572
+CBA 2016  3  -47.548
+CBA 2016  4  -47.500
+CBA 2016  5  -47.457
+CBA 2016  6  -47.455
+CBA 2016  7  -47.538
+CBA 2016  8  -47.676
+CBA 2016  9  -47.821
+CBA 2016 10  -47.871
+CBA 2016 11  -47.819
+CBA 2016 12  -47.719

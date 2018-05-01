@@ -1,0 +1,125 @@
+# number_of_header_lines: 70
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4H2 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: NOAA Earth System Research Laboratory, Global
+# collaborator_name: Monitoring Division [NOAA ESRL GMD]
+# collaborator_url: http://www.esrl.noaa.gov/gmd
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: mlo
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2016-04-26 14:40:35
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+MLO 2005  4  -86.071
+MLO 2005  5  -86.228
+MLO 2005  6  -86.972
+MLO 2005  7  -87.476
+MLO 2005  8  -87.578
+MLO 2005  9  -87.817
+MLO 2005 10  -88.386
+MLO 2005 11  -88.986
+MLO 2005 12  -89.010
+MLO 2006  1  -88.576
+MLO 2006  2  -88.164
+MLO 2006  3  -87.947
+MLO 2006  4  -87.567
+MLO 2006  5  -86.536
+MLO 2006  6  -85.247
+MLO 2006  7  -84.648
+MLO 2006  8  -85.076
+MLO 2006  9  -86.180
+MLO 2006 10  -87.081
+MLO 2006 11  -87.588
+MLO 2006 12  -87.553
+MLO 2007  1  -86.698
+MLO 2007  2  -84.758
+MLO 2007  3  -82.414
+MLO 2007  4  -80.589
+MLO 2007  5  -80.427
+MLO 2007  6  -82.096
+MLO 2007  7  -84.049
+MLO 2007  8  -85.514
+MLO 2007  9  -86.181
+MLO 2007 10  -86.641
+MLO 2007 11  -87.061
+MLO 2007 12  -86.945
+MLO 2008  1  -85.937
+MLO 2008  2  -84.720
+MLO 2008  3  -84.579
+MLO 2008  4  -86.043
+MLO 2008  5  -88.094
+MLO 2008  6  -88.984
+MLO 2008  7  -88.467
+MLO 2008  8  -87.597
+MLO 2008  9  -87.611
+MLO 2008 10  -88.484
+MLO 2008 11  -89.425
+MLO 2008 12  -90.037
+MLO 2009  1  -90.395
+MLO 2009  2  -90.228
+MLO 2009  3  -89.237
+MLO 2009  4  -87.397
+MLO 2009  5  -85.782
+MLO 2009  6  -85.078
+MLO 2009  7  -84.821
+MLO 2009  8  -84.755
+MLO 2009  9  -85.223
+MLO 2009 10  -86.542

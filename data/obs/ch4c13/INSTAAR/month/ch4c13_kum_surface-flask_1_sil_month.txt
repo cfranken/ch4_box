@@ -1,0 +1,271 @@
+# number_of_header_lines: 70
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4C13 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: NOAA Earth System Research Laboratory, Global
+# collaborator_name: Monitoring Division [NOAA ESRL GMD]
+# collaborator_url: http://www.esrl.noaa.gov/gmd
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: kum
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2018-01-31 16:23:37
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+KUM 1999  1  -47.124
+KUM 1999  2  -47.109
+KUM 1999  3  -47.100
+KUM 1999  4  -47.081
+KUM 1999  5  -47.058
+KUM 1999  6  -47.068
+KUM 1999  7  -47.117
+KUM 1999  8  -47.187
+KUM 1999  9  -47.238
+KUM 1999 10  -47.273
+KUM 1999 11  -47.309
+KUM 1999 12  -47.309
+KUM 2000  1  -47.234
+KUM 2000  2  -47.131
+KUM 2000  3  -47.092
+KUM 2000  4  -47.131
+KUM 2000  5  -47.202
+KUM 2000  6  -47.224
+KUM 2000  7  -47.196
+KUM 2000  8  -47.183
+KUM 2000  9  -47.204
+KUM 2000 10  -47.225
+KUM 2000 11  -47.207
+KUM 2000 12  -47.170
+KUM 2001  1  -47.140
+KUM 2002  1  -47.244
+KUM 2002  2  -47.222
+KUM 2002  3  -47.166
+KUM 2002  4  -47.065
+KUM 2002  5  -46.975
+KUM 2002  6  -46.949
+KUM 2002  7  -47.002
+KUM 2002  8  -47.105
+KUM 2002  9  -47.198
+KUM 2002 10  -47.238
+KUM 2002 11  -47.225
+KUM 2002 12  -47.189
+KUM 2003  1  -47.159
+KUM 2003  2  -47.140
+KUM 2003  3  -47.105
+KUM 2003  4  -47.042
+KUM 2003  5  -46.979
+KUM 2003  6  -46.949
+KUM 2003  7  -46.998
+KUM 2003  8  -47.096
+KUM 2003  9  -47.199
+KUM 2003 10  -47.236
+KUM 2003 11  -47.210
+KUM 2003 12  -47.158
+KUM 2004  1  -47.120
+KUM 2004  2  -47.097
+KUM 2004  3  -47.065
+KUM 2004  4  -47.021
+KUM 2004  5  -46.987
+KUM 2004  6  -46.988
+KUM 2004  7  -47.028
+KUM 2004  8  -47.101
+KUM 2004  9  -47.170
+KUM 2004 10  -47.200
+KUM 2004 11  -47.189
+KUM 2004 12  -47.156
+KUM 2005  1  -47.129
+KUM 2005  2  -47.115
+KUM 2005  3  -47.098
+KUM 2005  4  -47.067
+KUM 2005  5  -47.034
+KUM 2005  6  -47.036
+KUM 2005  7  -47.083
+KUM 2005  8  -47.166
+KUM 2005  9  -47.245
+KUM 2006  2  -47.217
+KUM 2006  3  -47.197
+KUM 2006  4  -47.148
+KUM 2006  5  -47.064
+KUM 2006  6  -47.011
+KUM 2006  7  -47.051
+KUM 2006  8  -47.151
+KUM 2006  9  -47.220
+KUM 2006 10  -47.232
+KUM 2006 11  -47.213
+KUM 2006 12  -47.203
+KUM 2007  1  -47.196
+KUM 2007  2  -47.170
+KUM 2007  3  -47.136
+KUM 2007  4  -47.115
+KUM 2007  5  -47.106
+KUM 2007  6  -47.091
+KUM 2007  7  -47.077
+KUM 2007  8  -47.107
+KUM 2007  9  -47.182
+KUM 2007 10  -47.262
+KUM 2007 11  -47.275
+KUM 2007 12  -47.222
+KUM 2008  1  -47.166
+KUM 2008  2  -47.137
+KUM 2008  3  -47.089
+KUM 2008  4  -46.988
+KUM 2008  5  -46.872
+KUM 2008  6  -46.795
+KUM 2008  7  -46.829
+KUM 2008  8  -46.943
+KUM 2008  9  -47.093
+KUM 2008 10  -47.203
+KUM 2008 11  -47.243
+KUM 2008 12  -47.241
+KUM 2009  1  -47.221
+KUM 2009  2  -47.204
+KUM 2009  3  -47.180
+KUM 2009  4  -47.137
+KUM 2009  5  -47.081
+KUM 2009  6  -47.035
+KUM 2009  7  -47.052
+KUM 2009  8  -47.145
+KUM 2009  9  -47.260
+KUM 2009 10  -47.320
+KUM 2009 11  -47.313
+KUM 2009 12  -47.270
+KUM 2010  1  -47.236
+KUM 2010  2  -47.209
+KUM 2010  3  -47.160
+KUM 2010  4  -47.089
+KUM 2010  5  -47.033
+KUM 2010  6  -47.030
+KUM 2010  7  -47.081
+KUM 2010  8  -47.176
+KUM 2010  9  -47.271
+KUM 2010 10  -47.323
+KUM 2010 11  -47.331
+KUM 2010 12  -47.306
+KUM 2011  1  -47.283
+KUM 2011  2  -47.275
+KUM 2011  3  -47.271
+KUM 2011  4  -47.251
+KUM 2011  5  -47.204
+KUM 2011  6  -47.160
+KUM 2011  7  -47.169
+KUM 2011  8  -47.258
+KUM 2011  9  -47.377
+KUM 2011 10  -47.426
+KUM 2011 11  -47.378
+KUM 2011 12  -47.308
+KUM 2012  1  -47.286
+KUM 2012  2  -47.320
+KUM 2012  3  -47.333
+KUM 2012  4  -47.275
+KUM 2012  5  -47.173
+KUM 2012  6  -47.108
+KUM 2012  7  -47.107
+KUM 2012  8  -47.166
+KUM 2012  9  -47.237
+KUM 2012 10  -47.303
+KUM 2012 11  -47.336
+KUM 2012 12  -47.338
+KUM 2013  1  -47.330
+KUM 2013  2  -47.317
+KUM 2013  3  -47.288
+KUM 2013  4  -47.230
+KUM 2013  5  -47.182
+KUM 2013  6  -47.199
+KUM 2013  7  -47.304
+KUM 2013  8  -47.430
+KUM 2013  9  -47.476
+KUM 2013 10  -47.413
+KUM 2013 11  -47.313
+KUM 2013 12  -47.243
+KUM 2014  1  -47.247
+KUM 2014  2  -47.278
+KUM 2014  3  -47.279
+KUM 2014  4  -47.233
+KUM 2014  5  -47.180
+KUM 2014  6  -47.145
+KUM 2014  7  -47.156
+KUM 2014  8  -47.208
+KUM 2014  9  -47.295
+KUM 2014 10  -47.379
+KUM 2014 11  -47.418
+KUM 2014 12  -47.412
+KUM 2015  1  -47.371
+KUM 2015  2  -47.324
+KUM 2015  3  -47.278
+KUM 2015  4  -47.246
+KUM 2015  5  -47.230
+KUM 2015  6  -47.228
+KUM 2015  7  -47.254
+KUM 2015  8  -47.313
+KUM 2015  9  -47.374
+KUM 2015 10  -47.400
+KUM 2015 11  -47.393
+KUM 2015 12  -47.378
+KUM 2016  1  -47.379
+KUM 2016  2  -47.383
+KUM 2016  3  -47.367
+KUM 2016  4  -47.329
+KUM 2016  5  -47.277
+KUM 2016  6  -47.245
+KUM 2016  7  -47.260
+KUM 2016  8  -47.331
+KUM 2016  9  -47.423
+KUM 2016 10  -47.483
+KUM 2016 11  -47.489
+KUM 2016 12  -47.465

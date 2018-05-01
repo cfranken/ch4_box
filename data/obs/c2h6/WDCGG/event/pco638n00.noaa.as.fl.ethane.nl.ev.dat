@@ -1,0 +1,40 @@
+C01 TITLE: ethane event sampling data 
+C02 FILE NAME: pco638n00.noaa.as.fl.ethane.nl.ev.dat 
+C03 DATA FORMAT: Version 1.0
+C04 TOTAL LINES: 40
+C05 HEADER LINES: 32
+C06 DATA VERSION: 201410
+C07 STATION NAME: Pico, Azores 
+C08 STATION CATEGORY: 
+C09 OBSERVATION CATEGORY: Air sampling observation at a stationary platform
+C10 COUNTRY/TERRITORY: Portugal
+C11 CONTRIBUTOR: NOAA/ESRL
+C12 LATITUDE: 38.470
+C13 LONGITUDE: -28.400
+C14 ALTITUDE: 2225.0
+C15 NUMBER OF SAMPLING HEIGHTS: 1
+C16 SAMPLING HEIGHTS: 5
+C17 CONTACT POINT: detlev.helmig@colorado.edu
+C18 PARAMETER: ethane
+C19 COVERING PERIOD: 2010-09-16 2011-07-18
+C20 TIME INTERVAL: event
+C21 MEASUREMENT UNIT: pmol/mol 
+C22 MEASUREMENT METHOD: Gas Chromatography (FID)
+C23 SAMPLING TYPE: flask
+C24 TIME ZONE: UTC
+C25 MEASUREMENT SCALE: 
+C26 DATA POLICY: This is a formal notification for data users. "For scientific purposes, access to these data is unlimited
+C27 and provided without charge. By their use you accept that an offer of co-authorship will be made through personal contact
+C28 with the data providers or owners whenever substantial use is made of their data. In all cases, an acknowledgement
+C29 must be made to the data providers or owners and the data centre when these data are used within a publication."
+C30 COMMENT:
+C31
+C32   DATE  TIME       DATE  TIME           ethane    ND      SD     F CS       REM
+2010-09-16 17:28 9999-99-99 99:99          793.132 -9999 -99999.   ...  0    929-99
+2010-09-16 17:50 9999-99-99 99:99          820.056 -9999 -99999.   ...  0   3227-99
+2010-09-30 15:00 9999-99-99 99:99          894.072 -9999 -99999.   ...  0   3228-99
+2010-09-30 15:00 9999-99-99 99:99          902.942 -9999 -99999.   ...  0    930-99
+2011-07-12 15:31 9999-99-99 99:99          513.321 -9999 -99999.   ...  0   1507-99
+2011-07-12 15:44 9999-99-99 99:99          485.190 -9999 -99999.   ...  0   3145-99
+2011-07-18 13:15 9999-99-99 99:99          521.821 -9999 -99999.   ...  0   4672-99
+2011-07-18 13:30 9999-99-99 99:99          503.167 -9999 -99999.   ...  0   4739-99

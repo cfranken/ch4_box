@@ -1,0 +1,122 @@
+# number_of_header_lines: 68
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4H2 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: National University of Ireland, Galway [NUI]
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: mhd
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2016-04-26 14:40:35
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+MHD 2005  3  -94.680
+MHD 2005  4  -94.414
+MHD 2005  5  -92.577
+MHD 2005  6  -90.439
+MHD 2005  7  -90.267
+MHD 2005  8  -93.399
+MHD 2005  9  -98.588
+MHD 2005 10 -102.144
+MHD 2005 11 -102.442
+MHD 2005 12  -99.864
+MHD 2006  1  -97.323
+MHD 2006  2  -96.289
+MHD 2006  3  -95.744
+MHD 2006  4  -94.394
+MHD 2006  5  -92.276
+MHD 2006  6  -91.101
+MHD 2006  7  -91.701
+MHD 2006  8  -93.694
+MHD 2006  9  -95.726
+MHD 2006 10  -96.279
+MHD 2006 11  -94.803
+MHD 2006 12  -92.864
+MHD 2007  1  -93.217
+MHD 2007  2  -97.464
+MHD 2007  3 -101.579
+MHD 2007  4 -100.962
+MHD 2007  5  -93.040
+MHD 2007  6  -84.122
+MHD 2007  7  -83.014
+MHD 2007  8  -89.828
+MHD 2007  9  -96.871
+MHD 2007 10  -99.499
+MHD 2007 11  -97.077
+MHD 2007 12  -94.110
+MHD 2008  1  -93.131
+MHD 2008  2  -94.632
+MHD 2008  3  -96.715
+MHD 2008  4  -97.780
+MHD 2008  5  -96.495
+MHD 2008  6  -94.064
+MHD 2008  7  -92.437
+MHD 2008  8  -93.393
+MHD 2008  9  -95.806
+MHD 2008 10  -97.111
+MHD 2008 11  -96.600
+MHD 2008 12  -95.624
+MHD 2009  1  -95.914
+MHD 2009  2  -97.377
+MHD 2009  3  -98.619
+MHD 2009  4  -97.562
+MHD 2009  5  -94.325
+MHD 2009  6  -90.346
+MHD 2009  7  -89.038
+MHD 2009  8  -90.023

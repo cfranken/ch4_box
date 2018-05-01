@@ -1,0 +1,151 @@
+# number_of_header_lines: 70
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4C13 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: National Science Foundation Office of Polar
+# collaborator_name: Programs [NSF]
+# collaborator_url: http://www.nsf.gov/dir/index.jsp?org=OPP
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: sum
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2018-01-31 16:23:47
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+SUM 2010  4  -47.263
+SUM 2010  5  -47.237
+SUM 2010  6  -47.248
+SUM 2010  7  -47.338
+SUM 2010  8  -47.456
+SUM 2010  9  -47.532
+SUM 2010 10  -47.534
+SUM 2010 11  -47.482
+SUM 2010 12  -47.420
+SUM 2011  1  -47.391
+SUM 2011  2  -47.397
+SUM 2011  3  -47.423
+SUM 2011  4  -47.422
+SUM 2011  5  -47.375
+SUM 2011  6  -47.341
+SUM 2011  7  -47.391
+SUM 2011  8  -47.546
+SUM 2011  9  -47.701
+SUM 2011 10  -47.741
+SUM 2011 11  -47.659
+SUM 2011 12  -47.543
+SUM 2012  1  -47.481
+SUM 2012  2  -47.462
+SUM 2012  3  -47.432
+SUM 2012  4  -47.364
+SUM 2012  5  -47.276
+SUM 2012  6  -47.241
+SUM 2012  7  -47.318
+SUM 2012  8  -47.486
+SUM 2012  9  -47.650
+SUM 2012 10  -47.751
+SUM 2012 11  -47.730
+SUM 2012 12  -47.638
+SUM 2013  1  -47.537
+SUM 2013  2  -47.482
+SUM 2013  3  -47.453
+SUM 2013  4  -47.391
+SUM 2013  5  -47.302
+SUM 2013  6  -47.260
+SUM 2013  7  -47.324
+SUM 2013  8  -47.480
+SUM 2013  9  -47.611
+SUM 2013 10  -47.657
+SUM 2013 11  -47.604
+SUM 2013 12  -47.530
+SUM 2014  1  -47.505
+SUM 2014  2  -47.519
+SUM 2014  3  -47.520
+SUM 2014  4  -47.463
+SUM 2014  5  -47.372
+SUM 2014  6  -47.328
+SUM 2014  7  -47.374
+SUM 2014  8  -47.490
+SUM 2014  9  -47.589
+SUM 2014 10  -47.605
+SUM 2014 11  -47.549
+SUM 2014 12  -47.468
+SUM 2015  1  -47.420
+SUM 2015  2  -47.417
+SUM 2015  3  -47.427
+SUM 2015  4  -47.415
+SUM 2015  5  -47.390
+SUM 2015  6  -47.398
+SUM 2015  7  -47.481
+SUM 2015  8  -47.599
+SUM 2015  9  -47.703
+SUM 2015 10  -47.728
+SUM 2015 11  -47.695
+SUM 2015 12  -47.647
+SUM 2016  1  -47.608
+SUM 2016  2  -47.571
+SUM 2016  3  -47.509
+SUM 2016  4  -47.440
+SUM 2016  5  -47.405
+SUM 2016  6  -47.440
+SUM 2016  7  -47.536
+SUM 2016  8  -47.674
+SUM 2016  9  -47.775
+SUM 2016 10  -47.792
+SUM 2016 11  -47.738
+SUM 2016 12  -47.665

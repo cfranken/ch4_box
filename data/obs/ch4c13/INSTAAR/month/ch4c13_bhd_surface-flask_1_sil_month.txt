@@ -1,0 +1,146 @@
+# number_of_header_lines: 69
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4C13 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: National Institute of Water and Atmospheric
+# collaborator_name: Research [NIWA]
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: bhd
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2018-01-31 16:23:33
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+BHD 2009  3  -46.986
+BHD 2009  4  -47.031
+BHD 2009  5  -47.072
+BHD 2009  6  -47.080
+BHD 2009  7  -47.085
+BHD 2009  8  -47.115
+BHD 2009  9  -47.156
+BHD 2009 10  -47.164
+BHD 2010  4  -46.995
+BHD 2010  5  -47.098
+BHD 2010  6  -47.188
+BHD 2010  7  -47.227
+BHD 2010  8  -47.215
+BHD 2010  9  -47.160
+BHD 2010 10  -47.091
+BHD 2010 11  -47.034
+BHD 2010 12  -46.999
+BHD 2011  1  -46.982
+BHD 2011  2  -46.999
+BHD 2011  3  -47.053
+BHD 2011  4  -47.126
+BHD 2011  5  -47.192
+BHD 2011  6  -47.219
+BHD 2011  7  -47.220
+BHD 2011  8  -47.220
+BHD 2011  9  -47.217
+BHD 2011 10  -47.181
+BHD 2011 11  -47.104
+BHD 2011 12  -47.024
+BHD 2012  1  -46.969
+BHD 2012  2  -46.981
+BHD 2012  3  -47.040
+BHD 2012  4  -47.111
+BHD 2012  5  -47.147
+BHD 2012  6  -47.146
+BHD 2012  7  -47.138
+BHD 2012  8  -47.143
+BHD 2012  9  -47.145
+BHD 2013  1  -47.005
+BHD 2013  5  -47.173
+BHD 2013  6  -47.173
+BHD 2013  7  -47.172
+BHD 2013  8  -47.188
+BHD 2013  9  -47.207
+BHD 2013 10  -47.193
+BHD 2013 11  -47.135
+BHD 2013 12  -47.051
+BHD 2014  1  -47.012
+BHD 2014  2  -47.049
+BHD 2014  3  -47.134
+BHD 2014  4  -47.195
+BHD 2014  5  -47.205
+BHD 2014  6  -47.199
+BHD 2014  7  -47.208
+BHD 2014  8  -47.219
+BHD 2014  9  -47.209
+BHD 2014 10  -47.190
+BHD 2014 11  -47.174
+BHD 2014 12  -47.160
+BHD 2015  1  -47.144
+BHD 2015  2  -47.138
+BHD 2015  3  -47.167
+BHD 2015  7  -47.220
+BHD 2015  8  -47.176
+BHD 2015  9  -47.157
+BHD 2015 10  -47.159
+BHD 2015 11  -47.162
+BHD 2015 12  -47.152
+BHD 2016  1  -47.128
+BHD 2016  2  -47.106
+BHD 2016  3  -47.100
+BHD 2016  4  -47.110
+BHD 2016  5  -47.132
+BHD 2016  6  -47.154
+BHD 2016  7  -47.174
+BHD 2016  8  -47.190
+BHD 2016  9  -47.195

@@ -1,0 +1,105 @@
+# number_of_header_lines: 68
+# comment:  
+# comment:  ************ USE OF ESRL GMD DATA ****************
+# comment:  
+# comment: These data are made freely available to the public and the
+# comment: scientific community in the belief that their wide dissemination
+# comment: will lead to greater understanding and new scientific insights.
+# comment: The availability of these data does not constitute publication
+# comment: of the data.  NOAA relies on the ethics and integrity of the user to
+# comment: insure that ESRL receives fair credit for their work.  If the data 
+# comment: are obtained for potential use in a publication or presentation, 
+# comment: ESRL should be informed at the outset of the nature of this work.  
+# comment: If the ESRL data are essential to the work, or if an important 
+# comment: result or conclusion depends on the ESRL data, co-authorship
+# comment: may be appropriate.  This should be discussed at an early stage in
+# comment: the work.  Manuscripts using the ESRL data should be sent to ESRL
+# comment: for review before they are submitted for publication so we can
+# comment: insure that the quality and limitations of the data are accurately
+# comment: represented.
+# comment:  
+# comment: Every effort is made to produce the most accurate and precise
+# comment: measurements possible.  However, we reserve the right to make
+# comment: corrections to the data based on recalibration of standard gases
+# comment: or for other reasons deemed scientifically justified.
+# comment: 
+# comment: We are not responsible for results and conclusions based on use
+# comment: of these data without regard to this warning.
+# comment: 
+# contact_parameter: CH4H2 SIL (Individual Flasks)
+# contact_name: Bruce H Vaughn
+# contact_telephone: (303) 492-7985
+# contact_email: Bruce.Vaughn@colorado.edu
+# comment: 
+# comment:  ************ COLLABORATORS ***************
+# comment: 
+# comment: NOAA thanks the following collaborators without
+# comment: whom these measurements would not be possible.
+# comment: 
+# collaborator_name: Romanian Marine Research Institute [RMRI]
+# comment: 
+# comment:  ************ RECIPROCITY AGREEMENT ***************
+# comment: 
+# comment: Use of these data implies an agreement to reciprocate.
+# comment: Laboratories making similar measurements agree to make their
+# comment: own data available to the general public and to the scientific
+# comment: community in an equally complete and easily accessible form.
+# comment: Modelers are encouraged to make available to the community,
+# comment: upon request, their own tools used in the interpretation
+# comment: of the ESRL data, namely well documented model code, transport
+# comment: fields, and additional information necessary for other
+# comment: scientists to repeat the work and to run modified versions.
+# comment: Model availability includes collaborative support for new
+# comment: users of the models.
+# comment:
+# comment:  ************ DATA DESCRIPTION ***************
+# comment:
+# description_site-code: bsc
+# description_project-abbr: ccg_surface
+# description_strategy-abbr: flask
+# description_analysis-constraints: flag:..%
+# description_creation-time: 2016-04-26 14:40:33
+# comment:
+# comment:  ************ DATA DOCUMENTATION ***************
+# comment:
+# comment: Please refer to the species-specific README file in the
+# comment: appropriate directory folder at ftp://aftp.cmdl.noaa.gov/data/trace_gases/.
+# comment:
+# data_fields: site year month value
+BSC 2005  3 -102.767
+BSC 2005  4 -101.095
+BSC 2005  5 -101.722
+BSC 2005  6 -104.349
+BSC 2005  7 -106.060
+BSC 2005  8 -105.446
+BSC 2005  9 -103.017
+BSC 2005 10 -101.347
+BSC 2005 11 -102.657
+BSC 2005 12 -106.541
+BSC 2006  1 -111.135
+BSC 2006  2 -112.339
+BSC 2006  3 -109.346
+BSC 2006  4 -104.825
+BSC 2006  5 -101.916
+BSC 2006  6 -102.429
+BSC 2006  7 -103.988
+BSC 2006  8 -103.819
+BSC 2006  9 -102.234
+BSC 2006 10 -100.950
+BSC 2006 11 -101.378
+BSC 2006 12 -102.651
+BSC 2007  1 -103.219
+BSC 2007  2 -101.616
+BSC 2007  3  -98.244
+BSC 2007  4  -93.710
+BSC 2007  5  -90.413
+BSC 2007  6  -89.657
+BSC 2007  7  -90.658
+BSC 2007  8  -91.846
+BSC 2007  9  -92.253
+BSC 2007 10  -92.835
+BSC 2007 11  -94.878
+BSC 2007 12  -98.422
+BSC 2008  1 -101.581
+BSC 2008  2 -102.531
+BSC 2008  3 -101.811
