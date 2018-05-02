@@ -57,8 +57,8 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 sYear = 1980;
 eYear = 2016;
 %eYear = 2100;
-tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
-tAvg  = 'month';     % Smooth the observations
+tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
+tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
