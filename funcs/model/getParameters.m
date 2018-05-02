@@ -66,7 +66,7 @@ k_co_other     = 0;             % (yr^-1) Other CO losses (currently neglecting)
 k_mcf_A        = 5.66e-15;      % reaction rate with MCF (computed such that lifetime is about 5.5 years, Talukdar et al 1992, taken at 273K)
 k_mcf_B        = 6.05e-15;      % reaction rate determined by AJT
 % Lifetimes
-tau_NS       = 1.0;             % Interhemispheric exchange rate (years)
+tau_NS       = 1.3;             % Interhemispheric exchange rate (years)
 tau_NS_strat = 3.3;             % Interhemispheric exchange rate in the stratosphere (Fabian et al., 1968)
 % Are we using the other sinks?
 if ~use_other_sinks

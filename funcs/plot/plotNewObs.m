@@ -152,10 +152,10 @@ semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
 semilogy(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
 %box on
 set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
-%ylabel('CH_3CCl_3 (ppt)','FontSize',16)
+ylabel('CH_3CCl_3 (ppt)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
-%print(h,printOpts{:},sprintf(baseName,'Plot'));
+print(h,printOpts{:},sprintf(baseName,'Plot'));
 
 end
 

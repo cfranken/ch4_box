@@ -172,7 +172,7 @@ Sa_mcf_sh  =   0.5^2*ones(nT,1);
 Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
 Sa_oh      =  500^2*ones(nT,1);
-Sa_co      =    100^2*ones(nT,1);
+Sa_co      =   200^2*ones(nT,1);
 Sa_tau     =   3.0^2*ones(nT,1); % Newton: What is this for?
 
 % Newton: problem may be here. IC has size 28 in DriverScript. Here size = 20

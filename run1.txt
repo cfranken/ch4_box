@@ -27423,3 +27423,1607 @@ In invert_methane (line 72)
 In DriverScript (line 361)
     [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
 } 
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.263457e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 238)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',238,0)">line 238</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    Sa: [657×657 double]
+
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 279)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',279,0)">line 279</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.956744e-41.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.956744e-41.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 283)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',283,0)">line 283</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 291)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',291,0)">line 291</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.956744e-41.] 
+MCF
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+plot(St, ems_anal(:,13))
+close all
+plot(St, ems_anal(:,13))
+plot(St, ems_anal(:,14))
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.263457e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 238)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',238,0)">line 238</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    Sa: [657×657 double]
+
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 279)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',279,0)">line 279</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.657197e-41.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.657197e-41.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 283)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',283,0)">line 283</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 291)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',291,0)">line 291</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.657197e-41.] 
+MCF
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+figure
+plot(St, ems_anal(:,14))
+datetick('x',12);
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.263457e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 238)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',238,0)">line 238</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    Sa: [657×657 double]
+
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 279)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',279,0)">line 279</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.020782e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.020782e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 283)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',283,0)">line 283</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 291)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',291,0)">line 291</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.020782e-40.] 
+MCF
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+plot(St, ems_anal(:,14))
+close all
+plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
+MCF
+plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the
+output size by setting the figure's PaperPosition property, use the 'print' command with either
+the  '-bestfit' or '-fillpage' options, or use the 'Best fit' or 'Fill page' options on the 'Print
+Preview' window.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('validate', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m', 203)" style="font-weight:bold">validate</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m',203,0)">line 203</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m', 67)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m',67,0)">line 67</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotNewObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m', 158)" style="font-weight:bold">plotNewObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m',158,0)">line 158</a>)] 
+plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the
+output size by setting the figure's PaperPosition property, use the 'print' command with either
+the  '-bestfit' or '-fillpage' options, or use the 'Best fit' or 'Fill page' options on the 'Print
+Preview' window.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('validate', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m', 203)" style="font-weight:bold">validate</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m',203,0)">line 203</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m', 67)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m',67,0)">line 67</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotNewObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m', 158)" style="font-weight:bold">plotNewObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m',158,0)">line 158</a>)] 
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+{Struct contents reference from a non-struct array object.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 261)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',261,0)">line 261</a>)
+sNames = fieldnames(obs.obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 64)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',64,0)">line 64</a>)
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 175)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',175,0)">line 175</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.263457e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 238)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',238,0)">line 238</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    Sa: [657×657 double]
+
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 279)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',279,0)">line 279</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.020782e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.020782e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 283)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',283,0)">line 283</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 291)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',291,0)">line 291</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.020782e-40.] 
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the
+output size by setting the figure's PaperPosition property, use the 'print' command with either
+the  '-bestfit' or '-fillpage' options, or use the 'Best fit' or 'Fill page' options on the 'Print
+Preview' window.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('validate', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m', 203)" style="font-weight:bold">validate</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m',203,0)">line 203</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m', 67)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m',67,0)">line 67</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotNewObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m', 158)" style="font-weight:bold">plotNewObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m',158,0)">line 158</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 377)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',377,0)">line 377</a>)] 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+figure
+plot(St, ems_anal(:,11:12))
+figure
+plot(St, ems_anal(:,1:2))
+plot(St, sum(ems_anal(:,1:2),2))
+datetick('x',12);
+grid
+datetick('x','yyyy','keeplimits')
+datetick('x','yyyy','keeplimits')
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+3.263457e-40.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 238)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',238,0)">line 238</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    Sa: [657×657 double]
+
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 279)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',279,0)">line 279</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.657197e-41.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.657197e-41.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 283)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',283,0)">line 283</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane>update_solution', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 291)" style="font-weight:bold">invert_methane>update_solution</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',291,0)">line 291</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('invert_methane', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m', 64)" style="font-weight:bold">invert_methane</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/inv/deterministic/invert_methane.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 365)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',365,0)">line 365</a>)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =
+4.657197e-41.] 
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the
+output size by setting the figure's PaperPosition property, use the 'print' command with either
+the  '-bestfit' or '-fillpage' options, or use the 'Best fit' or 'Fill page' options on the 'Print
+Preview' window.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('validate', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m', 203)" style="font-weight:bold">validate</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/private/validate.m',203,0)">line 203</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print', '/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m', 67)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/graphics/print.m',67,0)">line 67</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotNewObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m', 158)" style="font-weight:bold">plotNewObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/plot/plotNewObs.m',158,0)">line 158</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 377)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',377,0)">line 377</a>)] 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+figure
+plot(St, sum(ems_anal(:,1:2),2))
+datetick('x','yyyy','keeplimits')
+plot(St, ems_anal(:,1))
+plot(St, ems_anal(:,1)-400 )
+plot(St, ems_anal(:,1)-400, St, ems_anal(:,2)-100 )
+plot(St, ems_anal(:,1)-400, St, ems_anal(:,2)-120 )
+plot(St, ems_anal(:,1)-400, St, ems_anal(:,2)-150 )
+datetick('x','yyyy','keeplimits')
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+{Struct contents reference from a non-struct array object.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 261)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',261,0)">line 261</a>)
+sNames = fieldnames(obs.obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 64)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',64,0)">line 64</a>)
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 175)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',175,0)">line 175</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+ * SOME DATA IS MISSING
+   * CH4
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+{Struct contents reference from a non-struct array object.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 261)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',261,0)">line 261</a>)
+sNames = fieldnames(obs.obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 64)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',64,0)">line 64</a>)
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 175)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',175,0)">line 175</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+ch4_obs     = getCH4(dataDir,reread);
+   * CH4
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('textscan')" style="font-weight:bold">textscan</a>
+Invalid file identifier. Use fopen to generate a valid file identifier.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getCH4', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getCH4.m', 71)" style="font-weight:bold">getCH4</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getCH4.m',71,0)">line 71</a>)
+    nHDR = textscan(fid, '%s', 1,'delimiter','\n');
+} 
+opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getCH4.m',71,0)
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * SAVING OBS STRUCTURE
+   * CH4C13
+   * SAVING OBS STRUCTURE
+   * CH4H2
+ * SOME DATA IS MISSING
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+ * UNABLE TO READ OBSERVATIONS!
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+{Struct contents reference from a non-struct array object.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 261)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',261,0)">line 261</a>)
+sNames = fieldnames(obs.obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 64)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',64,0)">line 64</a>)
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 175)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',175,0)">line 175</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',261,0)
+ch4_obs     = getCH4(dataDir,reread);
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+ch4c13_obs  = getCH4C13(dataDir,reread);
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+ch4h2_obs   = getCH4H2(dataDir,reread);
+   * CH4H2
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('textscan')" style="font-weight:bold">textscan</a>
+Invalid file identifier. Use fopen to generate a valid file identifier.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getCH4H2', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getCH4H2.m', 76)" style="font-weight:bold">getCH4H2</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getCH4H2.m',76,0)">line 76</a>)
+    nHDR = textscan(fid, '%s', 1,'delimiter','\n');
+} 
+ch4h2_obs   = getCH4H2(dataDir,reread);
+   * CH4H2
+   * SAVING OBS STRUCTURE
+mcf_obs     = getMCF(dataDir,reread);
+   * MCF
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('importdata', '/Applications/MATLAB_R2017a.app/toolbox/matlab/iofun/importdata.p', 137)" style="font-weight:bold">importdata</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/iofun/importdata.p',137,0)">line 137</a>)
+Unable to open file.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getMCF', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getMCF.m', 70)" style="font-weight:bold">getMCF</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getMCF.m',70,0)">line 70</a>)
+dat   = importdata(sprintf('%s%s',dataDirU,fName),' ',nHDR);
+} 
+mcf_obs     = getMCF(dataDir,reread);
+   * MCF
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/mcf/GAGE/CGO-gage.mon'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/mcf/GAGE/RPB-gage.mon'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/mcf/GAGE/SMO-gage.mon'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/mcf/GAGE/ORG-gage.mon'
+
+   * SAVING OBS STRUCTURE
+n2o_obs     = getN2O(dataDir,reread); 
+   * N2O
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('importdata', '/Applications/MATLAB_R2017a.app/toolbox/matlab/iofun/importdata.p', 137)" style="font-weight:bold">importdata</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/iofun/importdata.p',137,0)">line 137</a>)
+Unable to open file.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getN2O', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getN2O.m', 70)" style="font-weight:bold">getN2O</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getN2O.m',70,0)">line 70</a>)
+dat   = importdata(sprintf('%s%s',dataDirU,fName),' ',nHDR);
+} 
+n2o_obs     = getN2O(dataDir,reread);
+   * N2O
+   * SAVING OBS STRUCTURE
+c2h6_obs    = getC2H6(dataDir,reread);
+   * C2H6
+   * SAVING OBS STRUCTURE
+co_obs      = getCO(dataDir,reread);
+   * CO
+   * SAVING OBS STRUCTURE
+o3strat_obs = getO3strat(dataDir,reread); 
+   * STRATOSPHERIC OZONE
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/amsTOTo3.txt'
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('textscan')" style="font-weight:bold">textscan</a>
+Invalid file identifier. Use fopen to generate a valid file identifier.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getO3strat', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getO3strat.m', 70)" style="font-weight:bold">getO3strat</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getO3strat.m',70,0)">line 70</a>)
+    dat  = textscan(fid,fspec,'HeaderLines',nHDR,'Delimiter',' ','MultipleDelimsAsOne',1);
+} 
+o3strat_obs = getO3strat(dataDir,reread);
+   * STRATOSPHERIC OZONE
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/amsTOTo3.txt'
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('textscan')" style="font-weight:bold">textscan</a>
+Invalid file identifier. Use fopen to generate a valid file identifier.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getO3strat', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getO3strat.m', 70)" style="font-weight:bold">getO3strat</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getO3strat.m',70,0)">line 70</a>)
+    dat  = textscan(fid,fspec,'HeaderLines',nHDR,'Delimiter',' ','MultipleDelimsAsOne',1);
+} 
+o3strat_obs = getO3strat(dataDir,reread);
+   * STRATOSPHERIC OZONE
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/amsTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/bdrTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/bisTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/bnaTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/brwTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/carTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/fbkTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/hnxTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/ldrTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/mloTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/ohpTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/pthTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/smoTOTo3.txt'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/o3_strat/NOAA/waiTOTo3.txt'
+
+   * SAVING OBS STRUCTURE
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+{Index exceeds matrix dimensions.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('BlockAverage', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/util/BlockAverage.m', 24)" style="font-weight:bold">BlockAverage</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/util/BlockAverage.m',24,0)">line 24</a>)
+xO = [x(1) : x(end)]';
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 334)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',334,0)">line 334</a>)
+    [tDat, yDat] = BlockAverage(tDat,yDat,ones(size(tDat)),fDays);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m', 173)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/makeObs.m',173,0)">line 173</a>)
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m', 175)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/DriverScript.m',175,0)">line 175</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+c2h6_obs
+
+c2h6_obs = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    obs: [1×1 struct]
+    tim: [1×1 struct]
+    lat: [1×1 struct]
+
+c2h6_obs.lat
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with no fields.
+
+c2h6_obs    = getC2H6(dataDir,reread);
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+reread.flag=true
+
+reread = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+     flag: 1
+    sYear: 1980
+    eYear: 2016
+     tRes: 'month'
+     tAvg: 'month'
+      dir: '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/'
+
+c2h6_obs    = getC2H6(dataDir,reread);
+   * C2H6
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('datenum', '/Applications/MATLAB_R2017a.app/toolbox/matlab/timefun/datenum.m', 181)" style="font-weight:bold">datenum</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/timefun/datenum.m',181,0)">line 181</a>)
+DATENUM failed.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getC2H6', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getC2H6.m', 93)" style="font-weight:bold">getC2H6</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getC2H6.m',93,0)">line 93</a>)
+        tDat(j) = datenum(dat{1}{j},'yyyy-mm-dd');
+
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dtstr2dtnummx')" style="font-weight:bold">dtstr2dtnummx</a>
+    Failed to convert from text to date number.
+} 
+opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getC2H6.m',93,0)
+c2h6_obs    = getC2H6(dataDir,reread);
+   * C2H6
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/abp312s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/alt482n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/amt445n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/arh777s00.niwa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/asc107s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/ask123n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/azr638n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bal655n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bhd541s00.niwa.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bhd541s00.niwa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bkt500s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bmw432n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/brw471n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bsc644n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bsl999900.niwa.am.fl.ethane.nl.ev.dat'
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('datenum', '/Applications/MATLAB_R2017a.app/toolbox/matlab/timefun/datenum.m', 181)" style="font-weight:bold">datenum</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2017a.app/toolbox/matlab/timefun/datenum.m',181,0)">line 181</a>)
+DATENUM failed.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getC2H6', '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getC2H6.m', 93)" style="font-weight:bold">getC2H6</a> (<a href="matlab: opentoline('/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/funcs/obs/getC2H6.m',93,0)">line 93</a>)
+        tDat(j) = datenum(dat{1}{j},'yyyy-mm-dd');
+
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dtstr2dtnummx')" style="font-weight:bold">dtstr2dtnummx</a>
+    Failed to convert from text to date number.
+} 
+c2h6_obs    = getC2H6(dataDir,reread);
+   * C2H6
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/abp312s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/alt482n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/amt445n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/asc107s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/ask123n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/azr638n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bal655n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bkt500s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bmw432n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/brw471n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/bsc644n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/cba455n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/cgo540s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/cpt134s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/crz146s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/egb444n01.ec.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/eic327s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/gmi513n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/hba775s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/hpb647n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/ice663n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/izo128n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/jfj646n00.empa.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/key425n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/kum519n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/lef445n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/llb454n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/mex419n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/mhd653n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/mid528n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/mkn100s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/mlo519n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/nat306s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/oxk650n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/pal667n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/pco638n00.instaar.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/pco638n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/psa764s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/rig646n00.empa.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/sey104s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/sgp436n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/shm452n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/smo514s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/spo789s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/sum672n00.instaar.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/sum672n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/syo769s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/tap236n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/tdf354s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/thd441n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/ush354s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/uta439n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/cfranken/Google Drive/work/code/GitHub/ch4_box/data/obs/c2h6/WDCGG/event/zep678n00.noaa.as.fl.ethane.nl.ev.dat'
+
+   * SAVING OBS STRUCTURE
+DriverScript

@@ -72,7 +72,7 @@ end
 %%% Read the data
 for i = 1:nFiles
     % Current filename
-    fName = sprintf('%s%s',dataDirU,files(i).name);
+    fName = sprintf('%s%s',dataDirU,files(i).name)
     % Get the number of header lines and the latitude
     [~,tDat] = grep('-s','LATITUDE',fName);
     tDat     = strsplit(tDat.match{1});

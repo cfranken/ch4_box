@@ -1,0 +1,9 @@
+# NOAA files
+###########
+*month.txt
+*.txt
+*.mon
+*.dat
+*.mat
+*.pdf
+.DS_Store
