@@ -73,7 +73,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = false;
+reread.flag  = true;
 % Other flags for re-reading
 reread.sYear = sYear;   
 reread.eYear = eYear;
@@ -96,7 +96,7 @@ use_strat       = false;     % Use a stratosphere?
 interactive_OH  = true;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
-det_linear      = false;     % Use a linear deterministic inversion?
+det_linear      = true;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = false;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions

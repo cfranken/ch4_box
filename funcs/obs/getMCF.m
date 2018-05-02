@@ -131,19 +131,19 @@ end
 %%% =======================================================================
 
 %%% Append the directory onto the dataDir
-dataDirU = sprintf('%sobs/mcf/ALE/',dataDir);
+dataDirU = sprintf('%sobs/mcf/GAGE/',dataDir);
 
 %%% Define the site names, header lengths, and latitudes
 % Filename structure
-fNameS = '%s-ale.mon';
-sNames = { 'ADR', 'CGO', 'RPB', 'SMO', 'ORG'};
-sLat   = [ 52.00,-40.68, 13.17,-14.23, 45.00];
-nHDR   = [     6,     6,     6,     6,     6];
+fNameS = '%s-gage.mon';
+sNames = {  'CGO', 'RPB', 'SMO', 'ORG'};
+sLat   = [ -40.68, 13.17,-14.23, 45.00];
+nHDR   = [      6,     6,     6,     6];
 
 %%% Read the data
 for i = 1:length(sNames)
     % Current filename
-    fName = sprintf('%s%s',dataDirU,sprintf(fNameS,sNames{i}));
+    fName = sprintf('%s%s',dataDirU,sprintf(fNameS,sNames{i}))
     % Load the data
     dat   = importdata(fName,' ',nHDR(i));
     dat   = dat.data;
