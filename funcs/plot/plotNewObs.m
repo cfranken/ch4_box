@@ -67,7 +67,7 @@ plot(St,data.sh_ch4,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'
 plot(St,model.nh_ch4,'-','Color',nhCol,'LineWidth',2)
 plot(St,model.sh_ch4,'-','Color',shCol,'LineWidth',2)
 box on
-set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica','FontWeight','Bold')
+set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
 ylabel('CH_4 (ppb)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
@@ -91,7 +91,7 @@ plot(St,data.sh_co,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'M
 plot(St,model.nh_co,'-','Color',nhCol,'LineWidth',2)
 plot(St,model.sh_co,'-','Color',shCol,'LineWidth',2)
 box on
-set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica','FontWeight','Bold')
+set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
 ylabel('CO (ppb)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
@@ -101,7 +101,7 @@ hold on
 plot(St,(model.nh_oh-params.gmOH)/params.gmOH*100,'-','Color',nhCol,'LineWidth',2)
 plot(St,(model.sh_oh-params.gmOH)/params.gmOH*100,'-','Color',shCol,'LineWidth',2)
 box on
-set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica','FontWeight','Bold')
+set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
 ylabel('OH anomaly (%)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
@@ -125,35 +125,37 @@ plot(St,data.sh_ch4c13,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCo
 plot(St,model.nh_ch4c13,'-','Color',nhCol,'LineWidth',2)
 plot(St,model.sh_ch4c13,'-','Color',shCol,'LineWidth',2)
 box on
-set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica','FontWeight','Bold')
+set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
 ylabel(sprintf('\\delta^{13}CH_{4} (%s)',char(8240)),'FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 % MCF
 subplot(5,1,5);
-hold on
+
 if add_error
     for i = 1:length(St)
         yV = data.nh_mcf(i); yE = data.nh_mcf_err(i);
         if ~isnan(yV) && ~isnan(yE)
-            plot([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
+            semilogy([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
         end
         yV = data.sh_mcf(i); yE = data.sh_mcf_err(i);
         if ~isnan(yV) && ~isnan(yE)
-            plot([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
+            semilogy([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
         end
     end
 end
-plot(St,data.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-plot(St,data.sh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-plot(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
-plot(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
-box on
-set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica','FontWeight','Bold')
-ylabel('CH_3CCl_3 (ppt)','FontSize',16)
+hold on
+disp('MCF')
+semilogy(St,data.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+semilogy(St,data.sh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
+semilogy(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
+%box on
+set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
+%ylabel('CH_3CCl_3 (ppt)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
-print(h,printOpts{:},sprintf(baseName,'Plot'));
+%print(h,printOpts{:},sprintf(baseName,'Plot'));
 
 end
 

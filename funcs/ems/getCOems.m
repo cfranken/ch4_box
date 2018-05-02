@@ -33,7 +33,7 @@ if const_ems
     anth_nh = 0.95; % Fraction of anthropogenic emissions in the NH
     nat_nh  = 0.90; % Fraction of natural emissions in the NH
     % CO Emissions
-    ems_nh = zeros(size(St)) + anth_co * anth_nh + nat_co * nat_nh;
+    ems_nh = zeros(size(St)) + anth_co * anth_nh + nat_co * nat_nh
     ems_sh = zeros(size(St)) + anth_co * (1 - anth_nh) + nat_co * (1 - nat_nh);
 end
 if lin_change

@@ -112,8 +112,8 @@ nh_c2h6  = 1200;                          % ppt
 sh_c2h6  = 200;                           % ppt
 nh_oh    = (gmOH/n_air)*1d9;              % ppb
 sh_oh    = (gmOH/n_air)*1d9;              % ppb
-nh_co    = 80;                            % ppb
-sh_co    = 60;                            % ppb
+nh_co    = 95;                            % ppb
+sh_co    = 67;                            % ppb
 % Stratosphere
 nh_12ch4_S = 1570;                        % ppb
 sh_12ch4_S = 1515;                        % ppb

@@ -298,6 +298,7 @@ for i = 1:length(sNames);
         end
     end
 end
+
 % Sort
 [~,ind] = sort(tDat_NH);
 tDat_NH = tDat_NH(ind);
@@ -318,6 +319,7 @@ for i = 1:nBoot
     
     %%% NH
     uniqID = unique(iDat_NH);   % Get the unique IDs
+    %uniqID
     nDraw  = length(uniqID);    % How many different timeseries do we have?
     % Randomly sample from our sites
     tDat = [];
@@ -327,6 +329,7 @@ for i = 1:nBoot
         tDat = [tDat;tDat_NH(ind)];
         yDat = [yDat;yDat_NH(ind)];
     end
+    %size(tDat)
     % Block average
     [tDat, yDat] = BlockAverage(tDat,yDat,ones(size(tDat)),fDays);
     % Store the data

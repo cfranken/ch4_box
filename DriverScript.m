@@ -73,7 +73,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = true;
+reread.flag  = false;
 % Other flags for re-reading
 reread.sYear = sYear;   
 reread.eYear = eYear;
@@ -98,7 +98,7 @@ use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = true;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = false;    % Use fixed OH anomalies
+fixedOH         = true;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
@@ -173,7 +173,10 @@ end
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
 obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
-
+%
+% blow up CO error:
+%obs.nh_co_err(:)=500;
+%obs.sh_co_err(:)=500;
 %%% Use Ed Dlugokencky's obs? (sensitivity test)
 if use_Ed
     ajt_obs = obs;
@@ -252,7 +255,7 @@ oh_ems = getOHems(St,tRes,dataDir);
 % - "sh": CO emissions from the Southern hemisphere (Tg/yr)
 co_ems = getCOems(St,tRes,dataDir);
 % somehow, the NH emissions are way too low:
-co_ems.nh(:) = 1400;
+%co_ems.nh(:) = 1400;
 
 %%
 %%% =======================================================================
@@ -295,7 +298,7 @@ end
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
 kX_NH = 1.81*ones(nT,1); % s^-1
-kX_SH = 2.17*ones(nT,1); % s^-1
+kX_SH = 2.05*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
