@@ -51,73 +51,52 @@ out.lat = struct;
 
 
 %%% =======================================================================
-%%% WDCGG
+%%% MOAA
 %%% =======================================================================
 
 %%% Append the directory onto the dataDir
-dataDirU = sprintf('%sobs/co/WDCGG/event/',dataDir);
+dataDir = sprintf('%sobs/co/NOAA/month/',dataDir);
 
-%%% Get the filenames
-files  = dir(sprintf('%s*.dat',dataDirU));
-nFiles = length(files);
-sNames = cell(nFiles,2);
-sLat   = nan(nFiles,1);
-for i = 1:nFiles
-    tmp         = strsplit(files(i).name,'.');
-    sNames{i,1} = files(i).name(1:3);
-    sNames{i,2} = tmp{2};
-    sNames{i,3} = tmp{4};
-end
+%%% Create the output structure
+out = struct;
+out.obs = struct;
+out.tim = struct;
+out.lat = struct;
+
+%%% Define the site names, header lengths, and latitudes
+% Filename structure
+fNameS = 'co_%s_surface-flask_1_ccgg_month.txt';
+% Make the site list with: "ls month/ch4_*_month.txt | cut -d'_' -f2 > site_list.csv"
+fid = fopen(sprintf('%s/../site_list.csv',dataDir));
+dat = textscan(fid,'%s %f','delimiter',',');
+fclose(fid);
+sNames = dat{1};
+sLat   = dat{2};
 
 %%% Read the data
-for i = 1:nFiles
+for i = 1:length(sNames)
     % Current filename
-    fName = sprintf('%s%s',dataDirU,files(i).name);
-    % Get the number of header lines and the latitude
-    [~,tDat] = grep('-s','LATITUDE',fName);
-    tDat     = strsplit(tDat.match{1});
-    if (length(tDat) < 3) sLat(i) = NaN; else sLat(i) = str2double(tDat{3}); end
-    [~,tDat] = grep('-s','HEADER LINES',fName);
-    tDat     = strsplit(tDat.match{1});
-    nHDR     = str2double(tDat{4});
-    if ~isnan(sLat(i))
-        % Load the data
-        fspec = '%s %s %s %s %f %f %f %s %s %s';
-        fid = fopen(fName);
-        dat = textscan(fid,fspec,'HeaderLines',nHDR,'Delimiter',' ','MultipleDelimsAsOne',true);
-        fclose(fid);
-        yDat = dat{5};
-        eDat = dat{8};
-        % Convert dates to a usable form
-        tDat = zeros(size(yDat));
-        for j = 1:length(tDat)
-            tDat(j) = datenum(dat{1}{j},'yyyy-mm-dd');
-        end
-        % Check flags
-        ind = ones(size(yDat));
-        for j = 1:length(yDat);
-            ind(j) = strcmp(eDat{j},'...') || strcmp(eDat{j},'0') || strcmp(eDat{j},'1') || strcmp(eDat{j},'2');
-        end
-        yDat(~ind) = NaN;
-        tDat(~ind) = NaN;
-        % Check for negatives (non-physical)
-        yDat(yDat <= 0) = NaN;
-        % Throw out tropical sites
-        if abs(sLat(i)) < 18
-            yDat(:) = NaN;
-        end
-        % Remove NaNs
-        ind  = ~isnan(yDat) & ~isnan(tDat);
-    else
-        ind = 0;
-    end
+    fName = sprintf('%s%s',dataDir,sprintf(fNameS,sNames{i}));
+    % Get the number of header lines
+    fid  = fopen(fName);
+    nHDR = textscan(fid, '%s', 1,'delimiter','\n');
+    nHDR = strsplit(char(nHDR{1}));
+    nHDR = str2double(nHDR(end));
+    fclose(fid);
+    % Load the data
+    dat  = importdata(fName,' ',nHDR);
+    dat  = dat.data;
+    tDat = datenum(dat(:,1),dat(:,2),ones(size(dat(:,1))));
+    yDat = dat(:,3);
+    % Remove NaNs
+    ind  = ~isnan(yDat) & ~isnan(tDat);
     if sum(ind) > 0
         tDat = tDat(ind);
         yDat = yDat(ind);
         % Put the data in a structure
-        out.obs.(sprintf('%s_%s_%s',sNames{i,1},sNames{i,2},sNames{i,3})) = yDat;
-        out.tim.(sprintf('%s_%s_%s',sNames{i,1},sNames{i,2},sNames{i,3})) = tDat;
-        out.lat.(sprintf('%s_%s_%s',sNames{i,1},sNames{i,2},sNames{i,3})) = sLat(i);
+        out.obs.(sprintf('%s_INSTAAR',sNames{i})) = yDat;
+        out.tim.(sprintf('%s_INSTAAR',sNames{i})) = tDat;
+        out.lat.(sprintf('%s_INSTAAR',sNames{i})) = sLat(i);
     end
 end
 
