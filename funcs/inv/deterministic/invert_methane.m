@@ -171,7 +171,7 @@ Sa_mcf_nh  = max([.02*ems_p(:,5),0.15*ones(nT,1)],[],2).^2;
 Sa_mcf_sh  =   0.5^2*ones(nT,1);
 Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
-Sa_oh      =  500^2*ones(nT,1);
+Sa_oh      =  2500^2*ones(nT,1);
 Sa_co      =   200^2*ones(nT,1);
 Sa_tau     =   3.0^2*ones(nT,1); % Newton: What is this for?
 
@@ -181,13 +181,13 @@ Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
 Sa_IC = (0.000005*params.IC).^2;
-tau_ch4    = 1; % yr
+tau_ch4    = 0.5; % yr
 tau_ch4c13 = 0; % yr
-tau_mcf    = 3; % yr
+tau_mcf    = 1; % yr
 tau_n2o    = 5; % yr
-tau_c2h6   = 3; % yr
-tau_oh     = 3; % yr
-tau_co     = 2; % yr
+tau_c2h6   = 1; % yr
+tau_oh     = 0.3; % yr
+tau_co     = 1; % yr
 tau_tau    = 0; % yr
 % Alternate cases
 if fixedCH4
