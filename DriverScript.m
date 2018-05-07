@@ -83,9 +83,11 @@ reread.dir   = dataDir;
 
 %%% Other options and flags
 % Use globals for some flags
-global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
+global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer ignoreMCF ignoreCO         % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
 global k_co_flag use_strat interactive_OH use_other_sinks % Other
+ignoreMCF= true;
+ignoreCO = true;
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -297,8 +299,11 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-kX_NH = 1.81*ones(nT,1); % s^-1
-kX_SH = 2.05*ones(nT,1); % s^-1
+f = 2.07;
+kX_NH = 1.84*ones(nT,1); % s^-1
+kX_SH = f*ones(nT,1); % s^-1
+%kX_NH = 1.81*ones(nT,1); % s^-1
+%kX_SH = 2.05*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
