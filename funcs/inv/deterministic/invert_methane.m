@@ -100,7 +100,7 @@ end
 function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p, LM_param, jacobian_ems, jacobian_IC, obs, params )
 
 %%% Alternate cases to run
-global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat
+global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -172,7 +172,8 @@ Sa_mcf_sh  =   0.5^2*ones(nT,1);
 Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
 Sa_oh      =  2500^2*ones(nT,1);
-Sa_co      =   200^2*ones(nT,1);
+Sa_co      =   300^2*ones(nT,1);
+
 Sa_tau     =   3.0^2*ones(nT,1); % Newton: What is this for?
 
 % Newton: problem may be here. IC has size 28 in DriverScript. Here size = 20
@@ -181,12 +182,12 @@ Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
 Sa_IC = (0.000005*params.IC).^2;
-tau_ch4    = 0.5; % yr
+tau_ch4    = 1; % yr
 tau_ch4c13 = 0; % yr
 tau_mcf    = 1; % yr
 tau_n2o    = 5; % yr
 tau_c2h6   = 1; % yr
-tau_oh     = 0.3; % yr
+tau_oh     = 1; % yr
 tau_co     = 1; % yr
 tau_tau    = 0; % yr
 % Alternate cases
@@ -219,7 +220,7 @@ Sa_kx_SH = eps^2*ones(nT,1); % Fixed K
 % Newton: Is there supposed to be stratosphere emissions here as well?
 Sa_ems = [Sa_ch4,Sa_ch4,Sa_ch4c13,Sa_ch4c13,Sa_mcf_nh,Sa_mcf_sh,...
           Sa_n2o,Sa_n2o,Sa_c2h6,  Sa_c2h6,  Sa_oh,    Sa_oh,...
-	  Sa_co, Sa_co, Sa_tau, Sa_kx_NH, Sa_kx_SH];
+	  Sa_co, 0.07*Sa_co, Sa_tau, Sa_kx_NH, Sa_kx_SH];
 Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
 
 % Newton: What is this tau array for?; CF: Tau is the temporal correlation
@@ -227,6 +228,15 @@ Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
 tau    = [tau_ch4,tau_ch4,tau_ch4c13,tau_ch4c13,tau_mcf,tau_mcf,...
           tau_n2o,tau_n2o,tau_c2h6,  tau_c2h6,  tau_oh, tau_oh, tau_co, tau_co, tau_tau]*365.25;
 Sa     = fillDiagonalsAnal(Sa,tau,St);
+if ignoreCO
+    obs.nh_co_err = obs.nh_co_err*1e20;
+    obs.sh_co_err = obs.sh_co_err*1e20;
+end
+if ignoreMCF
+    obs.nh_mcf_err = obs.nh_mcf_err*1e20;
+    obs.sh_mcf_err = obs.sh_mcf_err*1e20;
+
+end
 
 %%% Construct the observational error covariance matrix
 So = [obs.nh_ch4_err;obs.sh_ch4_err;obs.nh_ch4c13_err;obs.sh_ch4c13_err;obs.nh_mcf_err;obs.sh_mcf_err;...

@@ -297,8 +297,9 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-kX_NH = 1.81*ones(nT,1); % s^-1
-kX_SH = 2.05*ones(nT,1); % s^-1
+f = 2.07;
+kX_NH = 1.84*ones(nT,1); % s^-1
+kX_SH = f*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -340,20 +341,22 @@ ems = assembleEms(ems);
 
 %%% Run the box model
 params = getParameters(St); % Only need to do this once
-params.tau_NS = 1.3;
+%params.tau_NS = 0.1;
 params.tau_NS_strat=1e99;
 %params.odeOpts.MinStep=1;
 IC     = params.IC;         % Guess for the inital conditions
 out_d    = boxModel_wrapper(St,ems,IC,params);
 ems2 = ems;
-ems2(100,1)= ems(100,1)+50*12;
+dH = 50;
+ems2(100,1)= ems(100,1)+dH*12;
 out2_d    = boxModel_wrapper(St,ems2,IC,params);
-ems2(100,1)= ems(100,1)-50*12;
+ems2(100,1)= ems(100,1)-dH*12;
 out3_d    = boxModel_wrapper(St,ems2,IC,params);
-ems2(100,1)= ems(100,1)+50*12;
+ems2(100,1)= ems(100,1)+dH*12;
 interactive_OH  = false;
 out_f     = boxModel_wrapper(St,ems,IC,params);
 out2_f    = boxModel_wrapper(St,ems2,IC,params);
 m2 = 18.3*exp(-(St-St(100))/(13*365));m2(1:99)=0;
 m = 17.7*exp(-(St-St(100))/(9.5*365));m(1:99)=0;
-plot(St, out2_d.nh_ch4-out_d.nh_ch4, St, (out2_f.nh_ch4-out_f.nh_ch4), St, m, St, m2)
+%plot(St, out2_d.nh_ch4-out_d.nh_ch4, St, (out2_f.nh_ch4-out_f.nh_ch4), St, m, St, m2)
+plot(St, (out_d.nh_oh),St, (out_d.sh_oh))
