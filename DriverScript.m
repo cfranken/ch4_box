@@ -62,6 +62,10 @@ tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
+%%% Export variables to mat file
+export_data = true; % do we want to export data to data_filename.mat?
+data_filename  = 'case2.mat'; 
+
 %%% Execute in parallel?
 run_parallel = false;
 if run_parallel
@@ -533,6 +537,12 @@ if do_cmaes
     %plotDrivers(St,ems_best,ems,sprintf('%s/%s/cmaes_%%s.%s',outDir,tRes,ftype),dataDir);
     
 end
+
+if export_data 
+fprintf('Exporting all variables in this run to %s \n', data_filename)
+save(data_filename);
+end
+
 
 %%
 %%% Finished simulation
