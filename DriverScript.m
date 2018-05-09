@@ -4,16 +4,16 @@
 %%% = Originally created on 04/12/2016
 %%% =----------------------------------------------------------------------
 %%% = NOTES:
-%%% = 
+%%% =
 %%% = This is the driver script for the 2-box model methane inversion.
 %%% = There are currently two different inversions implemented: (1) a
 %%% = linear or non-linear deterministic inversion following Rodgers (2000)
-%%% = and (2) an inversion using the non-linear Covariance Matrix Adaptation 
-%%% = Evolution Strategy (CMA-ES).  Case (1) requires us to compute gradients 
-%%% = and only allows for Gaussian errors.  Case (2) is  a stochastic method 
+%%% = and (2) an inversion using the non-linear Covariance Matrix Adaptation
+%%% = Evolution Strategy (CMA-ES).  Case (1) requires us to compute gradients
+%%% = and only allows for Gaussian errors.  Case (2) is  a stochastic method
 %%% = that automatically tunes the proposal distribution to improve the sampling,
 %%% = however it does not provide error statistics that are consistent with
-%%% = the distributions.  Case (2) also allows one to specify non-analytic 
+%%% = the distributions.  Case (2) also allows one to specify non-analytic
 %%% = distributions (e.g., bounded Gaussians or uniform distributions).
 %%% =======================================================================
 
@@ -64,13 +64,13 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'case2.mat'; 
+data_filename  = 'case2.mat';
 
 %%% Execute in parallel?
 run_parallel = false;
 if run_parallel
-      nWorkers     = 4;
-      setupParallel(run_parallel,nWorkers);
+    nWorkers     = 4;
+    setupParallel(run_parallel,nWorkers);
 end
 
 
@@ -82,7 +82,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 % Do we want to reread the raw data?
 reread.flag  = false;
 % Other flags for re-reading
-reread.sYear = sYear;   
+reread.sYear = sYear;
 reread.eYear = eYear;
 reread.tRes  = tRes;
 reread.tAvg  = tAvg;
@@ -368,19 +368,19 @@ end
 %%% =======================================================================
 
 if do_deterministic
-        
+    
     %%% Diagnostic
     fprintf('\n *** DETERMINISTIC INVERSION *** \n');
-
+    
     %%% Invert
-% Newton: here is the problem 
+    % Newton: here is the problem
     [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
-
-
+    
+    
     %%% Plot the Jacobians
     %[jacobian_ems,jacobian_IC] = define_Jacobian( St, ems, IC, params, run_parallel );
     %plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
-
+    
     %%% Try plotting the solution
     ems_anal = anal_soln{1};
     IC_anal  = anal_soln{2};
@@ -403,12 +403,12 @@ if do_cmaes
     
     %%% Diagnostics
     fprintf('\n *** STARTING CMA-ES INVERSION *** \n');
-
+    
     %%% Use a log-likelihood and get matrix dimensions
     use_log = true;
     nE      = size(ems,2);
     nI      = length(IC);
-
+    
     %%% Set the function parameters for the box model
     fun_param.run_parallel = run_parallel;
     fun_param.p_prior      = @(ems,IC,input_param) define_prior(ems,IC,input_param);
@@ -428,7 +428,7 @@ if do_cmaes
     fun_param.nE           = nE;
     fun_param.nI           = nI;
     fun_param.obs          = obs;
-
+    
     %%% Set the options for CMAES
     CMAES_opts                   = cmaes;
     CMAES_opts.EvalParallel      = 'yes';
@@ -437,14 +437,14 @@ if do_cmaes
     CMAES_opts.Resume            = 'no'; % Default is 'no'
     CMAES_opts.CMA.active        = 2;
     CMAES_opts.DiagonalOnly      = 100;
-%     % Full
-%     CMAES_opts.StopFunEvals      = 5000000;
-%     CMAES_opts.MaxIter           = 20000;
-%     CMAES_opts.Restarts          = 10;
-%     % Medium
-%     CMAES_opts.StopFunEvals      = 1000000;
-%     CMAES_opts.MaxIter           = 5000;
-%     CMAES_opts.Restarts          = 6;
+    %     % Full
+    %     CMAES_opts.StopFunEvals      = 5000000;
+    %     CMAES_opts.MaxIter           = 20000;
+    %     CMAES_opts.Restarts          = 10;
+    %     % Medium
+    %     CMAES_opts.StopFunEvals      = 1000000;
+    %     CMAES_opts.MaxIter           = 5000;
+    %     CMAES_opts.Restarts          = 6;
     % Small
     CMAES_opts.StopFunEvals      = 10000;
     CMAES_opts.MaxIter           = 200;
@@ -478,7 +478,7 @@ if do_cmaes
     sig.oh           =   0.005;     % OH scale factor
     sig.tau          =   0.500;     % 1/yr
     xsigma.IC        = [0.05,0.05,0.01,0.01,0.05,0.05,0.05,0.05,0.05,0.05,...
-                        0.05,0.05,0.01,0.01,0.05,0.05,0.05,0.05,0.05,0.05]; % Initial conditions
+        0.05,0.05,0.01,0.01,0.05,0.05,0.05,0.05,0.05,0.05]; % Initial conditions
     xsigma.ems(:,1)  = xsigma.ems(:,1)  * sig.ch4;
     xsigma.ems(:,2)  = xsigma.ems(:,2)  * sig.ch4;
     xsigma.ems(:,3)  = xsigma.ems(:,3)  * sig.ch4c13;
@@ -504,7 +504,7 @@ if do_cmaes
             xstart = bestever.x;
         end
     end
-
+    
     % Run the CMA-ES inversion or just plot an old one?
     if plot_old_cmaes
         [cmaes_res.ems,cmaes_res.IC] = disassembleStateVector(bestever.x,nT,nE,nI);
@@ -526,7 +526,7 @@ if do_cmaes
         [cmaes_res.ems,cmaes_res.IC]                     = disassembleStateVector(bestever.x,nT,nE,nI);
         %[cmaes_res.ems,cmaes_res.IC]                     = disassembleStateVector(xmin,nT,nE,nI);
     end
-
+    
     %%% Plot the best one
     ems_best = cmaes_res.ems;
     IC_best  = cmaes_res.IC;
@@ -538,9 +538,9 @@ if do_cmaes
     
 end
 
-if export_data 
-fprintf('Exporting all variables in this run to %s \n', data_filename)
-save(data_filename);
+if export_data
+    fprintf('Exporting all variables in this run to %s \n', data_filename)
+    save(data_filename);
 end
 
 
