@@ -30678,3 +30678,1136 @@ mati =
        xa: [657×1 double]
 
 DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING NONLINEAR IMAP INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.176765e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.176765e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.176765e-40.] 
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.330270e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.330270e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.330270e-40.] 
+ITERATION   1/  5: reldiff = 8.64e+00 & absdiff = 4.08e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.893804e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.893804e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.893804e-40.] 
+ITERATION   2/  5: reldiff = 1.51e+00 & absdiff = 3.94e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.712717e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.712717e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.712717e-40.] 
+ITERATION   3/  5: reldiff = 8.93e-01 & absdiff = 3.44e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.182034e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.182034e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.182034e-40.] 
+ITERATION   4/  5: reldiff = 9.57e-01 & absdiff = 3.27e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.058776e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.058776e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.058776e-40.] 
+ITERATION   5/  5: reldiff = 2.65e+00 & absdiff = 4.67e+04
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the output size by setting the figure's PaperPosition property, use the 'print' command with either the  '-bestfit' or '-fillpage' options, or
+use the 'Best fit' or 'Fill page' options on the 'Print Preview' window.] 
+[> In validate (line 203)
+  In print (line 81)
+  In plotNewObs (line 158)
+  In DriverScript (line 389)] 
+Exporting all variables in this run to case2.mat 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING NONLINEAR IMAP INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.176765e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.176765e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 64)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.176765e-40.] 
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.330270e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.330270e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.330270e-40.] 
+ITERATION   1/  5: reldiff = 8.64e+00 & absdiff = 4.08e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.893804e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.893804e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.893804e-40.] 
+ITERATION   2/  5: reldiff = 1.51e+00 & absdiff = 3.94e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.712717e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.712717e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.712717e-40.] 
+ITERATION   3/  5: reldiff = 8.93e-01 & absdiff = 3.44e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.182034e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.182034e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.182034e-40.] 
+ITERATION   4/  5: reldiff = 9.57e-01 & absdiff = 3.27e+04
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.058776e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.058776e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 74)
+  In DriverScript (line 377)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.058776e-40.] 
+ITERATION   5/  5: reldiff = 2.65e+00 & absdiff = 4.67e+04
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the output size by setting the figure's PaperPosition property, use the 'print' command with either the
+'-bestfit' or '-fillpage' options, or use the 'Best fit' or 'Fill page' options on the 'Print Preview' window.] 
+[> In validate (line 203)
+  In print (line 81)
+  In plotNewObs (line 158)
+  In DriverScript (line 391)] 
+Exporting all variables in this run to case2 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+DriverScript

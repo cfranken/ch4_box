@@ -64,7 +64,11 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'case2.mat';
+data_filename  = 'case2';
+
+%%% Describing experiment to be exported to .mat file 
+expirment_description = 'Turned on interactive OH and kept OH anomalies fixed.'
+
 
 %%% Execute in parallel?
 run_parallel = false;
@@ -100,7 +104,7 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = false;     % Allow OH feedbacks?
+interactive_OH  = true;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 use_other_sinks = false;     % Use non-OH sinks?
@@ -379,7 +383,9 @@ if do_deterministic
     
     %%% Plot the Jacobians
     %[jacobian_ems,jacobian_IC] = define_Jacobian( St, ems, IC, params, run_parallel );
-    %plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
+
+
+    plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
     
     %%% Try plotting the solution
     ems_anal = anal_soln{1};
