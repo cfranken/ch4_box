@@ -96,7 +96,7 @@ reread.dir   = dataDir;
 % Use globals for some flags
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
-global k_co_flag use_strat interactive_OH use_other_sinks % Other
+global k_co_flag use_strat interactive_OH use_other_sinks ignoreCO % Other
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -113,6 +113,7 @@ det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = true;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
+ignoreCO = true; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
 % MCF sensitivity test flags
