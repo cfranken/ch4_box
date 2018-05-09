@@ -172,7 +172,6 @@ end
 % - NH/SH N2O    obs & err (ppb)
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
-obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
 %
 % blow up CO error:
 %obs.nh_co_err(:)=500;
@@ -342,13 +341,19 @@ ems = assembleEms(ems);
 %%% Run the box model
 params = getParameters(St); % Only need to do this once
 %params.tau_NS = 0.1;
+
+% set the interhemispheric exchange time to infinite so we deal with only 1 box
 params.tau_NS_strat=1e99;
 %params.odeOpts.MinStep=1;
 IC     = params.IC;         % Guess for the inital conditions
 out_d    = boxModel_wrapper(St,ems,IC,params);
 ems2 = ems;
-dH = 50;
+dH = 50; % size of purturbation 
+
+% Create purturbation for box model input
 ems2(100,1)= ems(100,1)+dH*12;
+
+% Run box model with purturbation 
 out2_d    = boxModel_wrapper(St,ems2,IC,params);
 ems2(100,1)= ems(100,1)-dH*12;
 out3_d    = boxModel_wrapper(St,ems2,IC,params);

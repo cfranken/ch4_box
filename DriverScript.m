@@ -64,8 +64,11 @@ nT    = length(St);
 
 %%% Execute in parallel?
 run_parallel = false;
-nWorkers     = 4;
-setupParallel(run_parallel,nWorkers);
+if run_parallel
+      nWorkers     = 4;
+      setupParallel(run_parallel,nWorkers);
+end
+
 
 %%% What kind of inversions do we want to do?
 do_deterministic = true;    % Rodgers (2000)
@@ -83,11 +86,9 @@ reread.dir   = dataDir;
 
 %%% Other options and flags
 % Use globals for some flags
-global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer ignoreMCF ignoreCO         % Linear inversion
+global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
 global k_co_flag use_strat interactive_OH use_other_sinks % Other
-ignoreMCF= true;
-ignoreCO = true;
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -95,10 +96,12 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = true;     % Allow OH feedbacks?
+interactive_OH  = false;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
-det_linear      = true;     % Use a linear deterministic inversion?
+use_other_sinks = false;     % Use non-OH sinks?
+% Linear inversion flags
+det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = true;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
@@ -536,8 +539,3 @@ end
 fprintf('\n ***********************************\n')
 fprintf(' ***            DONE!            ***\n')
 fprintf(' ***********************************\n\n')
-
-
-%%% =======================================================================
-%%% =                              E N D                                  =
-%%% =======================================================================

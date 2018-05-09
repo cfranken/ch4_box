@@ -29027,3 +29027,1654 @@ fName =
 
    * SAVING OBS STRUCTURE
 DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.263457e-40.] 
+[> In invert_methane>update_solution (line 238)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 279)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.656583e-41.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.656583e-41.] 
+[> In invert_methane>update_solution (line 283)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+[> In invert_methane>update_solution (line 291)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.656583e-41.] 
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the output size by setting the figure's PaperPosition property, use the 'print' command with either the  '-bestfit' or '-fillpage' options, or
+use the 'Best fit' or 'Fill page' options on the 'Print Preview' window.] 
+[> In validate (line 203)
+  In print (line 81)
+  In plotNewObs (line 158)
+  In DriverScript (line 377)] 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+exit
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.263457e-40.] 
+[> In invert_methane>update_solution (line 238)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 279)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.656583e-41.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.656583e-41.] 
+[> In invert_methane>update_solution (line 283)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+[> In invert_methane>update_solution (line 291)
+  In invert_methane (line 64)
+  In DriverScript (line 365)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.656583e-41.] 
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the output size by setting the figure's PaperPosition property, use the 'print' command with either the  '-bestfit' or '-fillpage' options,
+or use the 'Best fit' or 'Fill page' options on the 'Print Preview' window.] 
+[> In validate (line 203)
+  In print (line 81)
+  In plotNewObs (line 158)
+  In DriverScript (line 377)] 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+saveas(figure(1), 'initial_test.png', 'png')
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+{Error using importdata (line 136)
+Unable to open file.
+
+Error in makeObs>ReadMCFerr (line 400)
+dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
+
+Error in makeObs (line 140)
+[eDat_NH,eDat_SH] = ReadMCFerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+
+Error in ForwardModelTest (line 175)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+ForwardModelTest
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+
+ans =
+
+/Users/newtn/Desktop/ch4_box/data/obs/MCF/NOAA/combined/HATS_global_MC.txt
+
+   * N2O
+{Error using importdata (line 136)
+Unable to open file.
+
+Error in makeObs>ReadN2Oerr (line 456)
+dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
+
+Error in makeObs (line 158)
+[eDat_NH,eDat_SH] = ReadN2Oerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+
+Error in ForwardModelTest (line 175)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+ForwardModelTest
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+
+ans =
+
+/Users/newtn/Desktop/ch4_box/data/obs/MCF/NOAA/combined/HATS_global_MC.txt
+
+   * N2O
+
+ans =
+
+/Users/newtn/Desktop/ch4_box/data/obs/N2O/NOAA/combined/GMD_global_N2O.txt
+
+{Error using importdata (line 136)
+Unable to open file.
+
+Error in makeObs>ReadN2Oerr (line 457)
+dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
+
+Error in makeObs (line 158)
+[eDat_NH,eDat_SH] = ReadN2Oerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+
+Error in ForwardModelTest (line 175)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+ForwardModelTest
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+
+ans =
+
+/Users/newtn/Desktop/ch4_box/data/obs/MCF/NOAA/combined/HATS_global_MC.txt
+
+   * N2O
+
+ans =
+
+/Users/newtn/Desktop/ch4_box/data/obs/N2O/NOAA/combined/GMD_global_N2O.txt
+
+   * C2H6
+   * CO
+   * SAVING OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+m
+
+m =
+
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+         0
+   17.7000
+   17.5475
+   17.3913
+   17.2415
+   17.0881
+   16.9360
+   16.7901
+   16.6407
+   16.4973
+   16.3505
+   16.2049
+   16.0746
+   15.9316
+   15.7943
+   15.6537
+   15.5189
+   15.3808
+   15.2439
+   15.1126
+   14.9780
+   14.8490
+   14.7169
+   14.5859
+   14.4686
+   14.3398
+   14.2163
+   14.0897
+   13.9684
+   13.8440
+   13.7208
+   13.6026
+   13.4816
+   13.3654
+   13.2465
+   13.1286
+   13.0230
+   12.9071
+   12.7959
+   12.6820
+   12.5727
+   12.4608
+   12.3499
+   12.2436
+   12.1346
+   12.0300
+   11.9230
+   11.8169
+   11.7184
+   11.6141
+   11.5141
+   11.4116
+   11.3133
+   11.2126
+   11.1128
+   11.0171
+   10.9190
+   10.8250
+   10.7286
+   10.6331
+   10.5476
+   10.4537
+   10.3637
+   10.2715
+   10.1830
+   10.0923
+   10.0025
+    9.9163
+    9.8281
+    9.7434
+    9.6567
+    9.5708
+    9.4938
+    9.4093
+    9.3282
+    9.2452
+    9.1656
+    9.0840
+    9.0031
+    8.9256
+    8.8461
+    8.7699
+    8.6919
+    8.6145
+    8.5452
+    8.4692
+    8.3962
+    8.3215
+    8.2498
+    8.1764
+    8.1036
+    8.0338
+    7.9623
+    7.8937
+    7.8235
+    7.7538
+    7.6892
+    7.6208
+    7.5552
+    7.4879
+    7.4234
+    7.3573
+    7.2919
+    7.2290
+    7.1647
+    7.1030
+    7.0398
+    6.9771
+    6.9210
+    6.8594
+    6.8003
+    6.7398
+    6.6817
+    6.6223
+    6.5633
+    6.5068
+    6.4489
+    6.3933
+    6.3364
+    6.2800
+    6.2295
+    6.1741
+    6.1209
+    6.0664
+    6.0141
+    5.9606
+    5.9076
+    5.8567
+    5.8045
+    5.7545
+    5.7033
+    5.6526
+    5.6071
+    5.5572
+    5.5093
+    5.4603
+    5.4132
+    5.3651
+    5.3173
+    5.2715
+    5.2246
+    5.1796
+    5.1335
+    5.0878
+    5.0454
+    5.0005
+    4.9574
+    4.9133
+    4.8710
+    4.8276
+    4.7847
+    4.7435
+    4.7012
+    4.6607
+    4.6193
+    4.5781
+    4.5413
+    4.5009
+    4.4621
+    4.4224
+    4.3843
+    4.3453
+    4.3066
+    4.2695
+    4.2315
+    4.1951
+    4.1577
+    4.1207
+    4.0876
+    4.0512
+    4.0163
+    3.9806
+    3.9463
+    3.9111
+    3.8763
+    3.8429
+    3.8087
+    3.7759
+    3.7423
+    3.7090
+    3.6792
+    3.6464
+    3.6150
+    3.5829
+    3.5520
+    3.5204
+    3.4890
+    3.4590
+    3.4282
+    3.3987
+    3.3684
+    3.3384
+    3.3106
+    3.2812
+    3.2529
+    3.2240
+    3.1962
+    3.1677
+    3.1395
+    3.1125
+    3.0848
+    3.0582
+    3.0310
+    3.0040
+    2.9799
+    2.9533
+    2.9279
+    2.9018
+    2.8768
+    2.8512
+    2.8259
+    2.8015
+    2.7766
+    2.7527
+    2.7282
+    2.7039
+    2.6821
+    2.6583
+    2.6354
+    2.6119
+    2.5894
+    2.5664
+    2.5435
+    2.5216
+    2.4992
+    2.4776
+    2.4556
+    2.4337
+    2.4142
+    2.3927
+    2.3721
+    2.3509
+    2.3307
+    2.3100
+    2.2894
+    2.2697
+    2.2495
+    2.2301
+    2.2102
+    2.1906
+    2.1723
+    2.1530
+    2.1344
+    2.1155
+    2.0972
+    2.0786
+    2.0601
+    2.0423
+    2.0241
+    2.0067
+    1.9888
+    1.9711
+    1.9553
+    1.9379
+    1.9212
+    1.9041
+    1.8877
+    1.8709
+    1.8542
+    1.8383
+    1.8219
+    1.8062
+    1.7901
+    1.7742
+    1.7599
+    1.7443
+    1.7292
+    1.7138
+    1.6991
+    1.6840
+    1.6690
+    1.6546
+    1.6399
+    1.6257
+    1.6113
+    1.5969
+    1.5841
+    1.5700
+    1.5565
+    1.5426
+    1.5293
+    1.5157
+    1.5022
+    1.4893
+    1.4760
+    1.4633
+    1.4503
+    1.4374
+    1.4254
+    1.4127
+    1.4006
+    1.3881
+    1.3761
+    1.3639
+    1.3517
+    1.3401
+    1.3282
+    1.3167
+    1.3050
+    1.2934
+    1.2830
+    1.2716
+    1.2606
+    1.2494
+    1.2386
+    1.2276
+    1.2167
+    1.2062
+    1.1955
+    1.1852
+    1.1746
+    1.1642
+    1.1548
+    1.1445
+    1.1347
+    1.1246
+    1.1149
+    1.1050
+    1.0951
+    1.0857
+    1.0760
+    1.0668
+    1.0573
+    1.0479
+    1.0394
+    1.0302
+    1.0213
+    1.0122
+    1.0035
+    0.9946
+    0.9857
+    0.9772
+    0.9685
+    0.9602
+    0.9516
+    0.9432
+    0.9353
+    0.9270
+    0.9190
+    0.9108
+    0.9030
+    0.8949
+    0.8870
+    0.8793
+    0.8715
+    0.8640
+
+size(m)
+
+ans =
+
+   444     1
+
+size(ems)
+
+ans =
+
+   444    17
+
+DriverScirpt
+{Undefined function or variable 'DriverScirpt'.
+} 
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** SETTING UP PARALLEL SIMULATION ***
+   * Running in serial!
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+
+ *** LOADING THE EMISSIONS *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * OH
+   * CO
+
+ems_nh =
+
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+  901.5000
+
+
+ *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** 
+
+ *** DETERMINISTIC INVERSION *** 
+   * STARTING LINEAR INVERSION
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+The size of the State Vector is
+ans =
+
+   657     1
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  9.111784e-40.] 
+[> In invert_methane>update_solution (line 248)
+  In invert_methane (line 64)
+  In DriverScript (line 370)] 
+Matrix Dimensions are as follows:size of SaI=
+ans =
+
+   657   657
+
+Size of SoI=
+ans =
+
+   293   293
+
+Size of k = 
+ans =
+
+   293   657
+
+Size of gamma=Size of gamma=
+ans =
+
+     1     1
+
+size of F=
+ans =
+
+   293     1
+
+size of y=
+ans =
+
+   293     1
+
+size of xi=
+ans =
+
+   657     1
+
+size of xa=
+ans =
+
+   657     1
+
+
+matrx = 
+
+  struct with fields:
+
+    Sa: [657×657 double]
+
+[> In invert_methane>update_solution (line 289)
+  In invert_methane (line 64)
+  In DriverScript (line 370)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.199648e-40.] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.199648e-40.] 
+[> In invert_methane>update_solution (line 293)
+  In invert_methane (line 64)
+  In DriverScript (line 370)] 
+[> In invert_methane>update_solution (line 301)
+  In invert_methane (line 64)
+  In DriverScript (line 370)] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.199648e-40.] 
+MCF
+[Warning: The figure is too large for the page and will be cut off. Resize the figure, adjust the output size by setting the figure's PaperPosition property, use the 'print' command with either the  '-bestfit' or '-fillpage' options, or
+use the 'Best fit' or 'Fill page' options on the 'Print Preview' window.] 
+[> In validate (line 203)
+  In print (line 81)
+  In plotNewObs (line 158)
+  In DriverScript (line 382)] 
+
+ ***********************************
+ ***            DONE!            ***
+ ***********************************
+
+mati
+
+mati = 
+
+  struct with fields:
+
+      SaI: [657×657 double]
+        K: [293×657 double]
+    gamma: 0
+      SoI: [293×293 double]
+        y: [293×1 double]
+        F: [293×1 double]
+       xi: [657×1 double]
+       xa: [657×1 double]
+
+DriverScript

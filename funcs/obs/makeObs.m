@@ -395,7 +395,7 @@ dataDir = sprintf('%sobs/MCF/NOAA/combined/',dataDir);
 % Filename structure
 fName = 'HATS_global_MC.txt';
 nHDR  = 85;
-
+sprintf('%s%s',dataDir,fName)
 %%% Load the data
 dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
 dat     = dat.data;
@@ -452,6 +452,7 @@ dataDir = sprintf('%sobs/N2O/NOAA/combined/',dataDir);
 fName = 'GMD_global_N2O.txt';
 nHDR  = 85;
 
+sprintf('%s%s',dataDir,fName)
 %%% Load the data
 dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
 dat     = dat.data;
