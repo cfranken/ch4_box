@@ -64,10 +64,10 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'case2';
+data_filename  = 'case3';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Turned on interactive OH and kept OH anomalies fixed.'
+experiment_description = 'Case 3: Turned on interactive OH and made OH anomalies not fixed.'
 
 
 %%% Execute in parallel?
@@ -111,7 +111,7 @@ use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = true;    % Use fixed OH anomalies
+fixedOH         = false;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
@@ -545,7 +545,7 @@ if do_cmaes
 end
 
 if export_data
-    fprintf('Exporting all variables in this run to %s \n', data_filename)
+    fprintf('Exporting all variables in this run to %s .mat \n', data_filename)
     save(data_filename);
 end
 
