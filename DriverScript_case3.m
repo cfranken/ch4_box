@@ -64,10 +64,10 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'case2';
+data_filename  = 'case3';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Case 3: Turned on interactive OH andturned off fixed OH'
+experiment_description = 'Case 3: Fixed OH source, Turned on OH feedbacks, and turned on CO.'
 
 
 %%% Execute in parallel?
@@ -113,7 +113,7 @@ det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = true;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
-ignoreCO = true; % keep CO emissions fixed
+ignoreCO = false; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
 % MCF sensitivity test flags

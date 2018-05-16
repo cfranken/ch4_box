@@ -67,7 +67,7 @@ export_data = true; % do we want to export data to data_filename.mat?
 data_filename  = 'case2';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Case 3: Turned on interactive OH andturned off fixed OH'
+experiment_description = 'Turned on interactive OH and kept OH anomalies fixed.'
 
 
 %%% Execute in parallel?
@@ -111,7 +111,7 @@ use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = true;    % Use fixed OH anomalies
+fixedOH         = true;    % Use fixed OH sources
 onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO = true; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions

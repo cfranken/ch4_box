@@ -355,6 +355,7 @@ ems2(100,1)= ems(100,1)+dH*12;
 
 % Run box model with purturbation 
 out2_d    = boxModel_wrapper(St,ems2,IC,params);
+
 ems2(100,1)= ems(100,1)-dH*12;
 out3_d    = boxModel_wrapper(St,ems2,IC,params);
 ems2(100,1)= ems(100,1)+dH*12;
@@ -363,5 +364,16 @@ out_f     = boxModel_wrapper(St,ems,IC,params);
 out2_f    = boxModel_wrapper(St,ems2,IC,params);
 m2 = 18.3*exp(-(St-St(100))/(13*365));m2(1:99)=0;
 m = 17.7*exp(-(St-St(100))/(9.5*365));m(1:99)=0;
-%plot(St, out2_d.nh_ch4-out_d.nh_ch4, St, (out2_f.nh_ch4-out_f.nh_ch4), St, m, St, m2)
+
+subplot(1,2,1)
+
+plot(St, out2_d.nh_ch4-out_d.nh_ch4, St, (out2_f.nh_ch4-out_f.nh_ch4), St, m, St, m2)
+title('CH4 Jacobian')
+xlabel('time')
+
+
+
+subplot(1,2,2)
 plot(St, (out_d.nh_oh),St, (out_d.sh_oh))
+title('OH Jacobian')
+saveas(figure(1), 'jacobian.png', 'png')

@@ -64,10 +64,10 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'case2';
+data_filename  = 'case1';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Case 3: Turned on interactive OH andturned off fixed OH'
+experiment_description = 'Case 1: Turned on interactive OH andturned off fixed OH'
 
 
 %%% Execute in parallel?
@@ -104,7 +104,7 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = true;     % Allow OH feedbacks?
+interactive_OH  = false;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 use_other_sinks = false;     % Use non-OH sinks?
