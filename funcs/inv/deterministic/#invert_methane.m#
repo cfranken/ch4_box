@@ -67,11 +67,9 @@ while iter
     % Update solution
     ems_i = soln{1};
     IC_i  = soln{2};
-size(ems_i)
-size(IC_i)
-
     chi2o = LM_param.chi2;
-    % Get new solution
+    
+  % Get new solution
     [K_ems,K_IC]    = define_Jacobian(St,ems_i,IC_i,params,run_parallel);
     
     [soln,LM_param, matr] = update_solution(St,ems_i,IC_i,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
@@ -104,7 +102,6 @@ function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p
 
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
-global fitKX
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -152,11 +149,6 @@ F       = F(indGood);
 %%% Assemble the jacobians
 % Sources
 K_ems = nan(nY,nT*nE);
-%if ignoreCO
-%    jacobian_ems(:,:,13:14)=0;
-%end
-
-
 ii    = 1;
 for i = 1:nE
     for j = 1:nT
@@ -164,7 +156,6 @@ for i = 1:nE
         ii          = ii + 1;
     end
 end
-size(K_ems)
 % ICs
 K_IC = jacobian_IC; % This one is already assembled
 % Full jacobian
@@ -184,7 +175,7 @@ Sa_c2h6    =  5000^2*ones(nT,1);
 Sa_oh      =  2500^2*ones(nT,1);
 Sa_co      =   300^2*ones(nT,1);
 Sa_tau     =   3.0^2*ones(nT,1); 
-Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
+
                  30,30,10,10,15,15,5,5,100,100].^2;
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
@@ -222,17 +213,11 @@ end
 Sa_kx_NH = eps^2*ones(nT,1); % Fixed K
 Sa_kx_SH = eps^2*ones(nT,1); % Fixed K 
 % We can add flags later if we want to fit kx instead of OH sources!
-if fitKX
-    Sa_kx_NH = 0.92^2*ones(nT,1); 
-    Sa_kx_SH = 0.92^2*ones(nT,1); 
-end
+%if fitKX
+% add kx to state vector
+%end
 
 % Construct matrix
-if ignoreCO
-    obs.nh_co_err = obs.nh_co_err*1e20;
-    obs.sh_co_err = obs.sh_co_err*1e20;
-    Sa_co = eps^2*ones(nT,1);
-end
 
 Sa_ems = [Sa_ch4,Sa_ch4,Sa_ch4c13,Sa_ch4c13,Sa_mcf_nh,Sa_mcf_sh,...
           Sa_n2o,Sa_n2o,Sa_c2h6,  Sa_c2h6,  Sa_oh,    Sa_oh,...
@@ -243,7 +228,11 @@ Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
 tau    = [tau_ch4,tau_ch4,tau_ch4c13,tau_ch4c13,tau_mcf,tau_mcf,...
           tau_n2o,tau_n2o,tau_c2h6,  tau_c2h6,  tau_oh, tau_oh, tau_co, tau_co, tau_tau]*365.25;
 Sa     = fillDiagonalsAnal(Sa,tau,St);
-
+if ignoreCO
+    obs.nh_co_err = obs.nh_co_err*1e20;
+    obs.sh_co_err = obs.sh_co_err*1e20;
+    Sa_co = Sa_co*eps;
+end
 
 %%% Construct the observational error covariance matrix
 So = [obs.nh_ch4_err;obs.sh_ch4_err;obs.nh_ch4c13_err;obs.sh_ch4c13_err;obs.nh_mcf_err;obs.sh_mcf_err;...
