@@ -109,8 +109,8 @@ dy(9)  = S(9)  + (y(10)- y(9))/tau_NS + (y(23)- y(9))/tau_TS - y(9)*(k_c2h6_NH+k
 dy(10) = S(10) + (y(9) -y(10))/tau_NS + (y(24)-y(10))/tau_TS - y(10)*(k_c2h6_SH+k_c2h6_other); % SH
 % OH (allow the feedback?)
 if interactive_OH
-dy(11) = S(11) + (y(12)-y(11))/tau_NS + (y(25)-y(11))/tau_TS - y(1)*k_12ch4_NH - y(3)*k_13ch4_NH - y(5)*1d-3*k_mcf_NH - y(13)*k_co_NH - y(11)*kX_NH; % NH
-dy(12) = S(12) + (y(11)-y(12))/tau_NS + (y(26)-y(12))/tau_TS - y(2)*k_12ch4_SH - y(4)*k_13ch4_SH - y(6)*1d-3*k_mcf_SH - y(14)*k_co_SH - y(12)*kX_SH; % SH
+dy(11) = S(11)  - y(1)*k_12ch4_NH   - y(13)*k_co_NH - y(11)*kX_NH; % NH
+dy(12) = S(12)  - y(2)*k_12ch4_SH   - y(14)*k_co_SH - y(12)*kX_SH; % SH
 end
 % CO
 dy(13) = S(13) + (y(14)-y(13))/tau_NS + (y(27)-y(13))/tau_TS - y(13)*(k_co_NH+k_co_other) + y(1)*k_12ch4_NH + y(3)*k_13ch4_NH;    % NH
