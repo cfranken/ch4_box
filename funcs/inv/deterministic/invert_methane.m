@@ -40,7 +40,7 @@ absdiff = nan(kmax,1);
 %%% Initialize the Levenberg-Marquardt parameters (gamma = zero reverts to IMAP)
 LM_param.chi2  = NaN;
 LM_param.gamma = 10;
-LM_param.gamma = 0;
+LM_param.gamma = 1;
 
 %%% Are we doing a linear or nonlinear inversion?
 if linear
@@ -60,15 +60,17 @@ else
 end
 
 %%% Get the solution for the first step
+IC_p
 [K_ems,K_IC]    = define_Jacobian(St,ems_p,IC_p,params,run_parallel);
 [soln,LM_param, matr] = update_solution(St,ems_p,IC_p,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
-
+disp('so far so good')
 while iter
     % Update solution
     ems_i = soln{1};
     IC_i  = soln{2};
-size(ems_i)
-size(IC_i)
+    ems_i(24,:)
+    ems_p(24,:)
+    plot(IC_i-IC_p)
 
     chi2o = LM_param.chi2;
     % Get new solution
@@ -188,9 +190,9 @@ Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
                  30,30,10,10,15,15,5,5,100,100].^2;
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
-Sa_IC = (0.000005*params.IC).^2;
+Sa_IC = (eps*params.IC).^2;
 tau_ch4    = 1; % yr
-tau_ch4c13 = 0; % yr
+tau_ch4c13 = 1; % yr
 tau_mcf    = 1; % yr
 tau_n2o    = 5; % yr
 tau_c2h6   = 1; % yr
@@ -223,6 +225,7 @@ Sa_kx_NH = eps^2*ones(nT,1); % Fixed K
 Sa_kx_SH = eps^2*ones(nT,1); % Fixed K 
 % We can add flags later if we want to fit kx instead of OH sources!
 if fitKX
+    disp('Fitting KX')
     Sa_kx_NH = 0.92^2*ones(nT,1); 
     Sa_kx_SH = 0.92^2*ones(nT,1); 
 end
