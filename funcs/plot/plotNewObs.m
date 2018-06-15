@@ -35,7 +35,7 @@ end
 params = getParameters(St);
 
 %%% Add errorbars?
-add_error = true;
+add_error = false;
 obsCol    = [  0,   0,   0]./256;
 nhCol     = [204, 179, 102]./256;
 shCol     = [ 58, 106, 176]./256;
@@ -62,13 +62,13 @@ if add_error
         end
     end
 end
-plot(St,data.nh_ch4,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-plot(St,data.sh_ch4,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-plot(St,model.nh_ch4,'-','Color',nhCol,'LineWidth',2)
-plot(St,model.sh_ch4,'-','Color',shCol,'LineWidth',2)
+plot(St,data.nh_ch4./model.nh_ch4,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+plot(St,data.sh_ch4./model.sh_ch4,'o','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+%plot(St,model.nh_ch4,'-','Color',nhCol,'LineWidth',2)
+%plot(St,model.sh_ch4,'-','Color',shCol,'LineWidth',2)
 box on
 set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
-ylabel('CH_4 (ppb)','FontSize',16)
+ylabel('meas/mod CH_4 (ppb)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 % CO
@@ -86,13 +86,13 @@ if add_error
         end
     end
 end
-plot(St,data.nh_co,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-plot(St,data.sh_co,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-plot(St,model.nh_co,'-','Color',nhCol,'LineWidth',2)
-plot(St,model.sh_co,'-','Color',shCol,'LineWidth',2)
+plot(St,data.nh_co./model.nh_co,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+plot(St,data.sh_co./model.sh_co,'o','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+%plot(St,model.nh_co,'-','Color',nhCol,'LineWidth',2)
+%plot(St,model.sh_co,'-','Color',shCol,'LineWidth',2)
 box on
 set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
-ylabel('CO (ppb)','FontSize',16)
+ylabel('meas/mod CO (ppb)','FontSize',16)
 xlim(xLims)
 datetick('x','yyyy','keeplimits')
 % OH
@@ -146,14 +146,16 @@ if add_error
 end
 hold on
 disp('MCF')
-semilogy(St,data.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-semilogy(St,data.sh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
-semilogy(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
+plot(St,data.nh_mcf./model.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+plot(St,data.sh_mcf./model.sh_mcf,'o','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+legend('NH','SH')
+%semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
+%semilogy(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
 %box on
 set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
-ylabel('CH_3CCl_3 (ppt)','FontSize',16)
+ylabel('CH_3CCl_3 ratio (data/model)','FontSize',16)
 xlim(xLims)
+ylim([0.9,1.1])
 datetick('x','yyyy','keeplimits')
 print(h,printOpts{:},sprintf(baseName,'Plot'));
 

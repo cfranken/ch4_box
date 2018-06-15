@@ -111,7 +111,7 @@ use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = true;    % Use fixed OH sources
+fixedOH         = false;    % Use fixed OH sources
 onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO = true; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
@@ -311,8 +311,9 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f = 2.07;
-kX_NH = 1.84*ones(nT,1); % s^-1
+%1.8850    2.1200
+f = 2.12;
+kX_NH = 1.885*ones(nT,1); % s^-1
 kX_SH = f*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
