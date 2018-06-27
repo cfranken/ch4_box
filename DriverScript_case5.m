@@ -64,10 +64,10 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'case2';
+data_filename  = 'case5';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Turned on interactive OH and kept OH anomalies fixed.'
+experiment_description = 'Turned on interactive OH, Accounting for CO, and inverting for OH source';
 
 
 %%% Execute in parallel?
