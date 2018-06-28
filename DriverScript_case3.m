@@ -67,7 +67,7 @@ export_data = true; % do we want to export data to data_filename.mat?
 data_filename  = 'case3';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'not fitting for OH sources, ignore CO, OH is interactive"
+experiment_description = 'not fitting for OH sources, ignore CO, OH is interactive'
 
 
 %%% Execute in parallel?

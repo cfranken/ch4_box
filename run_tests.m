@@ -59,4 +59,37 @@ case3.sh_oh_ems = anal_soln{1}(:,12);
 
 save('case3_test.mat')
 
+DriverScript_case4
+
+
+% Give variables names 
+case4.concentrations = out_anal;
+case4.ems = anal_soln;
+case4.nh_ch4_ems = anal_soln{1}(:,1);
+case4.sh_ch4_ems = anal_soln{1}(:,2);
+case4.nh_co_ems = anal_soln{1}(:,13);
+case4.sh_co_ems = anal_soln{1}(:,14);
+case4.nh_oh_ems = anal_soln{1}(:,11);
+case4.sh_oh_ems = anal_soln{1}(:,12);
+
+save('case4_test.mat')
+
+
+
+DriverScript_case5
+
+
+% Give variables names 
+case5.concentrations = out_anal;
+case5.ems = anal_soln;
+case5.nh_ch4_ems = anal_soln{1}(:,1);
+case5.sh_ch4_ems = anal_soln{1}(:,2);
+case5.nh_co_ems = anal_soln{1}(:,13);
+case5.sh_co_ems = anal_soln{1}(:,14);
+case5.nh_oh_ems = anal_soln{1}(:,11);
+case5.sh_oh_ems = anal_soln{1}(:,12);
+
+save('case5_test.mat')
+
+
 
