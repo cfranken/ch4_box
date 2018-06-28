@@ -111,7 +111,7 @@ use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = true;    % Use fixed OH sources
+fixedOH         = false;    % Use fixed OH sources
 onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO = false; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
