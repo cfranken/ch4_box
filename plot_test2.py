@@ -174,11 +174,20 @@ fig.savefig('case_emissions')
 case1_nh_ch4_con = case1 ['case1']['concentrations']['nh_ch4']
 case1_nh_oh_con = case1 ['case1']['concentrations']['nh_oh']
 case1_nh_co_con = case1 ['case1']['concentrations']['nh_co']
+case1_sh_ch4_con = case1 ['case1']['concentrations']['sh_ch4']
+case1_sh_oh_con = case1 ['case1']['concentrations']['sh_oh']
+case1_sh_co_con = case1 ['case1']['concentrations']['sh_co']
+
 
 # case 2
 case2_nh_ch4_con = case2['case2']['concentrations']['nh_ch4']
 case2_nh_oh_con = case2['case2']['concentrations']['nh_oh']
 case2_nh_co_con = case2['case2']['concentrations']['nh_co']
+
+case2_sh_ch4_con = case2['case2']['concentrations']['sh_ch4']
+case2_sh_oh_con = case2['case2']['concentrations']['sh_oh']
+case2_sh_co_con = case2['case2']['concentrations']['sh_co']
+
 
 
 # Case 3
@@ -186,22 +195,30 @@ case3_nh_ch4_con = case3 ['case3']['concentrations']['nh_ch4']
 case3_nh_oh_con = case3 ['case3']['concentrations']['nh_oh']
 case3_nh_co_con = case3 ['case3']['concentrations']['nh_co']
 case3_sh_co_con = case3 ['case3']['concentrations']['sh_co']
+case3_sh_ch4_con = case3 ['case3']['concentrations']['sh_ch4']
+case3_sh_oh_con = case3 ['case3']['concentrations']['sh_oh']
 
-# Case 3
+# Case 4
 case4_nh_ch4_con = case4 ['case4']['concentrations']['nh_ch4']
 case4_nh_oh_con = case4 ['case4']['concentrations']['nh_oh']
 case4_nh_co_con = case4 ['case4']['concentrations']['nh_co']
+
+case4_sh_ch4_con = case4 ['case4']['concentrations']['sh_ch4']
+case4_sh_oh_con = case4 ['case4']['concentrations']['sh_oh']
 case4_sh_co_con = case4 ['case4']['concentrations']['sh_co']
 
 # case 5
 case5_nh_ch4_con = case5 ['case5']['concentrations']['nh_ch4']
 case5_nh_oh_con = case5 ['case5']['concentrations']['nh_oh']
 case5_nh_co_con = case5 ['case5']['concentrations']['nh_co']
+
+case5_sh_ch4_con = case5 ['case5']['concentrations']['sh_ch4']
+case5_sh_oh_con = case5 ['case5']['concentrations']['sh_oh']
 case5_sh_co_con = case5 ['case5']['concentrations']['sh_co']
 
 
 
-
+### Plotting concentrations in the Northern Hemisphere 
 fig2 = plt.figure()
 ch4_con = fig2.add_subplot(2,2,1)
 ch4_con.scatter(time, nh_ch4_obs)
@@ -241,4 +258,47 @@ co_con.set_title('CO Concentrations')
 fig2.legend(['Case 1', 'case 2', ' case 3'], loc='lower right')
 fig2.subplots_adjust(wspace=0.4)
 fig2.tight_layout()
-plt.savefig('case_concentrations.png')
+fig2.savefig('nh_concentrations.png')
+
+
+fig3 = plt.figure()
+ch4_con2 = fig3.add_subplot(2,2,1)
+ch4_con2.scatter(time, sh_ch4_obs)
+ch4_con2.plot(time , case1_sh_ch4_con, color = 'black')
+ch4_con2.plot(time , case2_sh_ch4_con, color = 'green')
+ch4_con2.plot(time , case3_sh_ch4_con, color = 'red')
+ch4_con2.plot(time , case4_sh_ch4_con, color = 'blue')
+ch4_con2.plot(time , case5_sh_ch4_con, color = 'purple')
+ch4_con2.set_xlabel('time')
+ch4_con2.set_ylabel('ppb')
+ch4_con2.set_title(r'\text{$CH_4$} Concentrations')
+
+# Plot OH
+oh_con2 = fig3.add_subplot(2,2,2)
+oh_con2.plot(time , case1_sh_oh_con, color = 'black')
+oh_con2.plot(time , case2_sh_oh_con, color = 'green')
+oh_con2.plot(time , case3_sh_oh_con, color = 'red')
+oh_con2.plot(time , case4_sh_oh_con, color = 'blue')
+oh_con2.plot(time , case5_sh_oh_con, color = 'purple')
+oh_con2.set_xlabel('time')
+oh_con2.set_ylabel('ppb')
+oh_con2.set_title('OH Concentrations')
+
+# Plot CO concentrations
+co_con2 = fig3.add_subplot(2,2,3)
+co_con2.scatter(time, sh_co_obs)
+co_con2.plot(time , case1_sh_co_con, color = 'black')
+co_con2.plot(time , case2_sh_co_con, color = 'green')
+co_con2.plot(time , case3_sh_co_con, color = 'red')
+co_con2.plot(time , case4_sh_co_con, color = 'blue')
+co_con2.plot(time , case5_sh_co_con, color = 'purple')
+co_con2.set_xlabel('time')
+co_con2.set_ylabel('ppb')
+co_con2.set_title('CO Concentrations')
+
+fig3.legend(['Case 1', 'case 2', ' case 3'], loc='lower right')
+fig3.subplots_adjust(wspace=0.4)
+fig3.tight_layout()
+fig3.savefig('sh_concentrations.png')
+
+1085382.fram-head.local
