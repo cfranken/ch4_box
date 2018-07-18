@@ -312,8 +312,8 @@ end
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
 f = 2.07;
-kX_NH = 1.84*ones(nT,1); % s^-1
-kX_SH = f*ones(nT,1); % s^-1
+kX_NH = 1.9*ones(nT,1); % s^-1
+kX_SH = 2.14*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 

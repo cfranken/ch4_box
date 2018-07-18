@@ -314,7 +314,7 @@ end
 %1.8850    2.1200
 f = 2.12;
 kX_NH = 1.885*ones(nT,1); % s^-1
-kX_SH = f*ones(nT,1); % s^-1
+kX_SH = 2.14*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 
