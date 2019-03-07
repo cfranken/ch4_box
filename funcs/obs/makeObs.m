@@ -169,34 +169,34 @@ out.sh_n2o_err = eDat_SH;
 %%% =======================================================================
 
 %%% Read the observation structure
-fprintf('   * C2H6\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
+fprintf('   * skipping C2H6\n');
+%[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
 
 %%% Make sure the errors aren't overly optimistic
-min_err = [9999, 2;... % [year and ppb]
-           1998, 2;...
-           1988, 2];
-for i = 1:size(min_err,1);
-    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
-    eDat_NH(ind) = min_err(i,2);
-    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
-    eDat_SH(ind) = min_err(i,2);
-end
+%min_err = [9999, 2;... % [year and ppb]
+%           1998, 2;...
+%           1988, 2];
+%for i = 1:size(min_err,1);
+%    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+%    eDat_NH(ind) = min_err(i,2);
+%    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+%    eDat_SH(ind) = min_err(i,2);
+%end
 % Make sure older obs are always less certain than new obs
-for i = length(St)-1:-1:1
-    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
-        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
-    end
-    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
-        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
-    end
-end
+%for i = length(St)-1:-1:1
+%    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+%        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+%    end
+%    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+%        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+%    end
+%end
 
 %%% Put the data in the output structure
-out.nh_c2h6     = oDat_NH;
-out.sh_c2h6     = oDat_SH;
-out.nh_c2h6_err = eDat_NH;
-out.sh_c2h6_err = eDat_SH;
+%out.nh_c2h6     = oDat_NH;
+%out.sh_c2h6     = oDat_SH;
+%out.nh_c2h6_err = eDat_NH;
+%out.sh_c2h6_err = eDat_SH;
 
 
 %%% =======================================================================
