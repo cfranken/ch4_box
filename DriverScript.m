@@ -84,7 +84,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = true;
+reread.flag  = false;
 % Other flags for re-reading
 reread.sYear = sYear;
 reread.eYear = eYear;
