@@ -83,7 +83,8 @@ do_deterministic = true;    % Rodgers (2000)
 do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
-% Do we want to reread the raw data?
+% Do we want to read
+reread the raw data?
 reread.flag  = false;
 % Other flags for re-reading
 reread.sYear = sYear;
@@ -151,7 +152,7 @@ try % Add a try-catch statement in case the user hasn't downloaded the data
 %    ch4h2_obs   = getCH4H2(dataDir,reread);    % deltaD observations (permil)
     mcf_obs     = getMCF(dataDir,reread);      % Methylchloroform observations (ppt)
     n2o_obs     = getN2O(dataDir,reread);      % N2O observations (ppb)
-    c2h6_obs    = getC2H6(dataDir,reread);     % Ethane observations (ppt)
+%    c2h6_obs    = getC2H6(dataDir,reread);     % Ethane observations (ppt)
     co_obs      = getCO(dataDir,reread);       % carbon monoxide observations (ppb)
     o3strat_obs = getO3strat(dataDir,reread);  % Stratospheric ozone observations (DU)
 catch % Some data is missing
@@ -165,6 +166,8 @@ catch % Some data is missing
         co_obs      = getCO(dataDir,reread);
         o3strat_obs = getO3strat(dataDir,reread);
         c2h6_obs    = NaN;
+
+
     catch % Otherwise, set the observation structures to NaN
         fprintf(' * UNABLE TO READ OBSERVATIONS!\n');
         ch4_obs     = NaN;
@@ -177,6 +180,11 @@ catch % Some data is missing
         o3strat_obs = NaN;
     end
 end
+
+% neglecting the Ethane data for now
+c2h6_obs.obs    = NaN;
+c2h6_obs.lat = NaN;
+c2h6_obs.tim = NaN;
 
 %%% Make the observation structure
 % Structure with 12 fields:
@@ -204,6 +212,15 @@ if reduce_MCFerr
     obs.nh_mcf_err = min([obs.nh_mcf_err,MCF_ERR_val*ones(size(obs.nh_mcf_err))],[],2);
     obs.sh_mcf_err = min([obs.sh_mcf_err,MCF_ERR_val*ones(size(obs.sh_mcf_err))],[],2);
 end
+
+%%% Put the data in the output structure
+obs.nh_c2h6     = NaN;
+obs.sh_c2h6     = NaN;
+obs.nh_c2h6_err = NaN;
+obs.sh_c2h6_err = NaN;
+
+
+
 
 %%% Diagnostics (check the raw data)
 if plot_raw
@@ -311,11 +328,11 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f = 2.07;
-kX_NH = 1.84*ones(nT,1); % s^-1
-kX_SH = f*ones(nT,1); % s^-1
-%kX_NH = 1.81*ones(nT,1); % s^-1
-%kX_SH = 2.05*ones(nT,1); % s^-1
+%f = 2.07;
+%kX_NH = 1.84*ones(nT,1); % s^-1
+%kX_SH = f*ones(nT,1); % s^-1
+kX_NH = 1.8*ones(nT,1); % s^-1
+kX_SH = 1.6*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
