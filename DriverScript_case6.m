@@ -4,16 +4,16 @@
 %%% = Originally created on 04/12/2016
 %%% =----------------------------------------------------------------------
 %%% = NOTES:
-%%% = 
+%%% =
 %%% = This is the driver script for the 2-box model methane inversion.
 %%% = There are currently two different inversions implemented: (1) a
 %%% = linear or non-linear deterministic inversion following Rodgers (2000)
-%%% = and (2) an inversion using the non-linear Covariance Matrix Adaptation 
-%%% = Evolution Strategy (CMA-ES).  Case (1) requires us to compute gradients 
-%%% = and only allows for Gaussian errors.  Case (2) is  a stochastic method 
+%%% = and (2) an inversion using the non-linear Covariance Matrix Adaptation
+%%% = Evolution Strategy (CMA-ES).  Case (1) requires us to compute gradients
+%%% = and only allows for Gaussian errors.  Case (2) is  a stochastic method
 %%% = that automatically tunes the proposal distribution to improve the sampling,
 %%% = however it does not provide error statistics that are consistent with
-%%% = the distributions.  Case (2) also allows one to specify non-analytic 
+%%% = the distributions.  Case (2) also allows one to specify non-analytic
 %%% = distributions (e.g., bounded Gaussians or uniform distributions).
 %%% =======================================================================
 
@@ -57,15 +57,26 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 sYear = 1980;
 eYear = 2016;
 %eYear = 2100;
-tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
-tAvg  = 'month';     % Smooth the observations
+tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
+tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
+%%% Export variables to mat file
+export_data = true; % do we want to export data to data_filename.mat?
+data_filename  = 'case6';
+
+%%% Describing experiment to be exported to .mat file 
+experiment_description = 'Turned on interactive OH, Accounting for CO, and inverting for OH source';
+
+
 %%% Execute in parallel?
 run_parallel = false;
-nWorkers     = 4;
-setupParallel(run_parallel,nWorkers);
+if run_parallel
+    nWorkers     = 4;
+    setupParallel(run_parallel,nWorkers);
+end
+
 
 %%% What kind of inversions do we want to do?
 do_deterministic = true;    % Rodgers (2000)
@@ -75,7 +86,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 % Do we want to reread the raw data?
 reread.flag  = false;
 % Other flags for re-reading
-reread.sYear = sYear;   
+reread.sYear = sYear;
 reread.eYear = eYear;
 reread.tRes  = tRes;
 reread.tAvg  = tAvg;
@@ -85,7 +96,7 @@ reread.dir   = dataDir;
 % Use globals for some flags
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
-global k_co_flag use_strat interactive_OH use_other_sinks % Other
+global k_co_flag use_strat interactive_OH use_other_sinks ignoreCO % Other
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -96,10 +107,13 @@ use_strat       = false;     % Use a stratosphere?
 interactive_OH  = true;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
-det_linear      = true;     % Use a linear deterministic inversion?
+use_other_sinks = false;     % Use non-OH sinks?
+% Linear inversion flags
+det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = false;    % Use fixed OH anomalies
+fixedOH         = false;    % Use fixed OH sources
 onlyCH4         = false;    % Only invert for methane emissions
+ignoreCO = true; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
 % MCF sensitivity test flags
@@ -172,6 +186,7 @@ end
 % - NH/SH N2O    obs & err (ppb)
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
 %
 % blow up CO error:
 %obs.nh_co_err(:)=500;
@@ -296,9 +311,12 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f = 2.07;
-kX_NH = 1.84*ones(nT,1); % s^-1
-kX_SH = f*ones(nT,1); % s^-1
+%1.8850    2.1200
+f = 2.12;
+kX_NH = 1.885*ones(nT,1); % s^-1
+kX_SH = 2.14*ones(nT,1); % s^-1
+%kX_NH = 1.81*ones(nT,1); % s^-1
+%kX_SH = 2.05*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -340,58 +358,202 @@ ems = assembleEms(ems);
 
 %%% Run the box model
 params = getParameters(St); % Only need to do this once
-%params.tau_NS = 0.1;
-
-% set the interhemispheric exchange time to infinite so we deal with only 1 box
-params.tau_NS_strat=1e99;
-%params.odeOpts.MinStep=1;
 IC     = params.IC;         % Guess for the inital conditions
-out_d    = boxModel_wrapper(St,ems,IC,params);
-ems2 = ems;
-ems_small = ems;
-dH = 50; % size of purturbation 
-DH_small = 5; % small perturbation example 
-
-% Create purturbation for box model input
-ems2(100,1)= ems(100,1)+dH*12;
-ems_small(100,1)= ems(100,1)+ DH_small *12; % Small perturbation 
-
-% Run box model with purturbation 
-out_large    = boxModel_wrapper(St,ems2,IC,params); %large perturbation 
-out_small    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation 
+out    = boxModel_wrapper(St,ems,IC,params);
+if plot_prior
+    plotNewObs(St,out,obs,sprintf('%s/%s/prior_%%s.%s',outDir,tRes,ftype));
+    %writeData(St,obs,out,ems,IC,sprintf('%s/%s/prior_%%s.csv',outDir,tRes));
+    %plotObs(St,out,obs,sprintf('%s/%s/prior_%%s.%s',outDir,tRes,ftype));
+    %plotDrivers(St,ems,NaN*ems,sprintf('%s/%s/prior_%%s.%s',outDir,tRes,ftype),dataDir);
+end
 
 
-% negative perturbation 
-%ems2(100,1)= ems(100,1)-dH*12;
-%out3_d    = boxModel_wrapper(St,ems2,IC,params);
-%ems2(100,1)= ems(100,1)+dH*12;
+%%
+%%% =======================================================================
+%%% 5. Deterministic inversion (Rodgers, 2000)
+%%% =======================================================================
 
-%%% Without the interactive OH 
-interactive_OH  = false;
-out_large_noninteractive    = boxModel_wrapper(St,ems2,IC,params); %large perturbation 
-out_small_noninteractive    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation 
-
-
-
-
-%out_f     = boxModel_wrapper(St,ems,IC,params);
-%out2_f    = boxModel_wrapper(St,ems2,IC,params);
-%m2 = 18.3*exp(-(St-St(100))/(13*365));m2(1:99)=0;
-%m = 17.7*exp(-(St-St(100))/(9.5*365));m(1:99)=0;
-
-%subplot(1,2,1)
-
-%plot(St, out2_d.nh_ch4-out_d.nh_ch4, St, (out2_f.nh_ch4-out_f.nh_ch4), St, m, St, m2)
-time = [1:length(out2_d.nh_ch4)];
-plot(time, out2_d.nh_ch4-out_d.nh_ch4, 'p', time, (out2_f.nh_ch4-out_f.nh_ch4), 'r');
-%plot(time, (out2_f.nh_ch4-out_f.nh_ch4), 'r');
-title('Methane Response to Perturbation')
-xlabel('time')
-ylabel('Tg')
-legend('Interactive Chemistry', 'Noninteractive Chemistry')
+if do_deterministic
+    
+    %%% Diagnostic
+    fprintf('\n *** DETERMINISTIC INVERSION *** \n');
+    
+    %%% Invert
+    % Newton: here is the problem
+    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
+    
+    
+    %%% Plot the Jacobians
+    %[jacobian_ems,jacobian_IC] = define_Jacobian( St, ems, IC, params, run_parallel );
 
 
-%subplot(1,2,2)
-%plot(St, (out_d.nh_oh),St, (out_d.sh_oh))
-%title('OH Jacobian')
-saveas(figure(1), 'forward_model_test.png', 'png')
+    plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
+    
+    %%% Try plotting the solution
+    ems_anal = anal_soln{1};
+    IC_anal  = anal_soln{2};
+    % Comment this out for now:
+    out_anal = boxModel_wrapper(St,ems_anal,IC_anal,params);
+    plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
+    %writeData(St,obs,out_anal,ems_anal,IC_anal,sprintf('%s/%s/anal_%%s.csv',outDir,tRes));
+    %plotObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
+    %plotDrivers(St,ems_anal,ems,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype),dataDir);
+    
+end
+
+
+%%
+%%% =======================================================================
+%%% 6. Invert with CMAES
+%%% =======================================================================
+
+if do_cmaes
+    
+    %%% Diagnostics
+    fprintf('\n *** STARTING CMA-ES INVERSION *** \n');
+    
+    %%% Use a log-likelihood and get matrix dimensions
+    use_log = true;
+    nE      = size(ems,2);
+    nI      = length(IC);
+    
+    %%% Set the function parameters for the box model
+    fun_param.run_parallel = run_parallel;
+    fun_param.p_prior      = @(ems,IC,input_param) define_prior(ems,IC,input_param);
+    fun_param.p_like       = @(ems,IC,input_param) define_likelihood(ems,IC,input_param);
+    fun_param.use_log      = use_log;
+    fun_param.params       = params;
+    fun_param.IC           = params.IC;
+    fun_param.St           = St;
+    fun_param.ch4_ems      = ch4_ems;
+    fun_param.ch4c13_ems   = ch4c13_ems;
+    fun_param.mcf_ems      = mcf_ems;
+    fun_param.n2o_ems      = n2o_ems;
+    fun_param.c2h6_ems     = c2h6_ems;
+    fun_param.oh_scale     = oh_scale;
+    fun_param.tau_TS       = tau_TS;
+    fun_param.nT           = nT;
+    fun_param.nE           = nE;
+    fun_param.nI           = nI;
+    fun_param.obs          = obs;
+    
+    %%% Set the options for CMAES
+    CMAES_opts                   = cmaes;
+    CMAES_opts.EvalParallel      = 'yes';
+    CMAES_opts.SaveFilename      = sprintf('output/%s/cmaes_dat/variablescmaes.mat',tRes);
+    CMAES_opts.LogFilenamePrefix = sprintf('output/%s/cmaes_dat/outcmaes',tRes);
+    CMAES_opts.Resume            = 'no'; % Default is 'no'
+    CMAES_opts.CMA.active        = 2;
+    CMAES_opts.DiagonalOnly      = 100;
+    %     % Full
+    %     CMAES_opts.StopFunEvals      = 5000000;
+    %     CMAES_opts.MaxIter           = 20000;
+    %     CMAES_opts.Restarts          = 10;
+    %     % Medium
+    %     CMAES_opts.StopFunEvals      = 1000000;
+    %     CMAES_opts.MaxIter           = 5000;
+    %     CMAES_opts.Restarts          = 6;
+    % Small
+    CMAES_opts.StopFunEvals      = 10000;
+    CMAES_opts.MaxIter           = 200;
+    CMAES_opts.Restarts          = 2;
+    
+    %%% Get the starting point and standard deviations
+    % Starting point
+    if do_deterministic % Use the deterministic inversion as a starting point
+        xstart = ems_anal;
+        xstart(xstart(:,1)<0,1)   = 0+eps; % Enforce positive CH4 emissions
+        xstart(xstart(:,2)<0,2)   = 0+eps; % Enforce positive CH4 emissions
+        xstart(xstart(:,1)<0,3)   = 0+eps; % Enforce positive MCF emissions
+        xstart(xstart(:,2)<0,4)   = 0+eps; % Enforce positive MCF emissions
+        xstart(xstart(:,7)<0,7)   = 0+eps; % Enforce positive N2O emissions
+        xstart(xstart(:,8)<0,8)   = 0+eps; % Enforce positive N2O emissions
+        xstart(xstart(:,9)<0,9)   = 0+eps; % Enforce positive C2H6 emissions
+        xstart(xstart(:,10)<0,10) = 0+eps; % Enforce positive C2H6 emissions
+        xstart = assembleStateVector(xstart,IC_anal);
+    else
+        xstart = ems;
+        xstart = assembleStateVector(xstart,IC);
+    end
+    % Standard deviations
+    xsigma.ems       = ones(nT,nE);
+    sig.ch4          =   1.000;     % Tg/yr
+    sig.ch4c13       =   0.050;     % permil
+    sig.mcf_nh       =   5.000;     % Gg/yr
+    sig.mcf_sh       =   5.000;     % Gg/yr
+    sig.n2o          =   0.500;     % Tg/yr
+    sig.c2h6         = 100.000;     % Gg/yr
+    sig.oh           =   0.005;     % OH scale factor
+    sig.tau          =   0.500;     % 1/yr
+    xsigma.IC        = [0.05,0.05,0.01,0.01,0.05,0.05,0.05,0.05,0.05,0.05,...
+        0.05,0.05,0.01,0.01,0.05,0.05,0.05,0.05,0.05,0.05]; % Initial conditions
+    xsigma.ems(:,1)  = xsigma.ems(:,1)  * sig.ch4;
+    xsigma.ems(:,2)  = xsigma.ems(:,2)  * sig.ch4;
+    xsigma.ems(:,3)  = xsigma.ems(:,3)  * sig.ch4c13;
+    xsigma.ems(:,4)  = xsigma.ems(:,4)  * sig.ch4c13;
+    xsigma.ems(:,5)  = xsigma.ems(:,5)  * sig.mcf_nh;
+    xsigma.ems(:,6)  = xsigma.ems(:,6)  * sig.mcf_sh;
+    xsigma.ems(:,7)  = xsigma.ems(:,7)  * sig.n2o;
+    xsigma.ems(:,8)  = xsigma.ems(:,8)  * sig.n2o;
+    xsigma.ems(:,9)  = xsigma.ems(:,9)  * sig.c2h6;
+    xsigma.ems(:,10) = xsigma.ems(:,10) * sig.c2h6;
+    xsigma.ems(:,11) = xsigma.ems(:,11) * sig.oh;
+    xsigma.ems(:,12) = xsigma.ems(:,12) * sig.oh;
+    xsigma.ems(:,13) = xsigma.ems(:,13) * sig.tau./params.YrToDay;
+    xsigma           = assembleStateVector(xsigma.ems,xsigma.IC);
+    
+    %%% Use an old estimate?
+    use_old = false;
+    if use_old
+        fprintf('   * PLOTTING THE OLD CMA-ES RESULTS\n')
+        fname = sprintf('./%s',CMAES_opts.SaveFilename);
+        if (exist(fname,'file') == 2)
+            load(fname);
+            xstart = bestever.x;
+        end
+    end
+    
+    % Run the CMA-ES inversion or just plot an old one?
+    if plot_old_cmaes
+        [cmaes_res.ems,cmaes_res.IC] = disassembleStateVector(bestever.x,nT,nE,nI);
+    else
+        %%% Invert with CMAES
+        % INPUTS
+        %  - fitfun:  name of objective/fitness function
+        %  - xstart:  objective variables initial point, determines N
+        %  - insigma: initial coordinate wise standard deviation(s)
+        %  - inopts:  options struct
+        % OUTPUTS
+        %  - xmin:      minimum search point of last iteration
+        %  - fmin:      function value of xmin
+        %  - counteval: number of function evaluations done
+        %  - stopflag:  stop criterion reached
+        %  - outCMAES:  struct with various histories and solutions
+        %  - bestever:  struct containing overall best solution (for convenience)
+        [xmin,fmin,counteval,stopflag,outCMAES,bestever] = cmaes('cmaes_fun_eval', xstart, xsigma, CMAES_opts, fun_param);
+        [cmaes_res.ems,cmaes_res.IC]                     = disassembleStateVector(bestever.x,nT,nE,nI);
+        %[cmaes_res.ems,cmaes_res.IC]                     = disassembleStateVector(xmin,nT,nE,nI);
+    end
+    
+    %%% Plot the best one
+    ems_best = cmaes_res.ems;
+    IC_best  = cmaes_res.IC;
+    out_best = boxModel_wrapper(St,ems_best,IC_best,params);
+    plotNewObs(St,out_best,obs,sprintf('%s/%s/cmaes_%%s.%s',outDir,tRes,ftype));
+    %writeData(St,obs,out_best,ems_best,IC_best,sprintf('%s/%s/cmaes_%%s.csv',outDir,tRes));
+    %plotObs(St,out_best,obs,sprintf('%s/%s/cmaes_%%s.%s',outDir,tRes,ftype));
+    %plotDrivers(St,ems_best,ems,sprintf('%s/%s/cmaes_%%s.%s',outDir,tRes,ftype),dataDir);
+    
+end
+
+if export_data
+    fprintf('Exporting all variables in this run to %s \n', data_filename)
+    save(data_filename);
+end
+
+
+%%
+%%% Finished simulation
+fprintf('\n ***********************************\n')
+fprintf(' ***            DONE!            ***\n')
+fprintf(' **********************************')
