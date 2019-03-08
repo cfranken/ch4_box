@@ -84,7 +84,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to read
-reread the raw data?
+%reread the raw data?
 reread.flag  = false;
 % Other flags for re-reading
 reread.sYear = sYear;
@@ -105,7 +105,7 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = true;     % Allow OH feedbacks?
+interactive_OH  = false;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 use_other_sinks = false;     % Use non-OH sinks?
@@ -119,7 +119,7 @@ onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
 % MCF sensitivity test flags
 k_co_flag       = true;     % Use k_CO that AJT derived
-k_mcf_flag      = true;     % Use k_MCF that AJT derived
+k_mcf_flag      = false;     % Use k_MCF that AJT derived
 smooth_MCF      = false;    % Smooth the MCF emissions with a 5-year filter?
 set_MCF_EMS     = false;    % Set post-2000 emissions to a fixed value?
 MCF_EMS_val     = 0.0;      % Fixed post-2000 MCF emissions value (Gg/yr)
@@ -326,13 +326,11 @@ if ~use_strat
 end
 
 %%% Arbitrary reactions with OH
-% CF Needed to adapt NH as there would otherwise be a rather large IH
+% CF Needed to adapt NH as there would otherwise be a rather large IH gradient
 % difference in OH
-%f = 2.07;
-%kX_NH = 1.84*ones(nT,1); % s^-1
-%kX_SH = f*ones(nT,1); % s^-1
-kX_NH = 1.8*ones(nT,1); % s^-1
-kX_SH = 1.6*ones(nT,1); % s^-1
+f = 2.0;
+kX_NH = 1.87*ones(nT,1); % s^-1
+kX_SH = f*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
