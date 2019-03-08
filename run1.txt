@@ -34023,3 +34023,807 @@ Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback
 out    = boxModel_wrapperT(St,ems,IC,params);
 } 
 DriverScript_case2
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+if system_dependent('IsDebugMode')==1, dbquit; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * CH4
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * CH4C13
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * CH4H2
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * MCF
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/CGO-gage.mon'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/RPB-gage.mon'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/SMO-gage.mon'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/ORG-gage.mon'
+
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * N2O
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * C2H6
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * CO
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * STRATOSPHERIC OZONE
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/amsTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/bdrTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/bisTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/bnaTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/brwTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/carTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/fbkTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/hnxTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/ldrTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/mloTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/ohpTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/pthTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/smoTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/waiTOTo3.txt'
+
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+
+ans =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/MCF/NOAA/combined/HATS_global_MC.txt'
+
+   * N2O
+
+ans =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/N2O/NOAA/combined/GMD_global_N2O.txt'
+
+   * C2H6
+{Index exceeds array bounds.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('BlockAverage', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/BlockAverage.m', 24)" style="font-weight:bold">BlockAverage</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/BlockAverage.m',24,0)">line 24</a>)
+xO = [x(1) : x(end)]';
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m', 334)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m',334,0)">line 334</a>)
+    [tDat, yDat] = BlockAverage(tDat,yDat,ones(size(tDat)),fDays);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m', 173)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m',173,0)">line 173</a>)
+[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m', 189)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',189,0)">line 189</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m',173,0)
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+if system_dependent('IsDebugMode')==1, dbcont; end
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+
+ans =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/MCF/NOAA/combined/HATS_global_MC.txt'
+
+   * N2O
+
+ans =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/N2O/NOAA/combined/GMD_global_N2O.txt'
+
+   * C2H6
+if system_dependent('IsDebugMode')==1, dbstep; end
+c2h6_obs
+
+c2h6_obs = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    obs: [1×1 struct]
+    tim: [1×1 struct]
+    lat: [1×1 struct]
+
+c2h6_obs.obs
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with no fields.
+
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+   * CO
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbquit all; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+
+ans =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/MCF/NOAA/combined/HATS_global_MC.txt'
+
+   * N2O
+
+ans =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/N2O/NOAA/combined/GMD_global_N2O.txt'
+
+   * C2H6
+if system_dependent('IsDebugMode')==1, dbquit all; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * CO
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbquit; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbquit; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * SAVING OBS STRUCTURE
+   * CH4C13
+   * SAVING OBS STRUCTURE
+   * CH4H2
+   * SAVING OBS STRUCTURE
+   * MCF
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/CGO-gage.mon'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/RPB-gage.mon'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/SMO-gage.mon'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/mcf/GAGE/ORG-gage.mon'
+
+   * SAVING OBS STRUCTURE
+   * N2O
+   * SAVING OBS STRUCTURE
+   * C2H6
+   * SAVING OBS STRUCTURE
+   * CO
+   * SAVING OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/amsTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/bdrTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/bisTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/bnaTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/brwTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/carTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/fbkTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/hnxTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/ldrTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/mloTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/ohpTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/pthTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/smoTOTo3.txt'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/o3_strat/NOAA/waiTOTo3.txt'
+
+   * SAVING OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('BlockAverage', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/BlockAverage.m', 40)" style="font-weight:bold">BlockAverage</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/BlockAverage.m',40,0)">line 40</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs>ReadObsStruct', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m', 393)" style="font-weight:bold">makeObs>ReadObsStruct</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m',393,0)">line 393</a>)
+    [tDat, yDat] = BlockAverage(tDat,yDat,ones(size(tDat)),fDays);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('makeObs', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m', 65)" style="font-weight:bold">makeObs</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/makeObs.m',65,0)">line 65</a>)
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m', 189)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',189,0)">line 189</a>)
+obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+} 
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * SAVING OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * CO
+   * SAVING OBS STRUCTURE
+<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',195,1)">195 </a>if use_Ed
+if system_dependent('IsDebugMode')==1, dbquit; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/abp312s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/alt482n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/amt445n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/arh777s00.niwa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/asc107s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/ask123n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/azr638n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/bal655n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/bhd541s00.niwa.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/bhd541s00.niwa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/bkt500s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/bmw432n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/brw471n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/bsc644n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/cba455n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/cgo540s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/cpt134s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/crz146s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/egb444n01.ec.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/eic327s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/gmi513n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/hba775s00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/hpb647n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/ice663n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/izo128n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/jfj646n00.empa.as.cn.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/key425n00.noaa.as.fl.ethane.nl.ev.dat'
+
+
+fName =
+
+    '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/data/obs/c2h6/WDCGG/event/kum519n00.noaa.as.fl.ethane.nl.ev.dat'
+
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('grep>get_match', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m', 641)" style="font-weight:bold">grep>get_match</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m',641,0)">line 641</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('grep>get_file', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m', 567)" style="font-weight:bold">grep>get_file</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m',567,0)">line 567</a>)
+		p=get_match(p);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('grep>get_files', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m', 542)" style="font-weight:bold">grep>get_files</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m',542,0)">line 542</a>)
+		p=get_file(p);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('grep', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m', 132)" style="font-weight:bold">grep</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/util/grep.m',132,0)">line 132</a>)
+		p=get_files(p);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getC2H6', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/getC2H6.m', 80)" style="font-weight:bold">getC2H6</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/obs/getC2H6.m',80,0)">line 80</a>)
+    [~,tDat] = grep('-s','HEADER LINES',fName);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m', 154)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',154,0)">line 154</a>)
+    c2h6_obs    = getC2H6(dataDir,reread);     % Ethane observations (ppt)
+} 
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * SAVING OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * CH4
+   * CH4C13
+   * MCF
+   * N2O
+   * C2H6
+   * CO
+   * SAVING OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbquit; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbquit all; end
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+if system_dependent('IsDebugMode')==1, dbstep; end
+if system_dependent('IsDebugMode')==1, dbstep; end
+<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',214,1)">214 </a>    plotAllObs(St,obs,ch4c13_obs,tAvg, 'd13C',sprintf('%s/%s/raw_%%s_%%s.%s',outDir,tRes,ftype),deseasonalize,plot_all_sites);
+if system_dependent('IsDebugMode')==1, dbstep; end
+<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',215,1)">215 </a>    plotAllObs(St,obs,ch4h2_obs, tAvg, 'dD',  sprintf('%s/%s/raw_%%s_%%s.%s',outDir,tRes,ftype),deseasonalize,plot_all_sites);
+if system_dependent('IsDebugMode')==1, dbstep; end
+{Reference to non-existent field 'nh_ch4h2'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotAllObs', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/plot/plotAllObs.m', 154)" style="font-weight:bold">plotAllObs</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/plot/plotAllObs.m',154,0)">line 154</a>)
+    yV = avg_obs.(sprintf('nh_%s',inputN))(i); yE = avg_obs.(sprintf('nh_%s_err',inputN))(i);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('DriverScript', '/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m', 215)" style="font-weight:bold">DriverScript</a> (<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',215,0)">line 215</a>)
+    plotAllObs(St,obs,ch4h2_obs, tAvg, 'dD',  sprintf('%s/%s/raw_%%s_%%s.%s',outDir,tRes,ftype),deseasonalize,plot_all_sites);
+} 
+opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/funcs/plot/plotAllObs.m',154,0)
+DriverScript
+
+ ***********************************
+ *** STARTING GLOBAL 2-BOX MODEL ***
+ ***********************************
+
+ *** LOADING THE OBSERVATIONS *** 
+   * CH4
+   * LOADING OLD OBS STRUCTURE
+   * CH4C13
+   * LOADING OLD OBS STRUCTURE
+   * CH4H2
+   * LOADING OLD OBS STRUCTURE
+   * MCF
+   * LOADING OLD OBS STRUCTURE
+   * N2O
+   * LOADING OLD OBS STRUCTURE
+   * C2H6
+   * LOADING OLD OBS STRUCTURE
+   * CO
+   * LOADING OLD OBS STRUCTURE
+   * STRATOSPHERIC OZONE
+   * LOADING OLD OBS STRUCTURE
+
+ *** MAKING THE OBSERVATION STRUCTURE *** 
+   * LOADING OLD OBS STRUCTURE
+<a href="matlab: opentoline('/Users/aturner/Dropbox/Documents/Research/Newton/ch4_box/DriverScript.m',220,1)">220 </a>end
+if system_dependent('IsDebugMode')==1, dbquit; end
+DriverScript

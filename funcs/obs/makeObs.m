@@ -61,25 +61,32 @@ end
 
 %%% Read the observation structure
 fprintf('   * CH4\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
+try
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4_obs);
 
-%%% Make sure the errors aren't overly optimistic
-min_err = [9999, 2;... % [year and ppb]
-           1999, 3];
-for i = 1:size(min_err,1);
-    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
-    eDat_NH(ind) = min_err(i,2);
-    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
-    eDat_SH(ind) = min_err(i,2);
-end
-% Make sure older obs are always less certain than new obs
-for i = length(St)-1:-1:1
-    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
-        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+    %%% Make sure the errors aren't overly optimistic
+    min_err = [9999, 2;... % [year and ppb]
+               1999, 3];
+    for i = 1:size(min_err,1);
+        ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+        eDat_NH(ind) = min_err(i,2);
+        ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+        eDat_SH(ind) = min_err(i,2);
     end
-    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
-        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+    % Make sure older obs are always less certain than new obs
+    for i = length(St)-1:-1:1
+        if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+            eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+        end
+        if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+            eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+        end
     end
+catch
+    oDat_NH = NaN * St;
+    oDat_SH = NaN * St;
+    eDat_NH = NaN * St;
+    eDat_SH = NaN * St;
 end
 
 %%% Put the data in the output structure
@@ -95,30 +102,37 @@ out.sh_ch4_err = eDat_SH;
 
 %%% Read the observation structure
 fprintf('   * CH4C13\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4c13_obs);
+try
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,ch4c13_obs);
 
-%%% Add a "Historic Spline" like Schaefer et al.
-NH_SH_diff = oDat_NH - oDat_SH;
-NH_SH_diff = mean(NH_SH_diff(~isnan(NH_SH_diff)));
+    %%% Add a "Historic Spline" like Schaefer et al.
+    NH_SH_diff = oDat_NH - oDat_SH;
+    NH_SH_diff = mean(NH_SH_diff(~isnan(NH_SH_diff)));
 
-%%% Make sure the errors aren't overly optimistic
-min_err = [9999, 0.03;... % [year and permil]
-           1998, 0.03;...
-           1988, 1.10];
-for i = 1:size(min_err,1);
-    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
-    eDat_NH(ind) = min_err(i,2);
-    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
-    eDat_SH(ind) = min_err(i,2);
-end
-% Make sure older obs are always less certain than new obs
-for i = length(St)-1:-1:1
-    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
-        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+    %%% Make sure the errors aren't overly optimistic
+    min_err = [9999, 0.03;... % [year and permil]
+               1998, 0.03;...
+               1988, 1.10];
+    for i = 1:size(min_err,1);
+        ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+        eDat_NH(ind) = min_err(i,2);
+        ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+        eDat_SH(ind) = min_err(i,2);
     end
-    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
-        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+    % Make sure older obs are always less certain than new obs
+    for i = length(St)-1:-1:1
+        if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+            eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+        end
+        if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+            eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+        end
     end
+catch
+    oDat_NH = NaN * St;
+    oDat_SH = NaN * St;
+    eDat_NH = NaN * St;
+    eDat_SH = NaN * St;
 end
 
 %%% Put the data in the output structure
@@ -134,10 +148,17 @@ out.sh_ch4c13_err = eDat_SH;
 
 %%% Read the observation structure
 fprintf('   * MCF\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,mcf_obs);
+try
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,mcf_obs);
 
-%%% Make sure the errors aren't overly optimistic
-[eDat_NH,eDat_SH] = ReadMCFerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+    %%% Make sure the errors aren't overly optimistic
+    [eDat_NH,eDat_SH] = ReadMCFerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+catch
+    oDat_NH = NaN * St;
+    oDat_SH = NaN * St;
+    eDat_NH = NaN * St;
+    eDat_SH = NaN * St;
+end
 
 %%% Put the data in the output structure
 out.nh_mcf     = oDat_NH;
@@ -152,10 +173,17 @@ out.sh_mcf_err = eDat_SH;
 
 %%% Read the observation structure
 fprintf('   * N2O\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,n2o_obs);
+try
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,n2o_obs);
 
-%%% Make sure the errors aren't overly optimistic
-[eDat_NH,eDat_SH] = ReadN2Oerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+    %%% Make sure the errors aren't overly optimistic
+    [eDat_NH,eDat_SH] = ReadN2Oerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+catch
+    oDat_NH = NaN * St;
+    oDat_SH = NaN * St;
+    eDat_NH = NaN * St;
+    eDat_SH = NaN * St;
+end
 
 %%% Put the data in the output structure
 out.nh_n2o     = oDat_NH;
@@ -170,26 +198,33 @@ out.sh_n2o_err = eDat_SH;
 
 %%% Read the observation structure
 fprintf('   * C2H6\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
+try
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,c2h6_obs);
 
-%%% Make sure the errors aren't overly optimistic
-min_err = [9999, 2;... % [year and ppb]
-           1998, 2;...
-           1988, 2];
-for i = 1:size(min_err,1);
-    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
-    eDat_NH(ind) = min_err(i,2);
-    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
-    eDat_SH(ind) = min_err(i,2);
-end
-% Make sure older obs are always less certain than new obs
-for i = length(St)-1:-1:1
-    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
-        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+    %%% Make sure the errors aren't overly optimistic
+    min_err = [9999, 2;... % [year and ppb]
+               1998, 2;...
+               1988, 2];
+    for i = 1:size(min_err,1);
+        ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+        eDat_NH(ind) = min_err(i,2);
+        ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+        eDat_SH(ind) = min_err(i,2);
     end
-    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
-        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+    % Make sure older obs are always less certain than new obs
+    for i = length(St)-1:-1:1
+        if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+            eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+        end
+        if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+            eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+        end
     end
+catch
+    oDat_NH = NaN * St;
+    oDat_SH = NaN * St;
+    eDat_NH = NaN * St;
+    eDat_SH = NaN * St;
 end
 
 %%% Put the data in the output structure
@@ -204,27 +239,34 @@ out.sh_c2h6_err = eDat_SH;
 %%% =======================================================================
 
 %%% Read the observation structure
-fprintf('   * CO\n');
-[oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,co_obs);
+try
+    fprintf('   * CO\n');
+    [oDat_NH,oDat_SH,eDat_NH,eDat_SH] = ReadObsStruct(St,tAvg,co_obs);
 
-%%% Make sure the errors aren't overly optimistic
-min_err = [9999, 2;... % [year and ppb]
-           1998, 2;...
-           1988, 2];
-for i = 1:size(min_err,1);
-    ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
-    eDat_NH(ind) = min_err(i,2);
-    ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
-    eDat_SH(ind) = min_err(i,2);
-end
-% Make sure older obs are always less certain than new obs
-for i = length(St)-1:-1:1
-    if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
-        eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+    %%% Make sure the errors aren't overly optimistic
+    min_err = [9999, 2;... % [year and ppb]
+               1998, 2;...
+               1988, 2];
+    for i = 1:size(min_err,1);
+        ind          = yrs < min_err(i,1) & eDat_NH < min_err(i,2);
+        eDat_NH(ind) = min_err(i,2);
+        ind          = yrs < min_err(i,1) & eDat_SH < min_err(i,2);
+        eDat_SH(ind) = min_err(i,2);
     end
-    if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
-        eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+    % Make sure older obs are always less certain than new obs
+    for i = length(St)-1:-1:1
+        if ~isnan(eDat_NH(i)) && eDat_NH(i) < nanmax(eDat_NH(i+1:end))
+            eDat_NH(i) = nanmax(eDat_NH(i+1:end));
+        end
+        if ~isnan(eDat_SH(i)) && eDat_SH(i) < nanmax(eDat_SH(i+1:end))
+            eDat_SH(i) = nanmax(eDat_SH(i+1:end));
+        end
     end
+catch
+    oDat_NH = NaN * St;
+    oDat_SH = NaN * St;
+    eDat_NH = NaN * St;
+    eDat_SH = NaN * St;
 end
 
 %%% Put the data in the output structure
@@ -395,7 +437,8 @@ dataDir = sprintf('%sobs/MCF/NOAA/combined/',dataDir);
 % Filename structure
 fName = 'HATS_global_MC.txt';
 nHDR  = 85;
-sprintf('%s%s',dataDir,fName)
+%sprintf('%s%s',dataDir,fName);
+
 %%% Load the data
 dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
 dat     = dat.data;
@@ -451,8 +494,8 @@ dataDir = sprintf('%sobs/N2O/NOAA/combined/',dataDir);
 % Filename structure
 fName = 'GMD_global_N2O.txt';
 nHDR  = 85;
+%sprintf('%s%s',dataDir,fName);
 
-sprintf('%s%s',dataDir,fName)
 %%% Load the data
 dat     = importdata(sprintf('%s%s',dataDir,fName),' ',nHDR);
 dat     = dat.data;

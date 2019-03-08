@@ -64,7 +64,7 @@ fspec  = '%s %s %s %s %f %s %s';
 %%% Read the data
 for i = 1:length(sNames)
     % Current filename
-    fName = sprintf('%s%s',dataDir,sprintf(fNameS,sNames{i}))
+    fName = sprintf('%s%s',dataDir,sprintf(fNameS,sNames{i}));
     % Load the data
     fid  = fopen(fName);
     dat  = textscan(fid,fspec,'HeaderLines',nHDR,'Delimiter',' ','MultipleDelimsAsOne',1);

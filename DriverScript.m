@@ -148,7 +148,7 @@ fprintf('\n *** LOADING THE OBSERVATIONS *** \n');
 try % Add a try-catch statement in case the user hasn't downloaded the data
     ch4_obs     = getCH4(dataDir,reread);      % CH4 observations (ppb)
     ch4c13_obs  = getCH4C13(dataDir,reread);   % delta13C observations (permil)
-%    ch4h2_obs   = getCH4H2(dataDir,reread);    % deltaD observations (permil)
+    ch4h2_obs   = getCH4H2(dataDir,reread);    % deltaD observations (permil)
     mcf_obs     = getMCF(dataDir,reread);      % Methylchloroform observations (ppt)
     n2o_obs     = getN2O(dataDir,reread);      % N2O observations (ppb)
     c2h6_obs    = getC2H6(dataDir,reread);     % Ethane observations (ppt)
