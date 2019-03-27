@@ -60,7 +60,6 @@ else
 end
 
 %%% Get the solution for the first step
-IC_p
 [K_ems,K_IC]    = define_Jacobian(St,ems_p,IC_p,params,run_parallel);
 [soln,LM_param, matr] = update_solution(St,ems_p,IC_p,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
 disp('so far so good')
@@ -68,9 +67,9 @@ while iter
     % Update solution
     ems_i = soln{1};
     IC_i  = soln{2};
-    ems_i(24,:)
-    ems_p(24,:)
-    plot(IC_i-IC_p)
+%    ems_i(24,:)
+%    ems_p(24,:)
+%    plot(IC_i-IC_p)
 
     chi2o = LM_param.chi2;
     % Get new solution
@@ -292,7 +291,7 @@ matr.y = y;
 matr.F = F;
 matr.xi = xi;
 matr.xa = xa;
-matrx.Sa = Sa
+matrx.Sa = Sa;
 
 LHS   = (SaI + K'*SoI*K + gamma*SaI);
 RHS   = (K'*SoI * (y - F) - SaI*(xi - xa));
