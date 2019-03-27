@@ -31,7 +31,7 @@ function [ soln, K_ems, K_IC, reldiff, absdiff, matr] = invert_methane( St, obs,
 %%% Define tolerances
 reltol  = 1e-6;
 abstol  = 1e-6;
-kmax    = 5;
+kmax    = 15;
 k       = 1;
 iter    = true;
 reldiff = nan(kmax,1);
@@ -39,7 +39,7 @@ absdiff = nan(kmax,1);
 
 %%% Initialize the Levenberg-Marquardt parameters (gamma = zero reverts to IMAP)
 LM_param.chi2  = NaN;
-LM_param.gamma = 10;
+%LM_param.gamma = 10;
 LM_param.gamma = 1;
 
 %%% Are we doing a linear or nonlinear inversion?
@@ -88,8 +88,8 @@ while iter
     % Check convergence
     if (kmax <= k)
         iter = false;
-    %elseif (10*LM_param.chi2 < (numel(ems_p)+numel(IC_p)))
-    %    iter = false;
+    elseif (10*LM_param.chi2 < (numel(ems_p)+numel(IC_p)))
+        iter = false;
     elseif LM_param.chi2 ~= chi2o % Did we accept the previous solution?
         if (reldiff(k) < reltol) || (absdiff(k) < abstol)
             iter = false;
@@ -132,6 +132,9 @@ end
 % Don't use ethane observations for inversion
 obs.nh_c2h6(:) = NaN;
 obs.sh_c2h6(:) = NaN;
+obs.nh_c2h6_err(:) = NaN;
+obs.sh_c2h6_err(:) = NaN;
+
 
 %%% Get dimensions
 nY = size(jacobian_ems,1);
