@@ -488,13 +488,15 @@ interactive_OH = false;
 
 synthetic_interactive_nh_ems = anal_soln{1}(:,1);
 synthetic_sh_interactive_ems = anal_soln{1}(:,2);
+synthetic_interactive_ems = synthetic_interactive_nh_ems + synthetic_sh_interactive_ems;
 
 synthetic_noninteractive_nh_ems = anal_soln2{1}(:,1);
 synthetic_sh_noninteractive_ems = anal_soln2{1}(:,2);
+synthetic_noninteractive_ems = synthetic_noninteractive_nh_ems + synthetic_sh_noninteractive_ems
 
 synthetic_nh_actual = ems(:,1);
 synthetic_sh_actual = ems(:,2);
-
+synthetic_actual = synthetic_nh_actual + synthetic_sh_actual
 
 %NN: Let's stop the script here
 return

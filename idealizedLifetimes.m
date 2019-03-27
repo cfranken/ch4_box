@@ -1,83 +1,19 @@
-clear all
-close all
+load('forward_model_test.mat')
+concentration_structs = {out_large, out_small, out_large_noninteractive, out_small_noninteractive};
 
-%datafiles = {'case1', 'case2', 'case3', 'case4', 'case5'};
-datafiles={'Case2'}
-time = [1980:2018];
-colors = {'p', 'b', 'k', 'o', 'g'};
-figure(1)
-
-for i = 1:length(datafiles)
-    output = calculateLifetimes(datafiles{i});
-    %mean(output.global_e_folds)
-    %std(output.global_e_folds)
-    subplot(1,2,1)
-    plot(time, output.ch4_global_lifetime, colors{i});
-    xlabel('Years')
-    ylabel('lifetimes')
-    title('Eigenvalue Lifetimes')
-    hold on;
-    subplot(1,2,2);
-    plot(time, output.ch4_ss, colors{i});
-    xlabel('Years')
-    ylabel('lifetimes')
-    title('Steady State Lifetime')
-    hold on
+for i=1:length(concentration_structs)
+lifetimes = calculateLifetimes(concentration_structs{i}, params);
+disp(max(lifetimes.ch4_global_lifetime))
 end
 
-legend('Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5');
-saveas(figure(1), 'ch4_lifetime.pdf', 'pdf')
-% The CO plot
-figure(2)
-for i = 1:length(datafiles)
-    output = calculateLifetimes(datafiles{i});
-    fprintf('CO lifetimes')
-    mean(output.co_global_lifetime)
-    std(output.co_global_lifetime)
-    subplot(1,2,1)
-    plot(time, output.co_global_lifetime, colors{i});
-    xlabel('Years')
-    ylabel('lifetimes')
-    title('Eigenvalue Lifetimes')
-    hold on;
-    subplot(1,2,2);
-    plot(time, output.co_ss, colors{i});
-    xlabel('Years')
-    ylabel('lifetimes')
-    title('Steady State Lifetime')
-    hold on
-end
-legend('Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5');
-saveas(figure(2), 'co_lifetime.pdf', 'pdf')
 
-figure(3)
-for i = 1:length(datafiles)
-    output = calculateLifetimes(datafiles{i});
-    fprintf('OH lifetimes')
-    mean(output.oh_global_lifetime)
-    std(output.oh_global_lifetime)
-    subplot(1,2,1)
-    plot(time, output.oh_global_lifetime, colors{i});
-    xlabel('Years')
-    ylabel('lifetimes')
-    title('Eigenvalue Lifetimes')
-    hold on;
-    subplot(1,2,2);
-    plot(time, output.oh_ss, colors{i});
-    xlabel('Years')
-    ylabel('lifetimes')
-    title('Steady State Lifetime')
-    hold on
-end
-legend('Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5');
-saveas(figure(3), 'oh_lifetime.pdf' , 'pdf')
 
-function result = calculateLifetimes(filename)
+function result = calculateLifetimes(con_struct, params)
 
-load(filename)
+
 
 day2sec = 60*60*24; % convert days to seconds
-year2sec = 365*day2sec;
+year2sec = 365.25*day2sec;
 n_air = params.n_air; % molec/cm^3 for dry atmosphere
 conversion = day2sec * n_air/1d9; % conversion factor rom ppb/day to molec/cm^3 / s;
 ppb2con = n_air / 1e9;
@@ -86,34 +22,34 @@ ppt2con = n_air / 1e12;
 
 k_ch4 = params.k_12ch4; % ppb/day
 k_co =  params.k_co; % ppb/day
-k_ch4 = k_ch4 / conversion; % molec/cm^3 / s
-k_co = k_co / conversion; % molec/ cm^3 / s
+k_ch4 = k_ch4 / conversion % molec/cm^3 / s
+k_co = k_co / conversion % molec/ cm^3 / s
 
 kX_NH = 1.885 ; % molec/cm^3/s
-kX_SH = 2.212 ; % molec/cm^3/s
+kX_SH = 2.07 ; % molec/cm^3/s
 kx_global = 0.5 * (kX_NH + kX_SH); % molec/cm^3 / s
 
 
 
 %%% Read in concentrations
-nh_ch4 = ppb2con * out.nh_ch4; % molec/cm^3
-sh_ch4 = ppb2con * out.sh_ch4; % molec/cm^3
+nh_ch4 = ppb2con * con_struct.nh_ch4; % molec/cm^3
+sh_ch4 = ppb2con * con_struct.sh_ch4; % molec/cm^3
 global_ch4  = 0.5* (nh_ch4 + sh_ch4); % molec/ cm^3
 
-nh_co = ppb2con * out.nh_co; % molec/ cm^3
-sh_co = ppb2con * out.sh_co; % molec/ cm^3
+nh_co = ppb2con * con_struct.nh_co; % molec/ cm^3
+sh_co = ppb2con * con_struct.sh_co; % molec/ cm^3
 global_co = 0.5* (nh_co + sh_co); % molec/ cm^3
 
-nh_oh = out.nh_oh; % molec/ cm^3
-sh_oh = out.sh_oh; % molec/ cm^3
+nh_oh = con_struct.nh_oh; % molec/ cm^3
+sh_oh = con_struct.sh_oh; % molec/ cm^3
 global_oh = 0.5* (nh_oh + sh_oh); % molec/ cm^3
 
 
 
-[time_index, p] = size(out.nh_ch4);
-nh_e_folds = zeros(size(out.nh_ch4));
-sh_e_folds = zeros(size(out.nh_ch4));
-global_e_folds = zeros(size(out.nh_ch4));
+[time_index, p] = size(con_struct.nh_ch4);
+nh_e_folds = zeros(size(con_struct.nh_ch4));
+sh_e_folds = zeros(size(con_struct.nh_ch4));
+global_e_folds = zeros(size(con_struct.nh_ch4));
 
 for t = 1:time_index
     

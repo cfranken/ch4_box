@@ -55,7 +55,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2016;
+eYear = 2018;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -313,8 +313,8 @@ end
 % difference in OH
 %1.8850    2.1200
 f = 2.12;
-kX_NH = 1.885*ones(nT,1); % s^-1
-kX_SH = 2.14*ones(nT,1); % s^-1
+kX_NH = 1.06*ones(nT,1); % s^-1
+kX_SH = 1.29*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 

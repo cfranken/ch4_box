@@ -55,7 +55,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2016;
+eYear = 2018;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -311,9 +311,9 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f = 2.07;
-kX_NH = 1.9*ones(nT,1); % s^-1
-kX_SH = 2.14*ones(nT,1); % s^-1
+%f = 2.07;
+kX_NH = 1.06*ones(nT,1); % s^-1
+kX_SH = 1.29*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 
@@ -359,6 +359,7 @@ ems = assembleEms(ems);
 params = getParameters(St); % Only need to do this once
 IC     = params.IC;         % Guess for the inital conditions
 out    = boxModel_wrapper(St,ems,IC,params);
+
 if plot_prior
     plotNewObs(St,out,obs,sprintf('%s/%s/prior_%%s.%s',outDir,tRes,ftype));
     %writeData(St,obs,out,ems,IC,sprintf('%s/%s/prior_%%s.csv',outDir,tRes));
