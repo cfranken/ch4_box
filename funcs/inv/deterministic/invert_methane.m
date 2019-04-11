@@ -60,17 +60,17 @@ else
 end
 
 %%% Get the solution for the first step
-IC_p
+%IC_p
 [K_ems,K_IC]    = define_Jacobian(St,ems_p,IC_p,params,run_parallel);
 [soln,LM_param, matr] = update_solution(St,ems_p,IC_p,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
-disp('so far so good')
+%disp('so far so good')
 while iter
     % Update solution
     ems_i = soln{1};
     IC_i  = soln{2};
-    ems_i(24,:)
-    ems_p(24,:)
-    plot(IC_i-IC_p)
+    %ems_i(24,:)
+    %ems_p(24,:)
+    %plot(IC_i-IC_p)
 
     chi2o = LM_param.chi2;
     % Get new solution
@@ -106,7 +106,7 @@ function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p
 
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
-global fitKX
+global fitKX interactive_OH
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -188,6 +188,11 @@ Sa_co      =   300^2*ones(nT,1);
 Sa_tau     =   3.0^2*ones(nT,1); 
 Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
                  30,30,10,10,15,15,5,5,100,100].^2;
+% AJT: Use 10% uncertainty for OH concentration (like Turner et al.) for
+% non-interactive OH
+if ~interactive_OH
+    Sa_oh =  0.10^2*ones(nT,1);
+end
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
 Sa_IC = (eps*params.IC).^2;
@@ -228,6 +233,12 @@ if fitKX
     disp('Fitting KX')
     Sa_kx_NH = 0.92^2*ones(nT,1); 
     Sa_kx_SH = 0.92^2*ones(nT,1); 
+end
+% AJT: Change to solve for OH concentrations.  OH fields will be
+% concentrations instead of sources.  kX is no longer needed.
+if ~interactive_OH
+    Sa_kx_NH = eps^2*ones(nT,1); % Don't allow kX to change
+    Sa_kx_SH = eps^2*ones(nT,1); % Fixed OH
 end
 
 % Construct matrix
@@ -292,7 +303,7 @@ matr.y = y;
 matr.F = F;
 matr.xi = xi;
 matr.xa = xa;
-matrx.Sa = Sa
+matr.Sa = Sa;
 
 LHS   = (SaI + K'*SoI*K + gamma*SaI);
 RHS   = (K'*SoI * (y - F) - SaI*(xi - xa));

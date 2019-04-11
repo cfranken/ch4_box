@@ -18,6 +18,8 @@
 
 function [ ] = plotNewObs( St, model, data, baseName )
 
+global interactive_OH
+
 %%% Get file extension
 fExten = strsplit(baseName,'.');
 fExten = fExten(end);
@@ -98,8 +100,13 @@ datetick('x','yyyy','keeplimits')
 % OH
 subplot(5,1,3);
 hold on
-plot(St,(model.nh_oh-params.gmOH)/params.gmOH*100,'-','Color',nhCol,'LineWidth',2)
-plot(St,(model.sh_oh-params.gmOH)/params.gmOH*100,'-','Color',shCol,'LineWidth',2)
+if interactive_OH
+    plot(St,(model.nh_oh-params.gmOH)/params.gmOH*100,'-','Color',nhCol,'LineWidth',2)
+    plot(St,(model.sh_oh-params.gmOH)/params.gmOH*100,'-','Color',shCol,'LineWidth',2)
+else
+    plot(St,(model.nh_oh-1)*100,'-','Color',nhCol,'LineWidth',2)
+    plot(St,(model.sh_oh-1)*100,'-','Color',shCol,'LineWidth',2)
+end
 box on
 set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
 ylabel('OH anomaly (%)','FontSize',16)
@@ -145,7 +152,7 @@ if add_error
     end
 end
 hold on
-disp('MCF')
+%disp('MCF')
 semilogy(St,data.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
 semilogy(St,data.sh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
 semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)

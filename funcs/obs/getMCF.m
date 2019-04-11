@@ -143,7 +143,7 @@ nHDR   = [      6,     6,     6,     6];
 %%% Read the data
 for i = 1:length(sNames)
     % Current filename
-    fName = sprintf('%s%s',dataDirU,sprintf(fNameS,sNames{i}))
+    fName = sprintf('%s%s',dataDirU,sprintf(fNameS,sNames{i}));
     % Load the data
     dat   = importdata(fName,' ',nHDR(i));
     dat   = dat.data;

@@ -167,6 +167,8 @@ params.k_co           = RxNconv * k_co;
 params.k_co_strat     = k_co_strat;
 params.k_co_other     = k_co_other;
 params.k_oh_strat     = k_oh_strat;
+params.RxNconv        = RxNconv;
+params.DaysToS        = DaysToS;
 params.tau_NS         = tau_NS;
 params.tau_NS_strat   = tau_NS_strat;
 % ODE parameters
