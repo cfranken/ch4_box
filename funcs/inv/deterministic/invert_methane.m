@@ -107,6 +107,8 @@ function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
 global fitKX
+global no_temporal_correlation % temporal correlation flag
+
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -166,7 +168,7 @@ for i = 1:nE
         ii          = ii + 1;
     end
 end
-size(K_ems)
+
 % ICs
 K_IC = jacobian_IC; % This one is already assembled
 % Full jacobian
@@ -245,8 +247,13 @@ Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
 
 tau    = [tau_ch4,tau_ch4,tau_ch4c13,tau_ch4c13,tau_mcf,tau_mcf,...
           tau_n2o,tau_n2o,tau_c2h6,  tau_c2h6,  tau_oh, tau_oh, tau_co, tau_co, tau_tau]*365.25;
-Sa     = fillDiagonalsAnal(Sa,tau,St);
 
+% Remove temporal covariences
+if no_temporal_correlation
+    tau = zeros( size(tau)); 
+end
+
+Sa     = fillDiagonalsAnal(Sa,tau,St);
 
 %%% Construct the observational error covariance matrix
 So = [obs.nh_ch4_err;obs.sh_ch4_err;obs.nh_ch4c13_err;obs.sh_ch4c13_err;obs.nh_mcf_err;obs.sh_mcf_err;...

@@ -55,7 +55,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2080;
+eYear = 2040;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -64,14 +64,14 @@ nT    = length(St);
 
 %%% Export variables to mat file
 export_data = false; % do we want to export data to data_filename.mat?
-data_filename  = 'case2';
+data_filename  = 'synthetic_inversion';
 
 %%% Describing experiment to be exported to .mat file 
 experiment_description = 'Turned on interactive OH and kept OH anomalies fixed.'
 
 
-%%% Execute in parallel?
-run_parallel = false;
+
+run_parallel = false; % Execute in Parallel?
 if run_parallel
     nWorkers     = 4;
     setupParallel(run_parallel,nWorkers);
@@ -128,7 +128,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
-temporal_correlation = false; % do we want to get rid of temporal correlations?
+no_temporal_correlation = true; % do we want to get rid of temporal correlations?
 
 
 %%% Set the seed for repeatability
@@ -202,6 +202,7 @@ if use_Ed
     plotEdObs(St,ajt_obs,ed_obs,sprintf('%s/%s/raw_EdObs.%s',outDir,tRes,ftype))
 end
 
+
 %%% Reduce MCF errors?  (sensitivity test)
 if reduce_MCFerr
     obs.nh_mcf_err = min([obs.nh_mcf_err,MCF_ERR_val*ones(size(obs.nh_mcf_err))],[],2);
@@ -237,9 +238,7 @@ fprintf('\n *** LOADING THE EMISSIONS *** \n');
 ch4_ems = getCH4ems(St,tRes,dataDir);
 
 %%% NN Changing the initial emissions for synthetic emissions test.
-% Increasing from 550 tg/yr to 575 tg/yr in year 50
-ch4_ems.nh(1:50) = 425; % Tg/yr
-ch4_ems.sh(1:50) = 135; % Tg/yr
+% Increasing from 550 tg/yr to 575 tg/yr in year 20
 
 
 %%% Get the delta13C composition for NH/SH CH4 emissions
@@ -321,8 +320,9 @@ end
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
 f = 2.07;
-kX_NH = 1.9*ones(nT,1); % s^-1
-kX_SH = 2.14*ones(nT,1); % s^-1
+kX_NH = 1.3*ones(nT,1); % s^-1
+kX_SH = 1.1*ones(nT,1); % s^-1
+>>>>>>> Stashed changes
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 
@@ -368,7 +368,15 @@ ems = assembleEms(ems);
 params = getParameters(St); % Only need to do this once
 IC     = params.IC;         % Guess for the inital conditions
 interactive_OH  = true;     % Allow OH feedbacks?
+ems2= ems;
+ems2(1:20,1) = 425; % Tg/yr
+ems2(1:20, 2)= 135; % Tg/yr
+
+
+
 out    = boxModel_wrapper(St,ems,IC,params);
+
+
 obs = out; % convert the output of the box model into observations for test 
 synthetic_error = 0.01; %  make error 1 percent of observation because we know the observations 
 
@@ -407,14 +415,11 @@ if do_deterministic
     % Newton: here is the problem
 interactive_OH  = true;     % Allow OH feedbacks?
 
-% Create an arbitrary guess for initial ems
-ems2= ems;
-ems2(:,1) = 575;
-ems2(:,2) = 200;
+
 
 % NN: run inversion with interactive OH 
-    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems2,IC,params,det_linear,run_parallel);
-
+    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
+    disp('Done with interactive OH inversion')
 
 % NN: Let's now run our inversion without interactive OH 
 interactive_OH = false;
@@ -426,9 +431,12 @@ synthetic_sh_interactive_ems = anal_soln{1}(:,2);
 synthetic_noninteractive_nh_ems = anal_soln2{1}(:,1);
 synthetic_sh_noninteractive_ems = anal_soln2{1}(:,2);
 
-synthetic_nh_actual = ems(:,1);
-synthetic_sh_actual = ems(:,2);
-
+synthetic_nh_actual = ems2(:,1);
+synthetic_sh_actual = ems2(:,2);
+synthetic_actual = synthetic_nh_actual + synthetic_sh_actual;
+fprintf('Saving output of synthetic inversion experiment to %s', data_filename);
+save(data_filename);
+fprintf('DONE!')
 
 %NN: Let's stop the script here
 return

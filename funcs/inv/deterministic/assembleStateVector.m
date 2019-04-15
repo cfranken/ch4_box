@@ -36,8 +36,6 @@ end
 x_IC(:) = IC(:);
 % Full state vector
 x = [x_ems;x_IC];
-%fprintf('The size of the State Vector is')
-%size(x)
 end
 
 

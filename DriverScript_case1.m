@@ -28,8 +28,6 @@ clf
 clear all
 close all
 clc
-diary run1.txt
-diary on
 
 %%% Header
 fprintf('\n ***********************************\n')
@@ -311,9 +309,8 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f = 2.07;
-kX_NH = 1.885*ones(nT,1); % s^-1
-kX_SH = 2.212*ones(nT,1); % s^-1
+kX_NH = 1.3*ones(nT,1); % s^-1
+kX_SH = 1.1*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 

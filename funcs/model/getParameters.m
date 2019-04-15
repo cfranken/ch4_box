@@ -136,7 +136,7 @@ IC = [  nh_12ch4,   sh_12ch4,   nh_13ch4,   sh_13ch4,   nh_mcf,   sh_mcf,   nh_n
 
 %%% ODE45 parameters
 Tspan = St;
-opts  = odeset('MaxStep',YrToDay/12,...     % Make sure the max timestep is 1 month
+opts  = odeset('MaxStep',YrToDay/12/8,...     % Make sure the max timestep is 1 month
                'NonNegative',1:length(IC)); % Ensure the result is positive
 
 %%% Make a structure with the parameters

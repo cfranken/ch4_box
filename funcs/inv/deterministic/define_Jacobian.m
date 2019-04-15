@@ -34,10 +34,15 @@ jacobian_IC  = zeros(nY,nI);
 
 %%% Perturbation for the Jacobian
 %            ch4, d13c, mcf, n2o,    c2h6,  oh,  co, tau_TS, kX_NH, kX_SH
-delta.ems = [5,5,  1,1, 5,5, 1,1, 500,500, 1,1, 5,5,      1,     1,     1];
+
+%delta.ems = [5,5,  1,1, 5,5, 1,1, 500,500, 1,1, 5,5,      1,     1,     1];
+
+delta.ems = [5,5,  1,1, 5,5, 1,1, 50,50, 35,35, 5,5,      1,     0.1,     0.1];
+
 delta.IC  = ones(1,nI);
 
 %%% Jacobian for ICs (compute it in parallel?)
+disp('Making Jacobians for IC')
 if run_parallel % Parallel
     parfor i = 1:nI
         IC_pert          = IC;
@@ -55,6 +60,7 @@ else
 end
 
 %%% Jacobian for sources (compute it in parallel?)
+disp('Making Jacobian for sources')
 if run_parallel % Parallel
     parfor i = 1:nT
         for j = 1:nE
@@ -67,6 +73,7 @@ if run_parallel % Parallel
 else % Serial
     for i = 1:nT
         for j = 1:nE
+            fprintf('%i, %i \n', i, j)
             ems_pert            = ems;
             ems_pert(i,j)       = ems(i,j) + delta.ems(j);
             out_plus            = assembleObs(boxModel_wrapper(St,ems_pert,IC,params));
