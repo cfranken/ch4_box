@@ -100,6 +100,7 @@ while iter
     k = k + 1;
 end
 %matr.FF = FF;
+matr = struct;
 end
 
 function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p, LM_param, jacobian_ems, jacobian_IC, obs, params )
@@ -133,6 +134,9 @@ end
 % Don't use ethane observations for inversion
 obs.nh_c2h6(:) = NaN;
 obs.sh_c2h6(:) = NaN;
+obs.nh_c2h6_err(:) = NaN;
+obs.sh_c2h6_err(:) = NaN;
+
 
 %%% Get dimensions
 nY = size(jacobian_ems,1);
@@ -295,15 +299,16 @@ gamma = LM_param.gamma;
 %fprintf('size of xa=')
 %size(xa)
 % Write out some diagnostics to see what was wrong
-matr.SaI = SaI;
-matr.K = K;
-matr.gamma = gamma;
-matr.SoI = SoI;
-matr.y = y;
-matr.F = F;
-matr.xi = xi;
-matr.xa = xa;
-matr.Sa = Sa;
+matr= struct;
+%matr.SaI = SaI;
+%matr.K = K;
+%matr.gamma = gamma;
+%matr.SoI = SoI;
+%matr.y = y;
+%matr.F = F;
+%matr.xi = xi;
+%matr.xa = xa;
+%matr.Sa = Sa;
 
 LHS   = (SaI + K'*SoI*K + gamma*SaI);
 RHS   = (K'*SoI * (y - F) - SaI*(xi - xa));
