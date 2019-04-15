@@ -65,7 +65,11 @@ tau_NS_strat = params.tau_NS_strat;
 %             = 5.7047
 tau_ST = tau_TS / 5.7047;
 
-%%% Reaction Rates
+%%% Is OH simulated or prescribed?
+if ~interactive_OH
+    y(11) = S(11);
+    y(12) = S(12);
+end
 % Tropospheric reaction rates (y(11) & y(12) are the OH concentrations)
 k_12ch4_NH   = (y(11) * params.k_12ch4);   % NH
 k_12ch4_SH   = (y(12) * params.k_12ch4);   % SH

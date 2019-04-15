@@ -1,0 +1,713 @@
+<HTML>
+<BODY>
+<PRE>
+---------------------------------------------------------------------
+
+Atmospheric Non Methane Hydrocarbons Mole Fractions
+from the NOAA ESRL GMD Carbon Cycle Surface Network
+
+Version: 2017-02-01
+--------------------------------------------------------------------
+CONTENTS
+
+1.       Data source and contacts
+2.       Use of data
+2.1      Citation
+3.       Reciprocity 
+4.       Warnings
+5.       Update notes
+6.       Introduction
+7.       DATA - General Comments
+7.1      DATA - Sampling Locations
+7.2      DATA - File Name Description
+7.3      DATA - Event with single parameter
+7.4      DATA - Event with multiple parameters
+7.5      DATA - QC Flags
+8.       Data retrieval
+9.       References
+
+--------------------------------------------------------------------
+1. DATA SOURCE AND CONTACTS
+
+University of Colorado
+Institute of Arctic and Alpine Research (INSTAAR)
+Atmospheric Research Laboratory group (ARL)
+
+Correspondence concerning these data should be directed to:
+Detlev Helmig and Jacques Hueber
+INSTAAR, Univ. of Colorado
+UCB 450
+Boulder, CO 80309
+U.S.A.
+
+email: detlev.helmig@colorado.edu
+       jacques.hueber@colorado.edu
+ARL website: http://instaar.colorado.edu/arl/
+
+--------------------------------------------------------------------
+2. USE OF DATA
+
+These data are made freely available to the public and the
+scientific community in the belief that their wide dissemination
+will lead to greater understanding and new scientific insights.
+The availability of these data does not constitute publication
+of the data.  NOAA relies on the ethics and integrity of the user to
+insure that ESRL receives fair credit for their work.  If the data 
+are obtained for potential use in a publication or presentation, 
+ESRL should be informed at the outset of the nature of this work.  
+If the ESRL data are essential to the work, or if an important 
+result or conclusion depends on the ESRL data, co-authorship
+may be appropriate.  This should be discussed at an early stage in
+the work.  Manuscripts using the ESRL data should be sent to ESRL
+for review before they are submitted for publication so we can
+insure that the quality and limitations of the data are accurately
+represented.
+
+2.1 CITATION
+
+Please reference these data as 
+
+   "Helmig D., Hueber J., Tans P. (2017)
+   Non-Methane Hydrocarbons from the NOAA ESRL Surface Network, 2004-2016."
+
+--------------------------------------------------------------------
+3. RECIPROCITY
+
+Use of these data implies an agreement to reciprocate.
+Laboratories making similar measurements agree to make their
+own data available to the general public and to the scientific
+community in an equally complete and easily accessible form.
+Modelers are encouraged to make available to the community,
+upon request, their own tools used in the interpretation
+of the ESRL data, namely well documented model code, transport
+fields, and additional information necessary for other
+scientists to repeat the work and to run modified versions.
+Model availability includes collaborative support for new
+users of the models.
+
+--------------------------------------------------------------------
+4. WARNINGS
+
+Every effort is made to produce the most accurate and precise
+measurements possible.  However, we reserve the right to make
+corrections to the data based on recalibration of standard gases
+or for other reasons deemed scientifically justified.
+
+We are not responsible for results and conclusions based on use
+of these data without regard to this warning.
+
+
+--------------------------------------------------------------------
+5. UPDATE NOTES
+
++++++++++++++++++++++++++++++++
+Lab-wide notes:
+
+2016-08-26
+
+Latitude and longitude were adjusted for 3 sites:
+ALT
+Old: 82.4508  -62.5056   205.00   200.00
+New: 82.4508  -62.5072   195.00   190.00
+
+TAC
+Old: 52.5178    1.1389   236.00    56.00
+New: 52.5177    1.1386   236.00    56.00
+
+ZEP
+Old: 78.9067   11.8889   479.00   474.00
+New: 78.9067   11.8883   479.00   474.00
+
+Collaborator name corrected for UTA:
+Old: U.S. National Weather Service [NWS]
+New: Beth Anderson/NWS Cooperative Observer 
+
+
+2015-08-03
+
+The 3-letter site identification code for Ushuaia, Argentina (TDF) was 
+changed to USH to be consistent with the WMO GAWSIS. 
+
+2011-10-07
+
+We have introduced the term "measurement group", which identifies
+the group within NOAA and INSTAAR that made the actual measurement.
+We can now have multiple groups measuring some of the same trace 
+gas species in our discrete samples.  
+
+Measurement groups within NOAA and INSTAAR are 
+
+  ccgg:  NOAA Carbon Cycle Greenhouse Gases (CCGG)
+  hats:  NOAA Halocarbons and other Atmospheric Trace Species (HATS)
+  arl:   INSTAAR Atmospheric Research Laboratory (ARL)
+  sil:   INSTAAR Stable Isotope Laboratory (SIL)
+  curl:  INSTAAR Laboratory for Radiocarbon Preparation and Research (CURL)
+
+We have also changed the file naming convention (see section "DATA - FILE 
+NAME DESCRIPTION").
+
++++++++++++++++++++++++++++++++
+Project-specific notes:
+
+2015-11-20
+
+Updated the content and format of event files to include elevation in 
+meters above sea level (masl) and sample collection intake height in 
+meters above ground level (magl). Elevation plus collection intake 
+height equals altitude, which has always been included in the NOAA 
+distribution. In adding these 2 fields, the event number column
+has moved. The new format is described in Sections 7.3 and 7.4.
+
+2013-08-27
+
+Coordinates of some of the sample locations have changed.
+These changes improve the specified location based on new
+information.  Changes tend to be minor and do not necessarily
+reflect a change in the actual sampling location.
+
+2011-10-01
+
+The data file format has been modified to include the measurement group
+and, additionally, the sample collection and analysis times now include
+second information (e.g., 2011 03 15 23 06 12).  See section 7.3 for
+details.
+
+2010-10-01
+
+The format of the NOAA ESRL data records has been changed to include
+an estimate of the uncertainty associated with each measurement.  The
+determination of the estimate is trace gas specific and described in
+section 6 (INTRODUCTION).
+
++++++++++++++++++++++++++++++++
+Parameter-specific notes:
+
+
+--------------------------------------------------------------------
+6. INTRODUCTION
+
+All samples in this archive were analyzed for light hydrocarbons at INSTAAR,
+Atmospheric Research Laboratory (ARL) in Boulder, Colorado
+by gas chromatography. ARL started NMHC measurements in samples from
+the NOAA CMDL network in 2005, analyzing flasks from a dozen sites
+at first and then rapidly extending the coverage to more than 40 sites.
+
+ARL has also been running in-situ measurements at Pico (Azores)
+and at Summit (Greenland) alongside the flask samples.
+
+In-situ data from the Deutscher Wetterdienst in Hohenpeissenberg (HPB)
+is also regularly compared to flask samples collected at this site.
+
+The INSTAAR NMHC laboratory was audited by the World Calibration Center (WCC)
+for Volatile Organic Compounds in 2008.  All measurement results passed
+the quality criteria set by the WCC.
+
+This NMHC monitoring is the centerpiece of the World Meteorological
+Organization Global Atmospheric Watch Volatile Organic Compound program.
+
+-------------------------------------------------------------------
+7. DATA - GENERAL COMMENTS
+
+Method:
+
+The GC analysis involves drying of approximately 600 cc (STP)
+of sample gas, then preconcentration of analytes on an adsorbent bed,
+followed by thermal desorption onto a short capillary guard column
+and main capillary column (HP-Plot AL2O3/KCl 0.53 mm x 60 m) for separation,
+and finally detection by a Flame Ionization Detector (FID).
+The gas chromatograph used is a HP-5890 series II.
+Drying is accomplished by running the sample gas through a tube cooled
+to -25°C. The custom-built preconcentration system is cooled to -35°C
+and uses Carboxen 1000 and Carboxen 1016 as adsorbents.
+Desorption is controlled at 310°C.  The flask analysis system is
+completely automated, allowing analysis of up to 12 flasks in one sequence.
+
+Calibration:
+
+Analysis of air samples are compared to analysis of synthetic
+and compressed air standards.  One compressed air standard is run
+twice a day to check on the stability of the FID response, the other 
+standards are ran at least twice a month to determine the response of 
+the FID.  Blanks are prepared by running compressed air through a heated 
+bed of PtO.  Blank samples are analyzed twice daily.
+
+Results:
+
+Results are expressed as mole fractions (pmol/mol)
+
+Uncertainty:
+
+Reproducibility varies by compound and with mole fraction.
+It is monitored routinely using the results of the paired flask sampling.
+Reproducibility is typically better than 5% RSD.
+Lower RSDs are obtained for the higher abundance compounds (ethane, propane).
+Accuracy is determined by the calibration standard scale.
+A minimum of three independently prepared and cross-referenced standards
+is in use at any given time.  Deviations in the response factors
+from these different standards are smaller than 5%, with results
+for ethane and propane typically being equal or less than 2-3%.
+
+The Pacific Ocean Cruise (POC, travelling between the US west coast
+and New Zealand or Australia) data have been merged and grouped into 
+5 degree latitude bins.  For the South China Sea cruises (SCS) the 
+data are grouped in 3 degree latitude bins.
+
+Sampling frequencies are approximately weekly for the fixed sites
+and average one sample every 3 weeks per latitude zone for POC and
+about one sample every week per latitude for SCS.
+
+Historically, samples have been collected using two general methods:
+flushing and then pressurizing glass flasks with a pump, or opening a
+stopcock on an evacuated glass flask; since 28 April 2003, only the
+former method is used.  During each sampling event, a pair of flasks
+is filled.
+
+-------------------------------------------------------------------
+7.1 DATA - SAMPLING LOCATIONS
+
+For a summary of sampling locations, please visit
+
+<A HREF='http://www.esrl.noaa.gov/gmd/dv/site/site_table.html#ccg_surface'>http://www.esrl.noaa.gov/gmd/dv/site/site_table.html</A>.
+
+IMPORTANT NOTES: 
+1.  Data for all species may not be available for all sites listed 
+in the table.
+2.  The exact location of a sampling site recorded in our database
+may change or become better defined over time.  The latitude,
+longitude, and altitude of a sample event is based on the best
+information available at the time of sample collection.  Differences
+in sample position associated with a particular site may be due
+to the site moving or changes in technology that permit a more
+accurate location determination.
+
+To view near real-time data, manipulate and compare data, and create
+custom graphs, please visit
+
+<A HREF='http://www.esrl.noaa.gov/gmd/dv/iadv/'>http://www.esrl.noaa.gov/gmd/dv/iadv/</A>.
+
+-------------------------------------------------------------------
+7.2 DATA - FILE NAME DESCRIPTION
+
+Encoded into each file name are the parameter (trace gas identifier); sampling 
+site; sampling project; laboratory ID number; measurement group; and optional 
+qualifiers that further define the file contents.
+
+All file names use the following naming scheme:
+
+         1      2         3               4                   5            
+[parameter]_[site]_[project]_[lab ID number]_[measurement group]_[optional 
+
+         6           7
+qualifiers].[file type]
+
+
+1. [parameter]
+
+   Identifies the measured parameter or trace gas species.
+
+   (ex)
+   co2      Carbon dioxide
+   ch4      Methane
+   co2c13   d13C (co2)
+   merge    more than one parameter
+
+2. [site]
+
+   Identifies the sampling site code.
+
+   (ex)
+   brw
+   pocn30
+   car
+   amt
+
+3. [project]
+   
+   Identifies sampling platform and strategy.
+
+   (ex)
+   surface-flask
+   surface-pfp
+   surface-insitu
+   aircraft-pfp
+   aircraft-insitu
+   tower-insitu
+
+4. [lab ID number]
+
+   A numeric field that identifies the sampling laboratory (1,2,3, ...).
+   NOAA ESRL is lab number 1 (see http://www.esrl.noaa.gov/gmd/ccgg/obspack/labinfo.html).
+
+5. [measurement group]
+
+   Identifies the group within NOAA or INSTAAR that makes the actual measurement.
+   See Section 5 (UPDATE NOTES) for details.
+
+   (ex)
+   ccgg
+   hats
+   arl
+   sil
+
+6. [optional qualifiers]
+
+   Optional qualifier(s) may indicate data subsetting or averaging.
+   Multiple qualifiers are delimited by an underscore (_).  A more detailed
+   description of the file contents is included within each data file.
+
+   (ex)
+   event         All measurement results for all collected samples (discrete (flask) data only).
+   month         Computed monthly averages all collected samples (discrete (flask) data only).
+   hour_####     Computed hourly averages for the specified 4-digit year (quasi-continuous data only)
+   HourlyData    Computed hourly averages for entire record (quasi-continuous data only)
+   DailyData     Computed daily averages for entire record (quasi-continuous data only)
+   MonthlyData   Computed monthly averages for entire record (quasi-continuous data only)
+
+7. [file type]
+   
+   We provide some NOAA Global Monitoring Division measurements
+   in two unique file formats (netCDF and ASCII text). 
+
+   (ex) 
+
+   txt           ASCII text file
+   nc            netCDF4 file
+
+-------------------------------------------------------------------
+7.3 DATA - EVENT WITH SINGLE PARAMETER
+
+The event data files in ftp://aftp.cmdl.noaa.gov/data/trace_gases/voc/&lt;parameter&gt;/flask/surface/
+scheme (see Section 7.2):
+
+     [parameter]_[site]_[project]_[lab ID number]_[measurement group]_[optional qualifiers].txt
+
+(ex) C2H6_brw_surface-flask_1_arl.txt contains C2H6 arl measurement 
+     results for all surface flask samples collected at Barrow, Alaska.
+
+The data files contain multiple lines of header information followed by one 
+record for each atmospheric measurement of a single parameter or trace gas species.
+
+Fields are defined as follows:
+
+Field 1:    [SITE CODE] The three-character sampling location code (see above).
+
+Field 2:    [YEAR] The sample collection date and time in UTC.
+Field 3:    [MONTH]
+Field 4:    [DAY]
+Field 5:    [HOUR]
+Field 6:    [MINUTE]
+Field 7:    [SECOND]
+
+Field 8:    [FLASK ID] The sample container ID.
+
+Field 9:    [METHOD] A single-character code that identifies the sample 
+             collection method.  The codes are:
+
+             P - Sample collected using a portable, battery
+                 powered pumping unit.  Two flasks are
+                 connected in series, flushed with air, and then
+                 pressurized to 1.2 - 1.5 times ambient pressure.
+
+             D - Similar to P but the air passes through a
+                 condenser cooled to about 5 deg C to partially
+	              dry the sample.
+
+             G - Similar to D but with a gold-plated condenser.
+
+             T - Evacuated flask filled by opening an O-ring sealed       
+                 stopcock.
+
+             S - Flasks filled at NOAA ESRL observatories by sampling
+                 air from the in situ CO2 measurement air intake system.
+
+             N - Before 1981, flasks filled using a hand-held
+                 aspirator bulb. After 1981, flasks filled using a
+                 pump different from those used in method P, D, or G.
+
+             F - Five liter evacuated flasks filled by opening a
+                 ground glass, greased stopcock.
+
+Field 10:   [TRACE GAS NAME] Gas identifier (e.g., co2, co2c13).
+
+Field 11:   [MEASUREMENT GROUP] Identifies the group within NOAA and 
+             INSTAAR making the actual measurement (e.g., ccgg, hats, arl).
+             See Section 5 (UPDATE NOTES) for details.
+
+Field 12:   [MEASURED VALUE] Dry air mole fraction or isotopic composition.  
+             Missing values are denoted by -999.99[9].
+
+Field 13:   [ESTIMATED UNCERTAINTY] Estimated uncertainty of the reported
+             measurement value.  Missing values are denoted by -999.99[9].
+
+Field 14:   [QC FLAG] A three-character field indicating the results of our 
+             data rejection and selection process, described in section 7.5.
+
+Field 15:   [INSTRUMENT] A 2-character code that identifies the instrument 
+             used for the measurement.
+
+Field 16:   [YEAR] The measurement date and time in LT.
+Field 17:   [MONTH]
+Field 18:   [DAY]
+Field 19:   [HOUR]
+Field 20:   [MINUTE]
+Field 21:   [SECOND]
+
+Field 22:   [LATITUDE] The latitude where the sample was collected, (negative (-)
+             numbers indicate samples collected in the southern hemipshere).
+
+Field 23:   [LONGITUDE] The longitude where the sample was collected, (negative (-)
+             numbers indicate samples collected in the western hemisphere).
+
+Field 24:   [ALTITUDE] The altitude of the sample inlet (masl). The reported altitude
+            is the surface elevation plus sample intake height.
+
+Field 25:   [ELEVATION] Surface elevation (masl).
+
+Field 26:   [INTAKE HEIGHT] Air sample collection height above ground level (magl).
+
+Field 27:   [EVENT NUMBER] A long integer that uniquely identifies the sampling
+             event.
+
+Fields in each line are delimited by whitespace.
+
+(ex)
+   LEF 2005 12 08 17 34 00 847-99 N C3H6 ARL 53.423 -999.990 ... v1 2006 03 14 00 13 
+   00 45.9100 -90.2600 868.00 472.00 396.00 210595
+
+-------------------------------------------------------------------
+7.4 DATA - EVENT WITH MULTIPLE PARAMETERS
+
+On special request we can distribute a "merged" file, which
+includes for each sampling event, measurement results for muliple 
+parameters or trace gas species.  A merged file does not include all 
+information found in a single parameter data file.  For example,
+merged files exclude measurement uncertainty, analysis instrument 
+ID and date and time for each parameter.  Thus, the single parameter
+data file is our most comprehensive data archive. 
+
+The format of a merged file is slightly different from single parameter event file.
+A "merged" file will have the word "merge" in the parameter field of the file name.  
+The file name does not inform on the number of parameters included in the file.
+
+Merged data files use the following naming scheme (see Section 7.2):
+
+     merge_[site]_[project]_[lab ID number]_[measurement group]_[optional qualifiers].txt
+
+(ex) merge_brw_surface-flask_1_arl.txt contains arl measurement results for two or more
+     parameters for all surface flask samples collected at Barrow, Alaska.
+
+The data files contain multiple lines of header information followed by one 
+record for each atmospheric measurement of a single parameter or trace gas species.
+
+Fields are defined as follows:
+
+Field 1:    [SITE CODE] The three-character sampling location code (see above).
+
+Field 2:    [YEAR] The sample collection date and time in UTC.
+Field 3:    [MONTH]
+Field 4:    [DAY]
+Field 5:    [HOUR]
+Field 6:    [MINUTE]
+Field 7:    [SECOND]
+
+Field 8:    [FLASK ID] The sample container ID.
+
+Field 9:    [METHOD] A single-character code that identifies the sample 
+             collection method.  The codes are:
+
+             P - Sample collected using a portable, battery
+                 powered pumping unit.  Two flasks are
+                 connected in series, flushed with air, and then
+                 pressurized to 1.2 - 1.5 times ambient pressure.
+
+             D - Similar to P but the air passes through a
+                 condenser cooled to about 5 deg C to partially
+	              dry the sample.
+
+             G - Similar to D but with a gold-plated condenser.
+
+             T - Evacuated flask filled by opening an O-ring sealed       
+                 stopcock.
+
+             S - Flasks filled at NOAA ESRL observatories by sampling
+                 air from the in situ CO2 measurement air intake system.
+
+             N - Before 1981, flasks filled using a hand-held
+                 aspirator bulb. After 1981, flasks filled using a
+                 pump different from those used in method P, D, or G.
+
+             F - Five liter evacuated flasks filled by opening a
+                 ground glass, greased stopcock.
+
+Field 10:   [LATITUDE] The latitude where the sample was collected, (negative (-)
+             numbers indicate samples collected in the southern hemipshere).
+
+Field 11:   [LONGITUDE] The longitude where the sample was collected, (negative (-)
+             numbers indicate samples collected in the western hemisphere).
+
+Field 12:   [ALTITUDE] The altitude of the sample inlet (masl). The reported altitude
+            is the surface elevation plus sample intake height.
+
+Field 13:   [ELEVATION] Surface elevation (masl).
+
+Field 14:   [INTAKE HEIGHT] Air sample collection height above ground level (magl).
+
+Field 15:   [EVENT NUMBER] A long integer that uniquely identifies the sampling
+             event.
+
+
+There is a group of 4 fields for each parameter and measurement group included in the 
+merge file.
+
+Field ##+1: [TRACE GAS NAME] Gas identifier (e.g., co2, co2c13).
+
+Field ##+2: [MEASUREMENT GROUP] Identifies the group within NOAA and 
+             INSTAAR making the actual measurement (e.g., ccgg, hats, arl).
+             See Section 5 (UPDATE NOTES) for details.
+
+Field ##+3: [MEASURED VALUE] Dry air mole fraction or isotopic composition.  
+             Missing values are denoted by -999.99[9].
+
+Field ##+4: [QC FLAG] A three-character field indicating the results of our 
+             data rejection and selection process, described in section 7.5.
+
+Fields in each line are delimited by whitespace.
+
+(ex)
+   LEF 2006 05 17 17 14 00 1382-99 N 45.9100 -90.2600 868.00 472.00 396.00 217438 
+   C2H2 ARL -75.541 ... C2H4 ARL 76.617 ...
+
+-------------------------------------------------------------------
+7.5 QC FLAGS
+
+NOAA ESRL uses a 3-column quality control flag where each column
+is defined as follows:
+
+column 1    REJECTION flag.  An alphanumeric other
+            than a period (.) in the FIRST column indicates
+            a sample with obvious problems during collection
+            or analysis.  This measurement should not be interpreted.
+
+column 2    SELECTION flag.  An alphanumeric other than a
+            period (.) in the SECOND column indicates a sample
+            that is likely valid but does not meet selection
+            criteria determined by the goals of a particular
+            investigation.
+
+column 3    INFORMATION flag.  An alphanumeric other than a period (.) 
+            in the THIRD column provides additional information 
+            about the collection or analysis of the sample.
+
+            WARNING: A "P" in the 3rd column of the QC flag indicates
+            the measurement result is preliminary and has not yet been 
+            carefully examined by the PI.  The "P" flag is removed once 
+            the quality of the measurement has been assessed.
+
+FLAGS DESCRIPTION:
+
+'...' is a good sample
+
+1st column flags:
+
+'P..' flag: poor flask pair agreement
+
+Since samples are collected in pairs, the pair difference is calculated.
+
+If the mole fraction x falls between the below margins,
+and the difference exceeds abs(dx) the flag is applied.
+
+   x <= 10 and dx > |5|
+
+   11 > x <= 25 and dx > |10|
+
+   26 > x <= 63 and dx > |20|
+
+   64 > x <= 156 and dx > |40|
+
+   157 > x <= 391 and dx > |80|
+
+   392 > x <= 977 and dx > |160|
+
+   978 > x <= 2441 and dx > |320|
+
+   2442 > x <= 6104 and dx > |640|
+
+   6105 > x <= 15259 and dx > |1280|
+
+
+'A..' flag: no data obtained
+
+This flag is applied when there was an instrument failure or if the amount of air left
+in the flask was too low for an analysis
+
+'*..' flag:
+
+This flag is applied when an unstable baseline made the peak integration impossible
+
+'D..' flag:
+
+This flag is applied when this particular compound was below the detection limit
+of our measurement
+
+'C..' flag:
+
+This flag is applied when a contamination was found
+
+
+3rd column flags:
+
+'..C' flag:
+
+This flag is applied when the amount of air left in the flask was too low for the
+instrument to draw the standard volume for analysis. In that case an analysis
+was performed with a reduced sampling volume.
+
+Note:
+
+We feel that this data set best represents hydrocarbons distribution in the remote,
+well-mixed global troposphere. It is possible, and even likely, that some values
+represent poorly mixed air parcels influenced by local anthropogenic sources.
+Users of these data should be aware that further data screening is necessary.
+We will provide advice in selecting the data that will best fit the goals
+of user's particular investigation.
+
+-------------------------------------------------------------------
+8. DATA RETRIEVAL
+
+To transfer all files in a directory, it is more efficient to 
+download the tar or zipped files.  
+
+To transfer a tar file, use the following steps from the ftp prompt:
+
+   1. ftp> binary                    ! set transfer mode to binary
+   2. ftp> get filename.tar.gz       ! transfer the file
+   3. ftp> bye                       ! leave ftp
+
+   4. $ gunzip filename.tar.gz       ! unzip your local copy
+   5. $ tar xvf filename.tar         ! unpack the file
+
+To transfer a zipped file, use the following steps from the ftp prompt:
+
+   1. ftp> binary                    ! set transfer mode to binary
+   2. ftp> get filename.zip          ! transfer the file
+   3. ftp> bye                       ! leave ftp
+
+   4. $ unzip filename.zip           ! uncompress your local copy
+
+-------------------------------------------------------------------
+9. REFERENCES
+
+Helmig, D., Bottenheim J., Galbally I. E., Lewis A., Milton M. J. T.,
+Penkett S., Plass-Duelmer C., Reimann S., Tans P., Theil S. (2009)
+Volatile Organic Compounds in the Global Atmosphere. Eos Trans. AGU, 90(52),
+Feature.
+
+Pollmann J., Helmig D., Hueber J., Plass-Duelmer C., and Tans P. (2008)
+Sampling, storage, and analysis of C2-C7 non-methane hydrocarbons
+from the US National Oceanic and Atmospheric Administration Cooperative
+Air Sampling Network glass flasks. J. Chromatogr., 1188, 75-87.
+
+------------------------------------------------------------------- 
+</PRE>
+</BODY>
+</HTML>

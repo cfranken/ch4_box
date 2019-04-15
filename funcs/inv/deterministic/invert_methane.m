@@ -31,7 +31,7 @@ function [ soln, K_ems, K_IC, reldiff, absdiff, matr] = invert_methane( St, obs,
 %%% Define tolerances
 reltol  = 1e-6;
 abstol  = 1e-6;
-kmax    = 15;
+kmax    = 5;
 k       = 1;
 iter    = true;
 reldiff = nan(kmax,1);
@@ -39,7 +39,7 @@ absdiff = nan(kmax,1);
 
 %%% Initialize the Levenberg-Marquardt parameters (gamma = zero reverts to IMAP)
 LM_param.chi2  = NaN;
-%LM_param.gamma = 10;
+LM_param.gamma = 10;
 LM_param.gamma = 1;
 
 %%% Are we doing a linear or nonlinear inversion?
@@ -60,16 +60,17 @@ else
 end
 
 %%% Get the solution for the first step
+%IC_p
 [K_ems,K_IC]    = define_Jacobian(St,ems_p,IC_p,params,run_parallel);
 [soln,LM_param, matr] = update_solution(St,ems_p,IC_p,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
-disp('so far so good')
+%disp('so far so good')
 while iter
     % Update solution
     ems_i = soln{1};
     IC_i  = soln{2};
-%    ems_i(24,:)
-%    ems_p(24,:)
-%    plot(IC_i-IC_p)
+    %ems_i(24,:)
+    %ems_p(24,:)
+    %plot(IC_i-IC_p)
 
     chi2o = LM_param.chi2;
     % Get new solution
@@ -88,8 +89,8 @@ while iter
     % Check convergence
     if (kmax <= k)
         iter = false;
-    elseif (10*LM_param.chi2 < (numel(ems_p)+numel(IC_p)))
-        iter = false;
+    %elseif (10*LM_param.chi2 < (numel(ems_p)+numel(IC_p)))
+    %    iter = false;
     elseif LM_param.chi2 ~= chi2o % Did we accept the previous solution?
         if (reldiff(k) < reltol) || (absdiff(k) < abstol)
             iter = false;
@@ -99,13 +100,14 @@ while iter
     k = k + 1;
 end
 %matr.FF = FF;
+matr = struct;
 end
 
 function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p, LM_param, jacobian_ems, jacobian_IC, obs, params )
 
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
-global fitKX
+global fitKX interactive_OH
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -190,6 +192,11 @@ Sa_co      =   300^2*ones(nT,1);
 Sa_tau     =   3.0^2*ones(nT,1); 
 Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
                  30,30,10,10,15,15,5,5,100,100].^2;
+% AJT: Use 10% uncertainty for OH concentration (like Turner et al.) for
+% non-interactive OH
+if ~interactive_OH
+    Sa_oh =  0.10^2*ones(nT,1);
+end
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
 Sa_IC = (eps*params.IC).^2;
@@ -230,6 +237,12 @@ if fitKX
     disp('Fitting KX')
     Sa_kx_NH = 0.92^2*ones(nT,1); 
     Sa_kx_SH = 0.92^2*ones(nT,1); 
+end
+% AJT: Change to solve for OH concentrations.  OH fields will be
+% concentrations instead of sources.  kX is no longer needed.
+if ~interactive_OH
+    Sa_kx_NH = eps^2*ones(nT,1); % Don't allow kX to change
+    Sa_kx_SH = eps^2*ones(nT,1); % Fixed OH
 end
 
 % Construct matrix
@@ -286,15 +299,16 @@ gamma = LM_param.gamma;
 %fprintf('size of xa=')
 %size(xa)
 % Write out some diagnostics to see what was wrong
-matr.SaI = SaI;
-matr.K = K;
-matr.gamma = gamma;
-matr.SoI = SoI;
-matr.y = y;
-matr.F = F;
-matr.xi = xi;
-matr.xa = xa;
-matrx.Sa = Sa;
+matr= struct;
+%matr.SaI = SaI;
+%matr.K = K;
+%matr.gamma = gamma;
+%matr.SoI = SoI;
+%matr.y = y;
+%matr.F = F;
+%matr.xi = xi;
+%matr.xa = xa;
+%matr.Sa = Sa;
 
 LHS   = (SaI + K'*SoI*K + gamma*SaI);
 RHS   = (K'*SoI * (y - F) - SaI*(xi - xa));

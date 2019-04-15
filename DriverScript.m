@@ -84,7 +84,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = false;
+reread.flag  = true;
 % Other flags for re-reading
 reread.sYear = sYear;
 reread.eYear = eYear;
@@ -104,14 +104,14 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = true;     % Allow OH feedbacks?
+interactive_OH  = false;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
-det_linear      = false;     % Use a linear deterministic inversion?
+det_linear      = true;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = true;    % Use fixed OH anomalies
+fixedOH         = false;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO = true; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
@@ -191,7 +191,8 @@ obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir
 % blow up CO error:
 %obs.nh_co_err(:)=500;
 %obs.sh_co_err(:)=500;
-%%% Use Ed Dlugokencky's obs? (sensitivity test)
+%%% Usems
+% eEd Dlugokencky's obs? (sensitivity test)
 if use_Ed
     ajt_obs = obs;
     ed_obs  = getEdObs(dataDir,ajt_obs,St,tAvg,reread);
@@ -262,6 +263,10 @@ c2h6_ems = getC2H6ems(St,tRes,dataDir);
 % - "nh": OH emissions from the Northern hemisphere (Tg/yr)
 % - "sh": OH emissions from the Southern hemisphere (Tg/yr)
 oh_ems = getOHems(St,tRes,dataDir);
+if ~interactive_OH
+    oh_ems.nh = ones(size(oh_ems.nh));
+    oh_ems.sh = ones(size(oh_ems.sh));
+end
 
 %%% Get the CO emissions
 % Stucture with two fields

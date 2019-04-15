@@ -26,6 +26,10 @@ cd ${bDir}/data/obs/o3_strat/NOAA/      ; ./get_data.csh
 # CO
 #cd ${bDir}/data/obs/co/WDCGG/           ; ./get_data.csh
 cd ${bDir}/data/obs/co/NOAA/            ; ./get_data.csh
+# N2O
+cd ${bDir}/data/obs/n2o/NOAA/           ; ./get_data.csh
+cd ${bDir}/data/obs/n2o/GAGE/           ; ./get_data.csh
+cd ${bDir}/data/obs/n2o/AGAGE/          ; ./get_data.csh
 
 ### Done
 exit(0)

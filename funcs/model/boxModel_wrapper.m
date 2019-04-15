@@ -20,9 +20,12 @@
 
 function [ out ] = boxModel_wrapper(St,S,IC,params)
 
+%%% For the OH feedback
+global interactive_OH
+
 %%% Set up the emissions for the box model
 % Convert CH4, MCF, N2O, C2H6, OH, and CO emissions to units of per day
-S(:,[1,2,5,6,7,8,9,10,11,12,13,14]) = S(:,[1,2,5,6,7,8,9,10,11,12,13,14]) / params.YrToDay;
+S(:,[1,2,5,6,7,8,9,10,13,14]) = S(:,[1,2,5,6,7,8,9,10,13,14]) / params.YrToDay;
 % 12CH4
 S(:,1)  = 2/params.mm_ch4*S(:,1);    % NH (factor of two is for mass of one hemisphere)
 S(:,2)  = 2/params.mm_ch4*S(:,2);    % SH
@@ -39,8 +42,13 @@ S(:,8)  = 2/params.mm_n2o*S(:,8);    % SH
 S(:,9)  = 2/params.mm_c2h6*S(:,9);   % NH
 S(:,10) = 2/params.mm_c2h6*S(:,10);  % SH
 % OH
-S(:,11) = 2/params.mm_oh*S(:,11);    % NH
-S(:,12) = 2/params.mm_oh*S(:,12);    % SH
+if interactive_OH
+    S(:,11) = 2/params.mm_oh*S(:,11)/params.YrToDay;   % NH
+    S(:,12) = 2/params.mm_oh*S(:,12)/params.YrToDay;   % SH
+else
+    S(:,11) = params.gmOH*params.DaysToS/params.RxNconv*S(:,11);   % NH
+    S(:,12) = params.gmOH*params.DaysToS/params.RxNconv*S(:,12);   % SH
+end
 % CO
 S(:,13) = 2/params.mm_co*S(:,13);    % NH
 S(:,14) = 2/params.mm_co*S(:,14);    % SH
@@ -78,6 +86,10 @@ out.nh_c2h6         = F(:,9);
 out.sh_c2h6         = F(:,10);
 out.nh_oh           = F(:,11) * params.n_air/1e9; % Convert to molec/cm3
 out.sh_oh           = F(:,12) * params.n_air/1e9; % Convert to molec/cm3
+if ~interactive_OH
+    out.nh_oh       = S(:,11) ./ (params.gmOH*params.DaysToS/params.RxNconv);
+    out.sh_oh       = S(:,12) ./ (params.gmOH*params.DaysToS/params.RxNconv);
+end
 out.nh_co           = F(:,13);
 out.sh_co           = F(:,14);
 out.nh_ch4_strat    = F(:,15);
