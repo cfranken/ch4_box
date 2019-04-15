@@ -28,8 +28,6 @@ clf
 clear all
 close all
 clc
-diary run1.txt
-diary on
 
 %%% Header
 fprintf('\n ***********************************\n')

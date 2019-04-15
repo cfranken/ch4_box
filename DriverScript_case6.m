@@ -28,8 +28,6 @@ clf
 clear all
 close all
 clc
-diary run1.txt
-diary on
 
 %%% Header
 fprintf('\n ***********************************\n')
@@ -55,7 +53,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2016;
+eYear = 2018;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -104,7 +102,7 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = true;     % Allow OH feedbacks?
+interactive_OH  = false;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 use_other_sinks = false;     % Use non-OH sinks?
@@ -311,10 +309,9 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-%1.8850    2.1200
-f = 2.12;
-kX_NH = 1.885*ones(nT,1); % s^-1
-kX_SH = 2.14*ones(nT,1); % s^-1
+
+kX_NH = 1.06*ones(nT,1); % s^-1
+kX_SH = 1.29*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 
