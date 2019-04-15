@@ -1,6 +1,7 @@
 # NOAA files
 ###########
 *month.txt
+*.png
 *.txt
 *.mon
 *.dat
@@ -8,3 +9,5 @@
 *.pdf
 .DS_Store
 *.pdf
+*.eps
+run1.txt
