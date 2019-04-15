@@ -34,7 +34,7 @@ jacobian_IC  = zeros(nY,nI);
 
 %%% Perturbation for the Jacobian
 %            ch4, d13c, mcf, n2o,    c2h6,  oh,  co, tau_TS, kX_NH, kX_SH
-delta.ems = [5,5,  1,1, 5,5, 1,1, 500,500, 1,1, 5,5,      1,     1,     1];
+delta.ems = [5,5,  1,1, 5,5, 1,1, 500,500, 1,1, 5,5,      1,     0.02,     0.02];
 delta.IC  = ones(1,nI);
 
 %%% Jacobian for ICs (compute it in parallel?)

@@ -28,8 +28,6 @@ clf
 clear all
 close all
 clc
-diary run1.txt
-diary on
 
 %%% Header
 fprintf('\n ***********************************\n')
@@ -312,9 +310,8 @@ end
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
 %1.8850    2.1200
-f = 2.12;
-kX_NH = 1.9*ones(nT,1); % s^-1
-kX_SH = 2.14*ones(nT,1); % s^-1
+kX_NH = 1.06*ones(nT,1); % s^-1
+kX_SH = 1.29*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 

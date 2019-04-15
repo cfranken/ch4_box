@@ -57,7 +57,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 sYear = 1980;
 eYear = 2080;
 %eYear = 2100;
-tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
+tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
@@ -321,8 +321,8 @@ end
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
 f = 2.07;
-kX_NH = 1.9*ones(nT,1); % s^-1
-kX_SH = 2.14*ones(nT,1); % s^-1
+kX_NH = 1*ones(nT,1); % s^-1
+kX_SH = 1*ones(nT,1); % s^-1
 %kX_NH = 1.81*ones(nT,1); % s^-1
 %kX_SH = 2.05*ones(nT,1); % s^-1
 
@@ -404,7 +404,7 @@ if do_deterministic
     fprintf('\n *** DETERMINISTIC INVERSION *** \n');
     
     %%% Invert
-    % Newton: here is the problem
+
 interactive_OH  = true;     % Allow OH feedbacks?
 
 % Create an arbitrary guess for initial ems
@@ -422,12 +422,15 @@ interactive_OH = false;
 
 synthetic_interactive_nh_ems = anal_soln{1}(:,1);
 synthetic_sh_interactive_ems = anal_soln{1}(:,2);
+synthetic_interactive_ems = synthetic_interactive_nh_ems + synthetic_sh_interactive_ems;
 
 synthetic_noninteractive_nh_ems = anal_soln2{1}(:,1);
 synthetic_sh_noninteractive_ems = anal_soln2{1}(:,2);
+synthetic_noninteractive_ems = synthetic_noninteractive_nh_ems + synthetic_sh_noninteractive_ems;
 
 synthetic_nh_actual = ems(:,1);
 synthetic_sh_actual = ems(:,2);
+synthetic_actual = synthetic_nh_actual + synthetic_sh_actual;
 
 
 %NN: Let's stop the script here
