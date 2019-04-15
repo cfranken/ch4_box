@@ -84,7 +84,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = false;
+reread.flag  = true;
 % Other flags for re-reading
 reread.sYear = sYear;
 reread.eYear = eYear;
@@ -191,7 +191,8 @@ obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir
 % blow up CO error:
 %obs.nh_co_err(:)=500;
 %obs.sh_co_err(:)=500;
-%%% Use Ed Dlugokencky's obs? (sensitivity test)
+%%% Usems
+% eEd Dlugokencky's obs? (sensitivity test)
 if use_Ed
     ajt_obs = obs;
     ed_obs  = getEdObs(dataDir,ajt_obs,St,tAvg,reread);
