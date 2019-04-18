@@ -22,7 +22,7 @@
 function [ dy ] = boxModel(t,y,St,S,tau_TS,kX_NH,kX_SH,params)
 
 %%% For the OH feedback and the stratosphere
-global interactive_OH use_strat
+global interactive_OH use_strat fixedOH
 
 %%% Initialize dy for troposphere & stratosphere (strat is same as trop)
 % - Column 1:  12CH4 in the Northern Hemisphere
@@ -66,7 +66,7 @@ tau_NS_strat = params.tau_NS_strat;
 tau_ST = tau_TS / 5.7047;
 
 %%% Is OH simulated or prescribed?
-if ~interactive_OH
+if ~interactive_OH && ~fixedOH
     y(11) = S(11);
     y(12) = S(12);
 end
@@ -112,7 +112,7 @@ dy(8)  = S(8)  + (y(7) - y(8))/tau_NS + (y(22)- y(8))/tau_TS;                   
 dy(9)  = S(9)  + (y(10)- y(9))/tau_NS + (y(23)- y(9))/tau_TS - y(9)*(k_c2h6_NH+k_c2h6_other);  % NH
 dy(10) = S(10) + (y(9) -y(10))/tau_NS + (y(24)-y(10))/tau_TS - y(10)*(k_c2h6_SH+k_c2h6_other); % SH
 % OH (allow the feedback?)
-if interactive_OH
+if interactive_OH 
 dy(11) = S(11)  - y(1)*k_12ch4_NH   - y(13)*k_co_NH - y(11)*kX_NH; % NH
 dy(12) = S(12)  - y(2)*k_12ch4_SH   - y(14)*k_co_SH - y(12)*kX_SH; % SH
 end

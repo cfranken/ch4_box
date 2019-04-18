@@ -78,7 +78,7 @@ while iter
     
     [soln,LM_param, matr] = update_solution(St,ems_i,IC_i,ems_p,IC_p,LM_param,K_ems,K_IC,obs,params);
     % save iteration steps
-    FF(:,k) = matr.F;
+%    FF(:,k) = matr.F;
     % Get new relative difference
     absdiff_ems = abs(soln{1}(:) - ems_i(:));
     absdiff_IC  = abs(soln{2}(:) -  IC_i(:));
@@ -107,7 +107,7 @@ function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p
 
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
-global fitKX interactive_OH
+global fitKX interactive_OH fixedOH
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -170,7 +170,7 @@ for i = 1:nE
         ii          = ii + 1;
     end
 end
-size(K_ems)
+
 % ICs
 K_IC = jacobian_IC; % This one is already assembled
 % Full jacobian
@@ -194,7 +194,7 @@ Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
                  30,30,10,10,15,15,5,5,100,100].^2;
 % AJT: Use 10% uncertainty for OH concentration (like Turner et al.) for
 % non-interactive OH
-if ~interactive_OH
+if ~interactive_OH && ~fixedOH
     Sa_oh =  0.10^2*ones(nT,1);
 end
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
@@ -240,7 +240,7 @@ if fitKX
 end
 % AJT: Change to solve for OH concentrations.  OH fields will be
 % concentrations instead of sources.  kX is no longer needed.
-if ~interactive_OH
+if ~interactive_OH && ~fixedOH
     Sa_kx_NH = eps^2*ones(nT,1); % Don't allow kX to change
     Sa_kx_SH = eps^2*ones(nT,1); % Fixed OH
 end
