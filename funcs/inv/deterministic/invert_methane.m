@@ -195,7 +195,12 @@ Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
 % AJT: Use 10% uncertainty for OH concentration (like Turner et al.) for
 % non-interactive OH
 if ~interactive_OH && ~fixedOH
-    Sa_oh =  0.10^2*ones(nT,1);
+    % <-- AJT (2019/05/01): From Turner et al. for consistency in this case
+    Sa_ch4     =    20^2*ones(nT,1);
+    Sa_ch4c13  =    10^2*ones(nT,1);
+    Sa_mcf_nh  = max([1.5*ones(size(ems_p(:,3))),.2*ems_p(:,3)],[],2).^2;
+    Sa_mcf_sh  =   0.5^2*ones(nT,1);
+    Sa_oh      =  0.10^2*ones(nT,1);
 end
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
@@ -210,7 +215,7 @@ tau_co     = 3; % yr
 tau_tau    = 0; % yr
 % Alternate cases
 if fixedCH4
-Sa_ch4 = eps^2*ones(nT,1); % Fixed CH4
+    Sa_ch4 = eps^2*ones(nT,1); % Fixed CH4
 end
 if fixedOH
     Sa_oh = eps^2*ones(nT,1); % Fixed OH
