@@ -126,41 +126,42 @@ for i = 1:length(sNames)
 end
 
 
-%%% =======================================================================
-%%% GAGE
-%%% =======================================================================
-
-%%% Append the directory onto the dataDir
-dataDirU = sprintf('%sobs/mcf/GAGE/',dataDir);
-
-%%% Define the site names, header lengths, and latitudes
-% Filename structure
-fNameS = '%s-gage.mon';
-sNames = {  'CGO', 'RPB', 'SMO', 'ORG'};
-sLat   = [ -40.68, 13.17,-14.23, 45.00];
-nHDR   = [      6,     6,     6,     6];
-
-%%% Read the data
-for i = 1:length(sNames)
-    % Current filename
-    fName = sprintf('%s%s',dataDirU,sprintf(fNameS,sNames{i}));
-    % Load the data
-    dat   = importdata(fName,' ',nHDR(i));
-    dat   = dat.data;
-    tDat  = datenum(dat(:,3),dat(:,2),ones(size(dat(:,1))));
-    yDat  = dat(:,14);
-    yDat(yDat == 0) = NaN;
-    % Remove NaNs
-    ind  = ~isnan(yDat) & ~isnan(tDat);
-    if sum(ind) > 0
-        tDat = tDat(ind);
-        yDat = yDat(ind);
-        % Put the data in a structure
-        out.obs.(sprintf('%s_ALE',sNames{i})) = yDat;
-        out.tim.(sprintf('%s_ALE',sNames{i})) = tDat;
-        out.lat.(sprintf('%s_ALE',sNames{i})) = sLat(i);
-    end
-end
+% <-- AJT (2019/05/01): Currently reading GAGE data as ALE data, commented for now. 
+% %%% =======================================================================
+% %%% GAGE
+% %%% =======================================================================
+% 
+% %%% Append the directory onto the dataDir
+% dataDirU = sprintf('%sobs/mcf/GAGE/',dataDir);
+% 
+% %%% Define the site names, header lengths, and latitudes
+% % Filename structure
+% fNameS = '%s-gage.mon';
+% sNames = {  'CGO', 'RPB', 'SMO', 'ORG'};
+% sLat   = [ -40.68, 13.17,-14.23, 45.00];
+% nHDR   = [      6,     6,     6,     6];
+% 
+% %%% Read the data
+% for i = 1:length(sNames)
+%     % Current filename
+%     fName = sprintf('%s%s',dataDirU,sprintf(fNameS,sNames{i}));
+%     % Load the data
+%     dat   = importdata(fName,' ',nHDR(i));
+%     dat   = dat.data;
+%     tDat  = datenum(dat(:,3),dat(:,2),ones(size(dat(:,1))));
+%     yDat  = dat(:,14);
+%     yDat(yDat == 0) = NaN;
+%     % Remove NaNs
+%     ind  = ~isnan(yDat) & ~isnan(tDat);
+%     if sum(ind) > 0
+%         tDat = tDat(ind);
+%         yDat = yDat(ind);
+%         % Put the data in a structure
+%         out.obs.(sprintf('%s_ALE',sNames{i})) = yDat;
+%         out.tim.(sprintf('%s_ALE',sNames{i})) = tDat;
+%         out.lat.(sprintf('%s_ALE',sNames{i})) = sLat(i);
+%     end
+% end
 
 
 %%% =======================================================================
