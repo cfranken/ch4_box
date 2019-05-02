@@ -28,7 +28,7 @@ edgar     = false;
 const_ems = true;
 if cfranken
     % Total methane source
-    tot_ch4 = 580;  % Tg/yr
+    tot_ch4 = 550;  % Tg/yr
     frac_nh = 0.7;  % Fraction of emissions in the NH
     % CH4 Emissions
     ems_nh = zeros(size(St)) + tot_ch4 * frac_nh;
@@ -67,7 +67,7 @@ if edgar
 end
 if const_ems
     % Total methane source (constant)
-    tot_ch4 = 580;  % Tg/yr
+    tot_ch4 = 550;  % Tg/yr
     frac_nh = 0.75; % Fraction of emissions in the NH
     % CH4 Emissions
     ems_nh = zeros(size(St)) + tot_ch4 * frac_nh;
