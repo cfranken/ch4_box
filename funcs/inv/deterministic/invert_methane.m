@@ -107,7 +107,7 @@ function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p
 
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
-global fitKX interactive_OH fixedOH
+global fitKX interactive_OH
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -182,8 +182,8 @@ K = K(indGood,:);
 % Components
 Sa_ch4     =    20^2*ones(nT,1);
 Sa_ch4c13  =    10^2*ones(nT,1);
-%Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;
-Sa_mcf_nh  = max([.02*ems_p(:,5),0.15*ones(nT,1)],[],2).^2;
+Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;  % <-- AJT (2019/05/01): MCF emissions are in Gg/yr, not Tg/yr
+%Sa_mcf_nh  = max([.02*ems_p(:,5),0.15*ones(nT,1)],[],2).^2;
 Sa_mcf_sh  =   0.15^2*ones(nT,1);
 Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
@@ -198,7 +198,7 @@ if ~interactive_OH && ~fixedOH
     % <-- AJT (2019/05/01): From Turner et al. for consistency in this case
     Sa_ch4     =    20^2*ones(nT,1);
     Sa_ch4c13  =    10^2*ones(nT,1);
-    Sa_mcf_nh  = max([1.5*ones(size(ems_p(:,3))),.2*ems_p(:,3)],[],2).^2;
+    Sa_mcf_nh  = max([1.5*ones(size(ems_p(:,5))),.2*ems_p(:,5)],[],2).^2;
     Sa_mcf_sh  =   0.5^2*ones(nT,1);
     Sa_oh      =  0.10^2*ones(nT,1);
 end

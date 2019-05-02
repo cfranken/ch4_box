@@ -113,16 +113,16 @@ det_linear      = true;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = false;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
-ignoreCO = true; % keep CO emissions fixed
+ignoreCO        = true;     % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
 % MCF sensitivity test flags
-k_co_flag       = true;     % Use k_CO that AJT derived
-k_mcf_flag      = true;     % Use k_MCF that AJT derived
+k_co_flag       = false;     % Use k_CO that AJT derived
+k_mcf_flag      = false;     % Use k_MCF that AJT derived
 smooth_MCF      = false;    % Smooth the MCF emissions with a 5-year filter?
 set_MCF_EMS     = false;    % Set post-2000 emissions to a fixed value?
 MCF_EMS_val     = 0.0;      % Fixed post-2000 MCF emissions value (Gg/yr)
-reduce_MCFerr   = true;    % Reduce the errors in MCF observations?
+reduce_MCFerr   = false;    % Reduce the errors in MCF observations?
 MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
@@ -155,16 +155,16 @@ try % Add a try-catch statement in case the user hasn't downloaded the data
     co_obs      = getCO(dataDir,reread);       % carbon monoxide observations (ppb)
     o3strat_obs = getO3strat(dataDir,reread);  % Stratospheric ozone observations (DU)
 catch % Some data is missing
-    try % See if ethane is the only problem
+    try % See if ethane or n2o is the only problem
         fprintf(' * SOME DATA IS MISSING\n');
         ch4_obs     = getCH4(dataDir,reread);
         ch4c13_obs  = getCH4C13(dataDir,reread);
         ch4h2_obs   = getCH4H2(dataDir,reread);
         mcf_obs     = getMCF(dataDir,reread);
-        n2o_obs     = getN2O(dataDir,reread);
-        co_obs      = getCO(dataDir,reread);
+        try n2o_obs = getN2O(dataDir,reread); catch n2o_obs = NaN; end
+        try co_obs  = getCO(dataDir,reread);  catch co_obs  = NaN; end
         o3strat_obs = getO3strat(dataDir,reread);
-        c2h6_obs    = NaN;
+        try c2h6_obs = getC2H6(dataDir,reread); catch c2h6_obs = NaN; end
     catch % Otherwise, set the observation structures to NaN
         fprintf(' * UNABLE TO READ OBSERVATIONS!\n');
         ch4_obs     = NaN;
