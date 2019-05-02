@@ -153,6 +153,8 @@ try
 
     %%% Make sure the errors aren't overly optimistic
     [eDat_NH,eDat_SH] = ReadMCFerr(St,tAvg,eDat_NH,eDat_SH,dataDir);
+    ind = yrs < 1991;
+    eDat_NH(ind) = 10; % AJT change, check this Newton
 catch
     oDat_NH = NaN * St;
     oDat_SH = NaN * St;
