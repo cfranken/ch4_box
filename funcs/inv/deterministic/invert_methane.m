@@ -158,9 +158,6 @@ F       = F(indGood);
 %%% Assemble the jacobians
 % Sources
 K_ems = nan(nY,nT*nE);
-%if ignoreCO
-%    jacobian_ems(:,:,13:14)=0;
-%end
 
 
 ii    = 1;
@@ -182,12 +179,16 @@ K = K(indGood,:);
 % Components
 Sa_ch4     =    20^2*ones(nT,1);
 Sa_ch4c13  =    10^2*ones(nT,1);
-Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;  % <-- AJT (2019/05/01): MCF emissions are in Gg/yr, not Tg/yr
+% Sa_mcf_nh  = max([.2*ems_p(:,5),1.5*ones(nT,1)],[],2).^2;  % <-- AJT (2019/05/01): MCF emissions are in Gg/yr, not Tg/yr
 %Sa_mcf_nh  = max([.02*ems_p(:,5),0.15*ones(nT,1)],[],2).^2;
-Sa_mcf_sh  =   0.15^2*ones(nT,1);
+% Sa_mcf_sh  =   0.15^2*ones(nT,1);
+Sa_mcf_nh  = max([1.5*ones(size(ems_p(:,5))),.2*ems_p(:,5)],[],2).^2;
+Sa_mcf_sh  =   0.5^2*ones(nT,1);
 Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
-Sa_oh      =  250^2*ones(nT,1);
+% Sa_oh      =  250^2*ones(nT,1);
+% Use same relative error as in [OH}, i.e. about 10% of prior
+Sa_oh      =  475^2*ones(nT,1);
 Sa_co      =   300^2*ones(nT,1);
 Sa_tau     =   3.0^2*ones(nT,1); 
 Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
