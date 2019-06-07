@@ -98,7 +98,7 @@ use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 det_linear      = true;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
-fixedOH         = false;    % Use fixed OH anomalies
+fixedOH         = true;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
@@ -296,9 +296,8 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f = 2.07;
-kX_NH = 1.84*ones(nT,1); % s^-1
-kX_SH = f*ones(nT,1); % s^-1
+kX_NH = 1.06*ones(nT,1); % s^-1
+kX_SH = 1.29*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -346,19 +345,35 @@ params = getParameters(St); % Only need to do this once
 params.tau_NS_strat=1e99;
 %params.odeOpts.MinStep=1;
 IC     = params.IC;         % Guess for the inital conditions
-out_d    = boxModel_wrapper(St,ems,IC,params);
-ems2 = ems;
+
+% create perturbation 
+ems_large = ems;
 ems_small = ems;
-dH = 50; % size of purturbation 
-DH_small = 5; % small perturbation example 
+DH_large = 25; % size of purturbation  in Tg/yr
+DH_small = 5; % small perturbation example  in Tg/yr
+
+
 
 % Create purturbation for box model input
-ems2(100,1)= ems(100,1)+dH*12;
+ems_large(100,1)= ems(100,1)+DH_large*12;
 ems_small(100,1)= ems(100,1)+ DH_small *12; % Small perturbation 
 
+ems_large(100,2)= ems(100,1)+DH_large*12;
+ems_small(100,2)= ems(100,1)+ DH_small *12; % Small perturbation 
+
+interactive_OH = true;
+
+% model spin up
+out    = boxModel_wrapper(St,ems,IC,params);
+IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
+
+
 % Run box model with purturbation 
-out_large    = boxModel_wrapper(St,ems2,IC,params); %large perturbation 
+out_large    = boxModel_wrapper(St,ems_large,IC,params); %large perturbation 
 out_small    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation 
+
+out_large.ch4 = (out_large.nh_ch4 + out_large.sh_ch4)/2;
+out_small.ch4 = (out_small.nh_ch4 + out_small.sh_ch4)/2;
 
 
 % negative perturbation 
@@ -368,30 +383,16 @@ out_small    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation
 
 %%% Without the interactive OH 
 interactive_OH  = false;
-out_large_noninteractive    = boxModel_wrapper(St,ems2,IC,params); %large perturbation 
+
+out    = boxModel_wrapper(St,ems,IC,params);
+IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
+
+
+out_large_noninteractive    = boxModel_wrapper(St,ems_large,IC,params); %large perturbation 
 out_small_noninteractive    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation 
 
+out_large_noninteractive.ch4 = (out_large_noninteractive.nh_ch4 + out_large_noninteractive.sh_ch4)/2;
+out_small_noninteractive.ch4 = (out_small_noninteractive.nh_ch4 + out_small_noninteractive.sh_ch4)/2;
 
-
-
-%out_f     = boxModel_wrapper(St,ems,IC,params);
-%out2_f    = boxModel_wrapper(St,ems2,IC,params);
-%m2 = 18.3*exp(-(St-St(100))/(13*365));m2(1:99)=0;
-%m = 17.7*exp(-(St-St(100))/(9.5*365));m(1:99)=0;
-
-%subplot(1,2,1)
-
-%plot(St, out2_d.nh_ch4-out_d.nh_ch4, St, (out2_f.nh_ch4-out_f.nh_ch4), St, m, St, m2)
-time = [1:length(out2_d.nh_ch4)];
-plot(time, out2_d.nh_ch4-out_d.nh_ch4, 'p', time, (out2_f.nh_ch4-out_f.nh_ch4), 'r');
-%plot(time, (out2_f.nh_ch4-out_f.nh_ch4), 'r');
-title('Methane Response to Perturbation')
-xlabel('time')
-ylabel('Tg')
-legend('Interactive Chemistry', 'Noninteractive Chemistry')
-
-
-%subplot(1,2,2)
-%plot(St, (out_d.nh_oh),St, (out_d.sh_oh))
-%title('OH Jacobian')
-saveas(figure(1), 'forward_model_test.png', 'png')
+save('forward_model_test')
+return
