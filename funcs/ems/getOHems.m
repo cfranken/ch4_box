@@ -26,7 +26,7 @@ const_ems  = true;
 lin_change = false;
 if const_ems
     % Total OH source (constant)
-    tot_oh  = 4500; % Tg/yr
+    tot_oh  = 9500; % Tg/yr
     frac_nh = 0.50; % Fraction of anthropogenic emissions in the NH
     % OH Emissions
     ems_nh = zeros(size(St)) + tot_oh * frac_nh;

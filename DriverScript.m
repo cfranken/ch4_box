@@ -63,8 +63,8 @@ St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
 %%% Export variables to mat file
-export_data = false; % do we want to export data to data_filename.mat?
-data_filename  = 'case2';
+export_data = true; % do we want to export data to data_filename.mat?
+data_filename  = 'case0';
 
 %%% Describing experiment to be exported to .mat file 
 %experiment_description = 'Case 3: Turned on interactive OH andturned off fixed OH'
@@ -84,7 +84,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = true;
+reread.flag  = false;
 % Other flags for re-reading
 reread.sYear = sYear;
 reread.eYear = eYear;
@@ -127,6 +127,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
+use_Turner_Bootstrap = true; % use data from Turner et al, 2017?
 
 %%% Set the seed for repeatability
 rng('default');
@@ -187,6 +188,15 @@ end
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
 obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+
+%%% AJT EDIT HERE (2019/05/02)
+
+if use_Turner_Bootstrap
+    turnerFname = sprintf('%sobs/StoredData/Turner_InputData_%4i-%4i_%s-%s.mat',...
+                  dataDir,reread.sYear,reread.eYear,reread.tRes,reread.tAvg);
+    ajt_obs = load(turnerFname);
+    obs     = ajt_obs.out;
+end
 %
 % blow up CO error:
 %obs.nh_co_err(:)=500;

@@ -125,6 +125,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
+use_Turner_Bootstrap = true; % use data from Turner et al, 2017?
 
 %%% Set the seed for repeatability
 rng('default');
@@ -186,6 +187,13 @@ end
 % - NH/SH CO     obs & err (ppb)
 obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
 %
+use_Turner_Bootstrap = true; % use data from Turner et al, 2017?
+if use_Turner_Bootstrap
+    turnerFname = sprintf('%sobs/StoredData/Turner_InputData_%4i-%4i_%s-%s.mat',...
+                  dataDir,reread.sYear,reread.eYear,reread.tRes,reread.tAvg);
+    ajt_obs = load(turnerFname);
+    obs     = ajt_obs.out;
+end
 % blow up CO error:
 %obs.nh_co_err(:)=500;
 %obs.sh_co_err(:)=500;
@@ -310,11 +318,13 @@ end
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
 %1.8850    2.1200
-f = 2.12;
-kX_NH = 1.06*ones(nT,1); % s^-1
-kX_SH = 1.29*ones(nT,1); % s^-1
-%kX_NH = 1.81*ones(nT,1); % s^-1
-%kX_SH = 2.05*ones(nT,1); % s^-1
+
+%kX_NH = 1.40*ones(nT,1); % s^-1 for 6600 tg/yr OH S(H 
+%kX_NH = 1.0*ones(nT,1); % s^-1
+%kX_SH = 1.3*ones(nT,1); % s^-1
+
+kX_NH = 1.81*ones(nT,1); % s^-1
+kX_SH = 2.03*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -548,6 +558,12 @@ if export_data
     fprintf('Exporting all variables in this run to %s \n', data_filename)
     save(data_filename);
 end
+
+%%% for comparison of fitted emissions versus PNAS emissions 
+a = ems_anal(:,1) + ems_anal(:,2);
+c = out_anal;
+load('case0');
+b = ems_anal(:,1) + ems_anal(:,2);
 
 
 %%
