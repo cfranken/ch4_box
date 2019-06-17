@@ -107,7 +107,9 @@ function [ out, LM_param, matr ] = update_solution( St, ems_i, IC_i, ems_p, IC_p
 
 %%% Alternate cases to run
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer use_strat ignoreMCF ignoreCO
-global fitKX interactive_OH
+global fitKX interactive_OH no_temporal_correlation
+global large_prior
+
 if onlyCH4
     obs.nh_ch4c13(:) = NaN;
     obs.sh_ch4c13(:) = NaN;
@@ -188,8 +190,26 @@ Sa_n2o     =   2.0^2*ones(nT,1);
 Sa_c2h6    =  5000^2*ones(nT,1);
 % Sa_oh      =  250^2*ones(nT,1);
 % Use same relative error as in [OH}, i.e. about 10% of prior
-Sa_oh      =  475^2*ones(nT,1);
+Sa_oh      =  315^2*ones(nT,1);
 Sa_co      =   300^2*ones(nT,1);
+
+
+% NN: test runs with less temporal correlation and larger CH4 prior 
+if large_prior
+tau_ch4    = 1.; % yr
+tau_ch4c13 = 1; % yr
+tau_mcf    = 1.; % yr
+tau_n2o    = 1; % yr
+tau_c2h6   = 1; % yr
+tau_oh     = 1.; % yr
+tau_co     = 1; % yr
+tau_tau    = 1; % yr
+Sa_ch4     = 150^2*ones(nT,1);
+Sa_oh      =  315^2*ones(nT,1);
+Sa_co      =   800^2*ones(nT,1);
+end
+
+
 Sa_tau     =   3.0^2*ones(nT,1); 
 Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
                  30,30,10,10,15,15,5,5,100,100].^2;
@@ -266,7 +286,13 @@ Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
 
 tau    = [tau_ch4,tau_ch4,tau_ch4c13,tau_ch4c13,tau_mcf,tau_mcf,...
           tau_n2o,tau_n2o,tau_c2h6,  tau_c2h6,  tau_oh, tau_oh, tau_co, tau_co, tau_tau]*365.25;
+
+if no_temporal_correlation
+    tau = zeros(size(tau));
+end
+
 Sa     = fillDiagonalsAnal(Sa,tau,St);
+
 
 
 %%% Construct the observational error covariance matrix

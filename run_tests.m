@@ -3,6 +3,9 @@
 % A script to run tests of the inversions located in DriverScript
 % Exporting results of test to test_results.mat for python plotting because pythong plots are being used in the paper 
 
+global large_prior
+large_prior = false; % use large priors on our inversions?
+
 % Reference Case from AJT 2017 paper
 DriverScript
 
