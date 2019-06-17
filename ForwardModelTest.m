@@ -1,3 +1,4 @@
+
 %%% =======================================================================
 %%% = DriverScript.m
 %%% = Alex Turner
@@ -55,7 +56,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2016;
+eYear = 2080;
 %eYear = 2100;
 tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'month';     % Smooth the observations
@@ -296,8 +297,9 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-kX_NH = 1.06*ones(nT,1); % s^-1
-kX_SH = 1.29*ones(nT,1); % s^-1
+
+kX_NH = 0.99*ones(nT,1); % s^-1 for 6600 tg/yr OH source
+kX_SH = 1.23*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -367,19 +369,19 @@ interactive_OH = true;
 out    = boxModel_wrapper(St,ems,IC,params);
 IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
 
-
 % Run box model with purturbation 
 out_large    = boxModel_wrapper(St,ems_large,IC,params); %large perturbation 
 out_small    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation 
 
+result = calcFeedback(out_large, params, kX_NH, kX_SH);
+out_large.ch4_lifetime = result.ch4_global_lifetime;
+
+
 out_large.ch4 = (out_large.nh_ch4 + out_large.sh_ch4)/2;
+out_large.delta_ch4 = out_large.ch4 - out_large.ch4(1) * ones(size(St));
+
 out_small.ch4 = (out_small.nh_ch4 + out_small.sh_ch4)/2;
-
-
-% negative perturbation 
-%ems2(100,1)= ems(100,1)-dH*12;
-%out3_d    = boxModel_wrapper(St,ems2,IC,params);
-%ems2(100,1)= ems(100,1)+dH*12;
+out_small.delta_ch4 = out_small.ch4 - out_small.ch4(1)*ones(size(St));
 
 %%% Without the interactive OH 
 interactive_OH  = false;
@@ -392,7 +394,162 @@ out_large_noninteractive    = boxModel_wrapper(St,ems_large,IC,params); %large p
 out_small_noninteractive    = boxModel_wrapper(St,ems_small,IC,params); % small perturbation 
 
 out_large_noninteractive.ch4 = (out_large_noninteractive.nh_ch4 + out_large_noninteractive.sh_ch4)/2;
+out_large_noninteractive.delta_ch4 = out_large_noninteractive.ch4 - out_large_noninteractive.ch4(1)*ones(size(St));
+
 out_small_noninteractive.ch4 = (out_small_noninteractive.nh_ch4 + out_small_noninteractive.sh_ch4)/2;
+out_small_noninteractive.delta_ch4 = out_small_noninteractive.ch4 - out_small_noninteractive.ch4(1)*ones(size(St));
+
+time = [1: length(St)];
+figure(1)
+plot(time, out_large.delta_ch4, 'r', time, out_large_noninteractive.delta_ch4, 'b')
+xlabel('months')
+ylabel('$\delta CH_4 with respect to Steady State Concentration$','Interpreter','latex')
+title('Perturbation Test')
+legend('Interactive Chemistry', 'Noninteractive Chemistry')
+saveas(figure(1), 'forward_model_test.pdf', 'pdf')
 
 save('forward_model_test')
-return
+
+reaction = max(out_large.ch4) - out_large.ch4(1);
+e_fold = reaction / exp(1);
+disp(out_large.ch4(1) + e_fold)
+disp(out_large.ch4(100 + 12*13 + 7))
+
+d1 = out_large.ch4- out_large.ch4(1)*ones(size(St));
+d2 = out_large_noninteractive.ch4 -out_large_noninteractive.ch4(1)*ones(size(St));
+max1 = max(d1);
+max2 = max(d2)
+
+[m1, ind1] = min(abs(max1/exp(1)-d1));
+[m2, ind2] = min(abs(max2/exp(1)-d2));
+lifetime = (ind1 - 100)/12;
+
+fprintf('Perturbation lifetime is %2.3f years \n', lifetime)
+fprintf('NH OH is %2e \n', out_large.nh_oh(1))
+fprintf('SH OH is %2e \n', out_large.sh_oh(1))
+
+function result = calcFeedback(out, params, kX_NH, kX_SH)
+
+day2sec = 60*60*24; % convert days to seconds
+year2sec = 365*day2sec;
+n_air = params.n_air; % molec/cm^3 for dry atmosphere
+conversion = day2sec * n_air/1d9; % conversion factor rom ppb/day to molec/cm^3 / s;
+ppb2con = n_air / 1e9;
+ppt2con = n_air / 1e12;
+
+
+k_ch4 = params.k_12ch4; % ppb/day
+k_co =  params.k_co; % ppb/day
+k_ch4 = k_ch4 / conversion; % molec/cm^3 / s
+k_co = k_co / conversion; % molec/ cm^3 / s
+
+kX_NH = kX_NH(1);
+kX_SH = kX_SH(1);
+kx_global = 0.5 * (kX_NH + kX_SH); % molec/cm^3 / s
+
+
+
+%%% Read in concentrations
+nh_ch4 = ppb2con * out.nh_ch4; % molec/cm^3
+sh_ch4 = ppb2con * out.sh_ch4; % molec/cm^3
+global_ch4  = 0.5* (nh_ch4 + sh_ch4); % molec/ cm^3
+
+nh_co = ppb2con * out.nh_co; % molec/ cm^3
+sh_co = ppb2con * out.sh_co; % molec/ cm^3
+global_co = 0.5* (nh_co + sh_co); % molec/ cm^3
+
+nh_oh = out.nh_oh; % molec/ cm^3
+sh_oh = out.sh_oh; % molec/ cm^3
+global_oh = 0.5* (nh_oh + sh_oh); % molec/ cm^3
+
+
+
+[time_index, p] = size(out.nh_ch4);
+nh_e_folds = zeros(size(out.nh_ch4));
+sh_e_folds = zeros(size(out.nh_ch4));
+global_e_folds = zeros(size(out.nh_ch4));
+
+for t = 1:time_index
+    
+    nh_jacobian = zeros(3,3);
+    sh_jacobian = zeros(3,3);
+    global_jacobian = zeros(3,3);
+    
+    
+    %%% Construct the jacobians according to Prather 1994
+    
+    nh_jacobian(1,1) = -k_ch4 * nh_oh(t);
+    sh_jacobian(1,1) = -k_ch4 * sh_oh(t);
+    global_jacobian(1,1) = -k_ch4 * global_oh(t);
+    
+    %%% the [2,1] element is 0
+    
+    
+    nh_jacobian(3,1) = -k_ch4 * nh_ch4(t);
+    sh_jacobian(3,1) = -k_ch4 * sh_ch4(t);
+    global_jacobian(3,1) = -k_ch4 * global_ch4(t);
+    
+    % 2. Now for the CO equation
+    nh_jacobian(1,2) = k_ch4 * nh_oh(t);
+    sh_jacobian(1,2) = k_ch4 * sh_oh(t);
+    global_jacobian(1,2) = k_ch4 * global_oh(t);
+    
+    nh_jacobian(2,2) = -k_co * nh_oh(t);
+    sh_jacobian(2,2) = -k_co * sh_oh(t);
+    global_jacobian(2,2) = -k_co * global_oh(t);
+    
+    nh_jacobian(3,2) = k_ch4 * nh_ch4(t) - k_co * nh_co(t);
+    sh_jacobian(3,2) = k_ch4 * sh_ch4(t) - k_co * sh_co(t);
+    global_jacobian(3,2) = k_ch4 * global_ch4(t) - k_co * global_co(t);
+    
+    % 3. The Oh reaactions, d OH / dt
+    nh_jacobian(1,3) = -k_ch4 * nh_oh(t);
+    sh_jacobian(1,3) = -k_ch4 * sh_oh(t);
+    global_jacobian(1,3) = -k_ch4 * global_oh(t);
+    
+    nh_jacobian(2,3) = -k_co * nh_oh(t);
+    sh_jacobian(2,3) = -k_co * sh_oh(t);
+    global_jacobian(2,3) = -k_co * global_oh(t);
+    
+    nh_jacobian(3,3) = -k_ch4 * nh_ch4(t) - k_co * nh_co(t) - kX_NH;
+    sh_jacobian(3,3) = -k_ch4 * sh_ch4(t) - k_co * sh_co(t) - kX_SH;
+    global_jacobian(3,3) = -k_ch4 * global_ch4(t) - k_co * global_co(t) - kx_global;
+    
+    nh_jacobian = nh_jacobian';
+    sh_jacobian = sh_jacobian';
+    global_jacobian = global_jacobian';
+    
+    
+    %%% Take the eigenvalues
+    D_nh = eig(nh_jacobian);
+    D_sh = eig(sh_jacobian);
+    D_global = eig(global_jacobian);
+    
+    
+    
+    % CH4 lifetimes
+    result.ch4_nh_lifetime(t) = -1/D_nh(2)/year2sec;
+    result.ch4_sh_lifetime(t) = -1/D_sh(2)/year2sec;
+    result.ch4_global_lifetime(t) = -1/D_global(2)/year2sec;
+    result.ch4_ss(t) = -1 ./(global_jacobian(1,1)*year2sec);
+    
+    % CO lifetimes
+    result.co_nh_lifetime(t) = -1/D_nh(3)/day2sec;
+    result.co_sh_lifetime(t) = -1/D_sh(3)/day2sec;
+    result.co_global_lifetime(t) = -1/D_global(3)/day2sec;
+    result.co_ss(t) = -1 ./(global_jacobian(2,2)*day2sec);
+    
+    % OH lifetimes
+    result.oh_nh_lifetime(t) = -1/D_nh(1);
+    result.oh_sh_lifetime(t) = -1/D_sh(1);
+    result.oh_global_lifetime(t) = -1/D_global(1);
+    result.oh_ss(t) = -1 ./global_jacobian(3,3);
+    
+    
+    
+    % End of loop
+end
+
+end
+
+%%% End of function

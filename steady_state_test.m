@@ -295,8 +295,8 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-kX_NH = 1.81*ones(nT,1); % s^-1
-kX_SH = 2.03*ones(nT,1); % s^-1
+kX_NH = 0.99*ones(nT,1); % s^-1 for 6600 tg/yr OH source
+kX_SH = 1.23*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions

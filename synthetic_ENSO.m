@@ -28,8 +28,8 @@ clf
 clear all
 close all
 clc
-diary run1.txt
-diary on
+%diary run1.txt
+%diary on
 
 %%% Header
 fprintf('\n ***********************************\n')
@@ -55,20 +55,19 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2080;
+eYear = 2180;
 %eYear = 2100;
-tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
+tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
 %%% Export variables to mat file
 export_data = true; % do we want to export data to data_filename.mat?
-data_filename  = 'synthetic_inversion_low_soh';
+data_filename  = 'synthetic_enso_test';
 
-disp('** Beginning the Synthetic Inversion Test **');
-
-
+%%% Describing experiment to be exported to .mat file 
+fprintf('*** Beginning the Synthetic ENSO Test ***')
 
 %%% Execute in parallel?
 run_parallel = false;
@@ -128,7 +127,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
-no_temporal_correlation = true; % do we want to get rid of temporal correlations?
+temporal_correlation = false; % do we want to get rid of temporal correlations?
 
 
 %%% Set the seed for repeatability
@@ -235,6 +234,12 @@ fprintf('\n *** LOADING THE EMISSIONS *** \n');
 % - "nh": CH4 emissions from the Northern hemisphere (Tg/yr)
 % - "sh": CH4 emissions from the Southern hemisphere (Tg/yr)
 ch4_ems = getCH4ems(St,tRes,dataDir);
+
+%%% NN Changing the initial emissions for synthetic emissions test.
+% Increasing from 550 tg/yr to 575 tg/yr in year 50
+ch4_ems.nh(:) = 425; % Tg/yr
+ch4_ems.sh(:) = 135; % Tg/yr
+
 
 %%% Get the delta13C composition for NH/SH CH4 emissions
 % Stucture with two fields
@@ -353,36 +358,80 @@ ems.tau_TS    = tau_TS;
 ems.kX_NH     = kX_NH;
 ems.kX_SH     = kX_SH;
 % Convert the structure to a matrix
-ems = assembleEms(ems);
-
-% Make the perturbations for emissions 
-ems_pert = ems;
-pert = 10; % number of Tg perturbation to CH4 per hemisphere
-pert_year = 50; % year to have ch4 emissions perturbation 
-ems_pert(pert_year : end, 1) = ems_pert(pert_year : end, 1) + pert*ones(size(ems_pert(pert_year : end, 1) ));
-ems_pert(pert_year : end, 2) = ems_pert(pert_year : end, 2)  + pert*ones(size(ems_pert(pert_year : end, 2) ));
-
-
-
-
+ems_array = assembleEms(ems);
 
 %%% Run the box model
 params = getParameters(St); % Only need to do this once
 IC     = params.IC;         % Guess for the inital conditions
 interactive_OH  = true;     % Allow OH feedbacks?
+out    = boxModel_wrapper(St,ems_array,IC,params);
 
-% Run to get steady state for IC for 2nd box model run (synthetic data)
-out    = boxModel_wrapper(St,ems,IC,params);
+
+% NN: take the steady state values and make them our new IC
+n_air   = 2.69e19;
 IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
 
+% NN: Adding a CO perturbation to the ems 
+% CH4 19.7
+% CO 587 
+ch4_perturb = 35.8; % Tg/yr in 1997
+co_perturb = 587; % Tg/yr in 1997
+perturb_year = 100; % when to apply perturbation 
+co_perturb_duration = 1; % months
+ch4_perturb_duration = 1; %months 
 
 
-% Run to get synthetic data 
-out    = boxModel_wrapper(St,ems_pert,IC,params);
+% NN: Test 1: Only enhanced CH4 emissions from fires
+ems.nh_ch4(perturb_year*12 : perturb_year*12+ ch4_perturb_duration) = ems.nh_ch4(1) + 0.5*ch4_perturb;
+ems.sh_ch4(perturb_year*12 : perturb_year*12+ ch4_perturb_duration) = ems.sh_ch4(1) + 0.5*ch4_perturb;
+ems_array = assembleEms(ems);
+ch4_out    = boxModel_wrapper(St,ems_array,IC,params);
 
-% assign new observations and errors
+% Test 2: CH4 and CO perturbations
+ems.nh_co(perturb_year*12 : perturb_year*12 + co_perturb_duration) = ems.nh_co(1) + 0.5 * co_perturb;
+ems.sh_co(perturb_year*12 : perturb_year*12 + co_perturb_duration) = ems.sh_co(1) + 0.5 * co_perturb;
+ems_array = assembleEms(ems);
+ch4_co_out    = boxModel_wrapper(St,ems_array,IC,params);
+ 
+% NN: Test 3: only CO perturbation 
+% get rid of CH4 perturbation
+ems.nh_ch4(:) = ems.nh_ch4(1);
+ems.sh_ch4(:) = ems.sh_ch4(1);
+ems_array = assembleEms(ems);
+
+
+
+% run box model
+co_out    = boxModel_wrapper(St,ems_array,IC,params);
+
+time = [1:length(St)];
+subplot(2,2,1)
+plot(time, (ch4_out.nh_ch4 + ch4_out.sh_ch4)/2, 'g', time, (co_out.nh_ch4 + co_out.sh_ch4)/2, 'o', time, (ch4_co_out.nh_ch4 + ch4_co_out.sh_ch4)/2, 'k')
+xlabel('Months')
+ylabel('ppb')
+title('$CH_4$ Concentrations')
+
+subplot(2,2,2)
+plot(time, (ch4_out.nh_oh + ch4_out.sh_oh)/2, 'g', time, (co_out.nh_oh + co_out.sh_oh)/2, 'o', time, (ch4_co_out.nh_oh + ch4_co_out.sh_oh)/2, 'k')
+xlabel('months')
+ylabel('$molecules/cm^3')
+title('OH Concentrations')
+
+
+subplot(2,2,3)
+plot(time, (ch4_out.nh_co + ch4_out.sh_co)/2, 'g', time, (co_out.nh_co + co_out.sh_co)/2, 'o', time, (ch4_co_out.nh_co + ch4_co_out.sh_co)/2, 'k')
+xlabel('months')
+ylabel('ppb')
+title('CO Concentrations')
+legend('$CH_4$ Perturbation', 'CO Perturbation', '$CH_4$ and CO Perturbation')
+
+save('synthetic_enso.mat')
+fprintf('Done running the box model \n');
+return
+%%% end of forward model run 
+
+
 obs = out; % convert the output of the box model into observations for test 
-
 synthetic_error = 0.01; %  make error 1 percent of observation because we know the observations 
 
 obs.nh_ch4_err = obs.nh_ch4*synthetic_error;
@@ -417,30 +466,21 @@ if do_deterministic
     fprintf('\n *** DETERMINISTIC INVERSION *** \n');
     
     %%% Invert
-
+    % Newton: here is the problem
 interactive_OH  = true;     % Allow OH feedbacks?
 
 % Create an arbitrary guess for initial ems
+ems2= ems;
+ems2(:,1) = 575;
+ems2(:,2) = 200;
 
 % NN: run inversion with interactive OH 
-    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
-out_interactive    = boxModel_wrapper(St,anal_soln{1},IC,params);
-
+    [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems2,IC,params,det_linear,run_parallel);
 
 
 % NN: Let's now run our inversion without interactive OH 
 interactive_OH = false;
-
-% model spin-up
-out    = boxModel_wrapper(St,ems,IC,params);
-IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
-
-    det_linear      = true;     % Use a linear deterministic inversion?
-
-
-    [anal_soln2,jacobian_ems2,jacobian_IC2,reltol2,abstol2, mati2] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
-out_noninteractive    = boxModel_wrapper(St,anal_soln2{1},IC,params);
-
+    [anal_soln2,jacobian_ems2,jacobian_IC2,reltol2,abstol2, mati2] = invert_methane(St,obs,ems2,IC,params,det_linear,run_parallel);
 
 synthetic_interactive_nh_ems = anal_soln{1}(:,1);
 synthetic_sh_interactive_ems = anal_soln{1}(:,2);
@@ -448,43 +488,11 @@ synthetic_interactive_ems = synthetic_interactive_nh_ems + synthetic_sh_interact
 
 synthetic_noninteractive_nh_ems = anal_soln2{1}(:,1);
 synthetic_sh_noninteractive_ems = anal_soln2{1}(:,2);
-synthetic_noninteractive_ems = synthetic_noninteractive_nh_ems + synthetic_sh_noninteractive_ems;
+synthetic_noninteractive_ems = synthetic_noninteractive_nh_ems + synthetic_sh_noninteractive_ems
 
-synthetic_nh_actual = ems_pert(:,1);
-synthetic_sh_actual = ems_pert(:,2);
-synthetic_actual = synthetic_nh_actual + synthetic_sh_actual;
-
-% get global average for concentrations 
-out_interactive.ch4 = (out_interactive.nh_ch4 + out_interactive.sh_ch4)/2;
-out_interactive.oh = (out_interactive.nh_oh + out_interactive.sh_oh)/2;
-
-out_noninteractive.ch4 = (out_noninteractive.nh_ch4 + out_noninteractive.sh_ch4)/2;
-out_noninteractive.oh = (out_noninteractive.nh_oh + out_noninteractive.sh_oh)/2;
-
-obs.ch4 = (obs.nh_ch4 + obs.sh_ch4)/2;
-obs.oh = (obs.nh_oh + obs.sh_oh)/2;
-
-
-
-% plot the fitted concentrations 
-clf
-close all
-figure(1)
-subplot(211)
-time = [1: length(St)];
-time = time(5:end-5);
-plot(time, obs.ch4(5:end-5), 'r-', time, out_noninteractive.ch4(5: end-5), 'g-', time, out_interactive.ch4(5 : end - 5), 'b-')
-xlabel('years')
-ylabel('ppb')
-title('CH4 concentrations')
-
-subplot(212)
-plot(time, obs.oh(5:end-5), 'r-', time, out_noninteractive.oh(5: end-5), 'g-', time, out_interactive.oh(5 : end - 5), 'b-')
-xlabel('years')
-ylabel('molec/cm^3')
-title('OH concentrations')
-
-
+synthetic_nh_actual = ems(:,1);
+synthetic_sh_actual = ems(:,2);
+synthetic_actual = synthetic_nh_actual + synthetic_sh_actual
 
 %NN: Let's stop the script here
 return
