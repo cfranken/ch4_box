@@ -363,6 +363,7 @@ ems_array = assembleEms(ems);
 %%% Run the box model
 params = getParameters(St); % Only need to do this once
 IC     = params.IC;         % Guess for the inital conditions
+
 interactive_OH  = true;     % Allow OH feedbacks?
 out    = boxModel_wrapper(St,ems_array,IC,params);
 
@@ -374,17 +375,22 @@ IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000),
 % NN: Adding a CO perturbation to the ems 
 % CH4 19.7
 % CO 587 
-ch4_perturb = 35.8; % Tg/yr in 1997
-co_perturb = 587; % Tg/yr in 1997
+%ch4_perturb = 12*35.8; % Tg/yr in 1997
+ch4_perturb = 12*20; % Tg/yr in 1997
+co_perturb = 12*250; % Tg/yr in 1997
 perturb_year = 100; % when to apply perturbation 
-co_perturb_duration = 1; % months
-ch4_perturb_duration = 1; %months 
+co_perturb_duration = 0; % months
+ch4_perturb_duration = 0; %months 
 
 
 % NN: Test 1: Only enhanced CH4 emissions from fires
 ems.nh_ch4(perturb_year*12 : perturb_year*12+ ch4_perturb_duration) = ems.nh_ch4(1) + 0.5*ch4_perturb;
 ems.sh_ch4(perturb_year*12 : perturb_year*12+ ch4_perturb_duration) = ems.sh_ch4(1) + 0.5*ch4_perturb;
 ems_array = assembleEms(ems);
+fprintf('CH4 test \n')
+ems_array(1195:1205, 1)
+ems_array(1195:1205, 2)
+
 ch4_out    = boxModel_wrapper(St,ems_array,IC,params);
 
 % Test 2: CH4 and CO perturbations
@@ -392,12 +398,22 @@ ems.nh_co(perturb_year*12 : perturb_year*12 + co_perturb_duration) = ems.nh_co(1
 ems.sh_co(perturb_year*12 : perturb_year*12 + co_perturb_duration) = ems.sh_co(1) + 0.5 * co_perturb;
 ems_array = assembleEms(ems);
 ch4_co_out    = boxModel_wrapper(St,ems_array,IC,params);
+
+fprintf('CH4 + CO test \n')
+ems_array(1195:1205, 1)
+ems_array(1195:1205, 2)
+ems_array(1195:1205, 13)
+ems_array(1195:1205, 14)
+
  
 % NN: Test 3: only CO perturbation 
 % get rid of CH4 perturbation
 ems.nh_ch4(:) = ems.nh_ch4(1);
 ems.sh_ch4(:) = ems.sh_ch4(1);
 ems_array = assembleEms(ems);
+fprintf('CO test \n')
+ems_array(1195:1205, 13)
+ems_array(1195:1205, 14)
 
 
 
