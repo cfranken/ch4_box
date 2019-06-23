@@ -1,5 +1,6 @@
 %%% =======================================================================
 %%% = DriverScript.m
+
 %%% = Alex Turner
 %%% = Originally created on 04/12/2016
 %%% =----------------------------------------------------------------------
@@ -53,7 +54,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2018;
+eYear = 2020;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -125,7 +126,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
-use_Turner_Bootstrap = true; % use data from Turner et al, 2017?
+use_Turner_Bootstrap = false; % use data from Turner et al, 2017?
 
 %%% Set the seed for repeatability
 rng('default');
@@ -193,7 +194,16 @@ if use_Turner_Bootstrap
                   dataDir,reread.sYear,reread.eYear,reread.tRes,reread.tAvg);
     ajt_obs = load(turnerFname);
     obs     = ajt_obs.out;
+
+% Get rid of CO data 
+coYear = datenum(1991, 1, 1);
+ind = find(St<coYear);
+obs.nh_co(ind(1) : ind(end)) = nan;
+obs.sh_co(ind(1) : ind(end)) = nan;
+
 end
+
+
 % blow up CO error:
 %obs.nh_co_err(:)=500;
 %obs.sh_co_err(:)=500;
@@ -317,11 +327,8 @@ end
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-%1.8850    2.1200
-%kX_NH = 1.0*ones(nT,1); % s^-1
-%kX_SH = 1.3*ones(nT,1); % s^-1
-kX_NH = 1.81*ones(nT,1); % s^-1
-kX_SH = 2.05*ones(nT,1); % s^-1
+kX_NH = 0.99*ones(nT,1); % s^-1 for 6600 tg/yr OH source
+kX_SH = 1.23*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions

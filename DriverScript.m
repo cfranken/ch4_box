@@ -55,7 +55,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2018;
+eYear = 2020;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -84,7 +84,7 @@ do_cmaes         = false;    % Covariance Matrix Adaptation Evolution Strategy
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag  = false;
+reread.flag  = true;
 % Other flags for re-reading
 reread.sYear = sYear;
 reread.eYear = eYear;
@@ -127,7 +127,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 % Flags for other tests to run
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
-use_Turner_Bootstrap = true; % use data from Turner et al, 2017?
+use_Turner_Bootstrap = false; % use data from Turner et al, 2017?
 
 %%% Set the seed for repeatability
 rng('default');
@@ -197,6 +197,13 @@ if use_Turner_Bootstrap
     ajt_obs = load(turnerFname);
     obs     = ajt_obs.out;
 end
+
+coYear = datenum(1991, 1, 1);
+ind = find(St<coYear);
+obs.nh_co(ind(1) : ind(end)) = nan;
+obs.sh_co(ind(1) : ind(end)) = nan;
+
+
 %
 % blow up CO error:
 %obs.nh_co_err(:)=500;

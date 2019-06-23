@@ -25,6 +25,8 @@
 
 function [ out ] = makeObs( St, tAvg, ch4_obs, ch4c13_obs, mcf_obs, n2o_obs, c2h6_obs, co_obs, dataDir, reread )
 
+global use_MOPIT_CO
+
 %%% Diagnostic
 fprintf('\n *** MAKING THE OBSERVATION STRUCTURE *** \n');
 
@@ -270,6 +272,49 @@ catch
     eDat_NH = NaN * St;
     eDat_SH = NaN * St;
 end
+
+
+
+
+if use_MOPIT_CO
+
+disp('*** Replacing surface data with MOPIT obs***')
+sYear = 2000; % beginning of MOPIT record
+eYear = min( datenum(2017, 1, 1), St(1));
+ % end of MOPiT record
+tRes = 'month';
+St_mopit    = getTime(sYear,eYear,tRes); % Time vector
+
+tRes = 'year';
+St_blockOutput    = getTime(sYear,eYear,tRes); % Time vector
+
+mopit = xlsread('mopit_co.xlsx');
+
+nh_co = mopit(:,4);
+nh_co_err = mopit(:,3);
+fDays = 365.25;
+
+sh_co = mopit(:,7);
+sh_co_err = mopit(:,6);
+    [tDat, yDat] = BlockAverage_CO(St_blockOutput,St_mopit,nh_co,ones(size(St_blockOutput)),fDays);
+    [tDat, nh_coerr] = BlockAverage_CO(St_blockOutput,St_mopit,nh_co_err,ones(size(St_blockOutput)),fDays);
+    [tDat, sh_co] = BlockAverage_CO(St_blockOutput,St_mopit,sh_co,ones(size(St_blockOutput)),fDays);
+    [tDat, sh_coerr] = BlockAverage_CO(St_blockOutput,St_mopit,sh_co_err,ones(size(St_blockOutput)),fDays);
+oDat_NH(21: 21 + length(St_blockOutput)) = nh_co;
+oDat_SH(21: 21 + length(St_blockOutput)) = sh_co;
+
+eDat_NH(21: 21 + length(St_blockOutput)) = nh_co_err;
+eDat_SH(21: 21 + length(St_blockOutput)) = sh_co_err;
+end
+
+% NN:  Get rid of CO before 1991 
+coYear = datenum(1991, 1, 1);
+ind = find(St<coYear);
+oDat_NH(ind(1) : ind(end)) = nan;
+oDat_SH(ind(1) : ind(end)) = nan;
+
+
+
 
 %%% Put the data in the output structure
 out.nh_co     = oDat_NH;
