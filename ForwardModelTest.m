@@ -56,7 +56,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2080;
+eYear = 2180;
 %eYear = 2100;
 tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'month';     % Smooth the observations
@@ -351,17 +351,17 @@ IC     = params.IC;         % Guess for the inital conditions
 % create perturbation 
 ems_large = ems;
 ems_small = ems;
-DH_large = 25; % size of purturbation  in Tg/yr
+DH_large = 15; % size of purturbation  in Tg/yr
 DH_small = 5; % small perturbation example  in Tg/yr
 
 
 
 % Create purturbation for box model input
 ems_large(100,1)= ems(100,1)+DH_large*12;
-ems_small(100,1)= ems(100,1)+ DH_small *12; % Small perturbation 
+ems_small(100,1)= ems(100,1)+ DH_small*12; % Small perturbation 
 
-ems_large(100,2)= ems(100,1)+DH_large*12;
-ems_small(100,2)= ems(100,1)+ DH_small *12; % Small perturbation 
+ems_large(100,2)= ems(100,2)+DH_large;
+ems_small(100,2)= ems(100,2)+ DH_small; % Small perturbation 
 
 interactive_OH = true;
 
@@ -407,6 +407,9 @@ ylabel('$\delta CH_4 with respect to Steady State Concentration$','Interpreter',
 title('Perturbation Test')
 legend('Interactive Chemistry', 'Noninteractive Chemistry')
 saveas(figure(1), 'forward_model_test.pdf', 'pdf')
+
+ems_large = makeEmsStruct(ems_large);
+ems_small = makeEmsStruct(ems_small);
 
 save('forward_model_test')
 
