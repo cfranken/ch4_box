@@ -1,4 +1,14 @@
 function obs_struct = useMopit(St, obs_struct, tRes)
+%%% Takes surface obs and replaces with MOPIT obs
+%%% Rescales surface data, prior to MOPIT, according to MOPIT scaling
+%%% inputs:
+%%% 1. St: Our time vector
+%%% 2. obs_struct: The concentration obs structure from makeObs.m
+%%% 3. tRes: time resolution. Either 'year' or 'month'
+%%% output:
+%%%obs_struct: the processed observation struct with replaced MOPIT data and rescaled surface data 
+%%% Newton Nguyen 4 July 2019
+
 
 disp('*** Replacing surface data with MOPIT obs***')
 
@@ -11,18 +21,13 @@ sYear = 2000; % beginning of MOPIT record
 eYear = min( datenum(2017, 1, 1), St(end));
 eYear = datevec(eYear); eYear = eYear(1);
 
- % end of MOPiT record
-tRes = 'month';
-St_mopit    = getTime(sYear,eYear,tRes); % Time vector
-
-tRes = 'year';
-St_blockOutput    = getTime(sYear,eYear,tRes); % Time vector
-
+% Read the MOPIT datafile
 mopit = xlsread('mopit_co.xlsx');
 
+% assign data to names 
 nh_co = mopit(:,4);
 nh_co_err = mopit(:,3);
-fDays = 365.25;
+
 
 sh_co = mopit(:,7);
 sh_co_err = mopit(:,6);
@@ -33,17 +38,25 @@ sh_co = annualAvg(sh_co);
 nh_co_err = annualAvg(nh_co_err);
 sh_co_err = annualAvg(sh_co_err);
 
+% compute scaling factors by only using timeseries during MOPIT era
+nh_co_scale = mean(nh_co ./ obs_struct.nh_co(ind_start : ind_start + length(nh_co_err)-1))
+sh_co_scale = mean(sh_co ./ obs_struct.sh_co(ind_start:ind_start+length(sh_co_err)-1))
+nh_co_err_scale = mean(nh_co_err ./ obs_struct.nh_co_err(ind_start : ind_start + length(nh_co_err)-1))
+sh_co_err_scale = mean(sh_co_err ./ obs_struct.sh_co_err(ind_start:ind_start+length(sh_co_err)-1))
 
+% rescale the pre-MOPIT surface obs with MOPIT obs
+obs_struct.nh_co(1:ind_start - 1) = nh_co_scale * obs_struct.nh_co(1:ind_start - 1);
+obs_struct.sh_co(1 : ind_start-1) = sh_co_scale * obs_struct.sh_co(1 : ind_start-1);
+obs_struct.nh_co_err(1 : ind_start - 1) = nh_co_err_scale * obs_struct.nh_co_err(1 : ind_start - 1);
+obs_struct.sh_co_err(1 : ind_start - 1) = sh_co_err_scale * obs_struct.sh_co_err(1 : ind_start - 1);
 
+% Replace Surface record corresponding to MOPIT times with MOPIT obs
+obs_struct.nh_co(ind_start : ind_start + length(nh_co_err)-1) = nh_co;
+obs_struct.sh_co(ind_start:ind_start+length(sh_co_err)-1) = sh_co;
+obs_struct.nh_co_err(ind_start : ind_start + length(nh_co_err)-1) = nh_co_err;
+obs_struct.sh_co_err(ind_start:ind_start+length(sh_co_err)-1) = sh_co_err;
 
-% replace the data
-% Also rescale with surface data
-obs_struct.nh_co(ind_start : ind_start + length(nh_co_err)-1) = 0.9377*nh_co;
-obs_struct.sh_co(ind_start:ind_start+length(sh_co_err)-1) = 0.8574*sh_co;
-obs_struct.nh_co_err(ind_start : ind_start + length(nh_co_err)-1) = 0.1224*nh_co_err;
-obs_struct.sh_co_err(ind_start:ind_start+length(sh_co_err)-1) = 0.1469*sh_co_err;
-
-
+%%%% End of function
 
 function annual_avg = annualAvg(data)
 %%% Takes the annual average of a timeseries 

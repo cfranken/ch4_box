@@ -55,9 +55,9 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2020;
+eYear = 2017;
 %eYear = 2100;
-tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
+tRes  = 'month';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
 St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
@@ -97,6 +97,7 @@ reread.dir   = dataDir;
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
 global k_co_flag use_strat interactive_OH use_other_sinks ignoreCO % Other
+global no_temporal_correlation large_prior % inversion tests on prior constraints
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -104,21 +105,25 @@ plot_raw        = false;    % Plot the raw observations?
 plot_old_cmaes  = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
 use_strat       = false;     % Use a stratosphere?
-interactive_OH  = false;     % Allow OH feedbacks?
+interactive_OH  = true;     % Allow OH feedbacks?
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
 use_other_sinks = false;     % Use non-OH sinks?
 % Linear inversion flags
-det_linear      = true;     % Use a linear deterministic inversion?
+det_linear      = false;     % Use a linear deterministic inversion?
 fixedCH4        = false;    % Use fixed methane emissions
 fixedOH         = false;    % Use fixed OH anomalies
 onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO        = true;     % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
+% Flags for priors in inversions
+no_temporal_correlation = false; % Run with no temporal correlation? Should be run with large_prior
+large_prior = false; % Run with large prior in emissions? 
+
 % MCF sensitivity test flags
 k_co_flag       = false;     % Use k_CO that AJT derived
-k_mcf_flag      = false;     % Use k_MCF that AJT derived
+k_mcf_flag      = true;     % Use k_MCF that AJT derived
 smooth_MCF      = false;    % Smooth the MCF emissions with a 5-year filter?
 set_MCF_EMS     = false;    % Set post-2000 emissions to a fixed value?
 MCF_EMS_val     = 0.0;      % Fixed post-2000 MCF emissions value (Gg/yr)
@@ -280,7 +285,7 @@ c2h6_ems = getC2H6ems(St,tRes,dataDir);
 % - "nh": OH emissions from the Northern hemisphere (Tg/yr)
 % - "sh": OH emissions from the Southern hemisphere (Tg/yr)
 oh_ems = getOHems(St,tRes,dataDir);
-if ~interactive_OH
+if ~interactive_OH && ~fixedOH
     oh_ems.nh = ones(size(oh_ems.nh));
     oh_ems.sh = ones(size(oh_ems.sh));
 end
@@ -380,7 +385,7 @@ ems = assembleEms(ems);
 %%% Run the box model
 params = getParameters(St); % Only need to do this once
 IC     = params.IC;         % Guess for the inital conditions
-out    = boxModel_wrapper(St,ems,IC,params);
+[out, ems]    = boxModel_wrapper(St,ems,IC,params);
 if plot_prior
     plotNewObs(St,out,obs,sprintf('%s/%s/prior_%%s.%s',outDir,tRes,ftype));
     %writeData(St,obs,out,ems,IC,sprintf('%s/%s/prior_%%s.csv',outDir,tRes));

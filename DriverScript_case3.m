@@ -53,7 +53,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2020;
+eYear = 2017;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -96,7 +96,7 @@ global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
 global k_co_flag use_strat interactive_OH use_other_sinks ignoreCO % Other
 global use_MOPIT_CO
-
+global no_temporal_correlation large_prior % inversion tests on prior constraints
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -116,6 +116,10 @@ onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO = false; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
+% Flags for priors in inversions
+no_temporal_correlation = true; % Run with no temporal correlation? Should be run with large_prior
+large_prior = true; % Run with large prior in emissions? 
+
 % MCF sensitivity test flags
 k_co_flag       = true;     % Use k_CO that AJT derived
 k_mcf_flag      = true;     % Use k_MCF that AJT derived
@@ -128,7 +132,7 @@ MCF_ERR_val     = 2.0;      % Error in MCF observations (ppt)
 use_OH_stratMLO = false;    % Use the OH derived from MLO strat ozone?
 use_Ed          = false;    % Use Ed Dlugokencky's hemispheric averages?
 use_Turner_Bootstrap = false; % use data from Turner et al, 2017?
-use_MOPIT_CO = true; % Use MOPIT data?
+use_MOPIT_CO = false ; % Use MOPIT data?
 
 %%% Set the seed for repeatability
 rng('default');
@@ -189,6 +193,11 @@ end
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
 obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+
+if use_MOPIT_CO
+obs = useMopit(St, obs, tRes);
+end
+
 %
 
 if use_Turner_Bootstrap

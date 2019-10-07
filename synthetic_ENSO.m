@@ -63,7 +63,7 @@ St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
 %%% Export variables to mat file
-export_data = true; % do we want to export data to data_filename.mat?
+export_data = false; % do we want to export data to data_filename.mat?
 data_filename  = 'synthetic_enso_test';
 
 %%% Describing experiment to be exported to .mat file 
@@ -372,9 +372,19 @@ out    = boxModel_wrapper(St,ems_array,IC,params);
 n_air   = 2.69e19;
 IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
 
+interactive_OH = false;
+out    = boxModel_wrapper(St,ems_array,IC,params);
+IC_noninteractive = IC;
+
+% NN: take the steady state values and make them our new IC
+n_air   = 2.69e19;
+IC_noninteractive(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
+
+
+
 % NN: Adding a CO perturbation to the ems 
-% CH4 19.7
-% CO 587 
+% CH4 35.8
+% CO 250
 %ch4_perturb = 12*35.8; % Tg/yr in 1997
 ch4_perturb = 12*20; % Tg/yr in 1997
 co_perturb = 12*250; % Tg/yr in 1997
@@ -389,9 +399,18 @@ ems.sh_ch4(perturb_year*12 : perturb_year*12+ ch4_perturb_duration) = ems.sh_ch4
 ems_array = assembleEms(ems);
 fprintf('CH4 test \n')
 ems_array(1195:1205, 1)
-ems_array(1195:1205, 2)
 
+
+% run methane perturbation in noninteractive mode
+interactive_OH = false;
+ch4_out_noninteractive    = boxModel_wrapper(St,ems_array,IC_noninteractive,params);
+
+% get global mean
+ch4_out_noninteractive.ch4 = (ch4_out_noninteractive.nh_ch4 + ch4_out_noninteractive.sh_ch4)/2;
+
+interactive_OH = true;
 ch4_out    = boxModel_wrapper(St,ems_array,IC,params);
+ch4_out.ch4 = (ch4_out.nh_ch4 + ch4_out.sh_ch4)/2;
 
 % Test 2: CH4 and CO perturbations
 ems.nh_co(perturb_year*12 : perturb_year*12 + co_perturb_duration) = ems.nh_co(1) + 0.5 * co_perturb;
@@ -441,8 +460,26 @@ ylabel('ppb')
 title('CO Concentrations')
 legend('$CH_4$ Perturbation', 'CO Perturbation', '$CH_4$ and CO Perturbation')
 
+ems_struct = makeEmsStruct(ems_array);
+
+
 save('synthetic_enso.mat')
 fprintf('Done running the box model \n');
+
+d1 = ch4_out.ch4- ch4_out.ch4(1)*ones(size(St));
+d2 = ch4_out_noninteractive.ch4 -ch4_out_noninteractive.ch4(1)*ones(size(St));
+max1 = max(d1);
+max2 = max(d2)
+[m1, ind1] = min(abs(max1/exp(1)-d1));
+[m2, ind2] = min(abs(max2/exp(1)-d2));
+lifetime = (ind1 - 12*perturb_year)/12;
+noninteractive_lifetime = (ind2 - 12*perturb_year)/12;
+
+fprintf('Perturbation lifetime is %2.3f years \n', lifetime)
+fprintf('Noninteractive lifetime is %2.1f years \n', noninteractive_lifetime)
+
+%fprintf('NH OH is %2e \n', out_large.nh_oh(1))
+%fprintf('SH OH is %2e \n', out_large.sh_oh(1))
 return
 %%% end of forward model run 
 
@@ -542,6 +579,8 @@ title('SH Synthetic Emissions Test')
 xlabel('years')
 ylabel('Tg')
 saveas(figure(1), 'synthetic_emissions_tests.png', 'png')
+
+
 return
 
     

@@ -407,6 +407,9 @@ noninteractive_out_4x = boxModel_wrapper(St,ems_4x,IC,params);
 noninteractive_out_4x.ch4 = (noninteractive_out_4x.nh_ch4 + noninteractive_out_4x.sh_ch4)/2;
 noninteractive_out_4x.oh = (noninteractive_out_4x.nh_oh + noninteractive_out_4x.sh_oh)/2;
 
+ems_1x = makeEmsStruct(ems_1x);
+ems_2x = makeEmsStruct(ems_2x);
+ems_4x = makeEmsStruct(ems_4x);
 save('steady_state_test')
 time = [2016:2200];
 close all

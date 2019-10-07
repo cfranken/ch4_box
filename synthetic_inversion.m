@@ -373,6 +373,7 @@ interactive_OH  = true;     % Allow OH feedbacks?
 
 % Run to get steady state for IC for 2nd box model run (synthetic data)
 out    = boxModel_wrapper(St,ems,IC,params);
+
 IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
 
 
@@ -435,7 +436,7 @@ interactive_OH = false;
 out    = boxModel_wrapper(St,ems,IC,params);
 IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000), out.sh_ch4(end)* (1 - 47.6/1000), out.nh_mcf(end), out.sh_mcf(end), out.nh_n2o(end), out.sh_n2o(end), out.nh_c2h6(end), out.sh_c2h6(end), (out.nh_oh(end)/params.n_air)*1d9, (out.sh_oh(end)/params.n_air)*1d9, out.nh_co(end), out.sh_co(end)];
 
-    det_linear      = true;     % Use a linear deterministic inversion?
+%    det_linear      = true;     % Use a linear deterministic inversion?
 
 
     [anal_soln2,jacobian_ems2,jacobian_IC2,reltol2,abstol2, mati2] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
@@ -483,11 +484,11 @@ plot(time, obs.oh(5:end-5), 'r-', time, out_noninteractive.oh(5: end-5), 'g-', t
 xlabel('years')
 ylabel('molec/cm^3')
 title('OH concentrations')
-
+return
 
 
 %NN: Let's stop the script here
-return
+
 
 %%% NN Plotting the results of the inversion here
 fig1 =figure(1);

@@ -1,0 +1,17 @@
+function getIC()
+
+    # Initialize matrix
+    IC = Array{Float64}(14,1); # Initialize IC array
+
+    # Methane for NH SH
+    IC(1) = 1575; # ppb NH
+    IC(2) = 1520; # ppb SH
+
+    # CO
+    IC(3) = 90; # ppb NH
+    IC(4) = 60; # ppb SH
+
+    OA
+    
+
+    

@@ -2,8 +2,8 @@ clear all
 close all
 
 %datafiles = {'case1', 'case2', 'case3', 'case4', 'case5'};
-datafiles={'case2'}
-time = [1980:2018];
+datafiles={'synthetic_inversion'};
+time = [1: 101];
 colors = {'p', 'b', 'k', 'o', 'g'};
 figure(1)
 
@@ -24,10 +24,11 @@ for i = 1:length(datafiles)
     title('Steady State Lifetime')
     hold on
 end
-feedback = output.ch4_global_lifetime ./ output.ch4_ss;
 
 legend('Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5');
 saveas(figure(1), 'ch4_lifetime.pdf', 'pdf')
+feedback = output.ch4_global_lifetime ./ output.ch4_ss;
+
 % The CO plot
 figure(2)
 for i = 1:length(datafiles)
@@ -76,6 +77,8 @@ saveas(figure(3), 'oh_lifetime.pdf' , 'pdf')
 function result = calculateLifetimes(filename)
 
 load(filename)
+%out = out_interactive;
+out = obs;
 
 day2sec = 60*60*24; % convert days to seconds
 year2sec = 365*day2sec;
@@ -90,8 +93,8 @@ k_co =  params.k_co; % ppb/day
 k_ch4 = k_ch4 / conversion; % molec/cm^3 / s
 k_co = k_co / conversion; % molec/ cm^3 / s
 
-kX_NH = kX_NH(1);
-kX_SH = kX_SH(1);
+kX_NH = 1.06; % s^-1
+kX_SH = 1.29; % s^-1
 kx_global = 0.5 * (kX_NH + kX_SH); % molec/cm^3 / s
 
 

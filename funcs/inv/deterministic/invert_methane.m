@@ -196,17 +196,29 @@ Sa_co      =   300^2*ones(nT,1);
 
 % NN: test runs with less temporal correlation and larger CH4 prior 
 if large_prior
-tau_ch4    = 1.; % yr
-tau_ch4c13 = 1; % yr
-tau_mcf    = 1.; % yr
-tau_n2o    = 1; % yr
-tau_c2h6   = 1; % yr
-tau_oh     = 1.; % yr
-tau_co     = 1; % yr
-tau_tau    = 1; % yr
-Sa_ch4     = 150^2*ones(nT,1);
-Sa_oh      =  315^2*ones(nT,1);
+disp('Running case with large prior')
+
+tau_ch4    = 2.; % yr
+tau_ch4c13 = 2; % yr
+tau_mcf    = 2.; % yr
+tau_n2o    = 2; % yr
+tau_c2h6   = 2; % yr
+tau_oh     = 2.; % yr
+tau_co     = 2; % yr
+tau_tau    = 2; % yr
+Sa_ch4     = 200^2*ones(nT,1);
+Sa_oh      =  (10*315)^2*ones(nT,1);
 Sa_co      =   800^2*ones(nT,1);
+    Sa_ch4c13  =    100^2*ones(nT,1);
+else
+tau_ch4    = 5; % yr
+tau_ch4c13 = 5; % yr
+tau_mcf    = 3; % yr
+tau_n2o    = 5; % yr
+tau_c2h6   = 1; % yr
+tau_oh     = 3; % yr
+tau_co     = 3; % yr
+tau_tau    = 0; % yr
 end
 
 
@@ -217,23 +229,17 @@ Sa_IC      =    [30,30,10,10,15,15,5,5,100,100,...
 % non-interactive OH
 if ~interactive_OH && ~fixedOH
     % <-- AJT (2019/05/01): From Turner et al. for consistency in this case
-    Sa_ch4     =    20^2*ones(nT,1);
-    Sa_ch4c13  =    10^2*ones(nT,1);
+    Sa_ch4     =    200^2*ones(nT,1);
+    Sa_ch4c13  =    100^2*ones(nT,1);
     Sa_mcf_nh  = max([1.5*ones(size(ems_p(:,5))),.2*ems_p(:,5)],[],2).^2;
     Sa_mcf_sh  =   0.5^2*ones(nT,1);
-    Sa_oh      =  0.10^2*ones(nT,1);
+    Sa_oh      =  0.1^2*ones(nT,1);
 end
 % CF: Let's just go lazy here and use 5% of the IC as prior uncertainty for
 % now:
 Sa_IC = (eps*params.IC).^2;
-tau_ch4    = 5; % yr
-tau_ch4c13 = 5; % yr
-tau_mcf    = 3; % yr
-tau_n2o    = 5; % yr
-tau_c2h6   = 1; % yr
-tau_oh     = 3; % yr
-tau_co     = 3; % yr
-tau_tau    = 0; % yr
+
+
 % Alternate cases
 if fixedCH4
     Sa_ch4 = eps^2*ones(nT,1); % Fixed CH4
@@ -266,6 +272,7 @@ if fitKX
 end
 % AJT: Change to solve for OH concentrations.  OH fields will be
 % concentrations instead of sources.  kX is no longer needed.
+
 if ~interactive_OH && ~fixedOH
     Sa_kx_NH = eps^2*ones(nT,1); % Don't allow kX to change
     Sa_kx_SH = eps^2*ones(nT,1); % Fixed OH
@@ -280,7 +287,7 @@ end
 
 Sa_ems = [Sa_ch4,Sa_ch4,Sa_ch4c13,Sa_ch4c13,Sa_mcf_nh,Sa_mcf_sh,...
           Sa_n2o,Sa_n2o,Sa_c2h6,  Sa_c2h6,  Sa_oh,    Sa_oh,...
-	  Sa_co, 0.07*Sa_co, Sa_tau, Sa_kx_NH, Sa_kx_SH];
+  Sa_co, 0.07*Sa_co, Sa_tau, Sa_kx_NH, Sa_kx_SH];
 Sa     = diag(assembleStateVector(Sa_ems,Sa_IC));
 
 
@@ -312,17 +319,17 @@ SoI = diag(1./SoI);
 
 %%% Invert with the n-form from Rodgers
 gamma = LM_param.gamma;
-%fprintf('Matrix Dimensions are as follows:')
-%fprintf('size of SaI=')
-%size(SaI)
-%fprintf('Size of SoI=')
-%size(SoI)
-%fprintf('Size of k = ')
-%size(K)
-%fprintf('Size of gamma=')
-%fprintf('Size of gamma=')
-%size(gamma)
-%fprintf('size of F=')
+fprintf('Matrix Dimensions are as follows:')
+fprintf('size of SaI=')
+size(SaI)
+fprintf('Size of SoI=')
+size(SoI)
+fprintf('Size of k = ')
+size(K)
+fprintf('Size of gamma=')
+fprintf('Size of gamma=')
+size(gamma)
+fprintf('size of F=')
 %size(F)
 %fprintf('size of y=')
 %size(y)
@@ -376,6 +383,7 @@ LM_param.chi2  = chi2_new;
 
 %%% Make the other output
 out = {ems_hat,IC_hat,S_hat,AK_hat,C_hat,Sa};
+
 
 end
 

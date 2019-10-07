@@ -53,7 +53,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear = 1980;
-eYear = 2020;
+eYear = 2017;
 %eYear = 2100;
 tRes  = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg  = 'year';     % Smooth the observations
@@ -95,6 +95,8 @@ reread.dir   = dataDir;
 global fixedCH4 fixedOH onlyCH4 onlyMCF schaefer          % Linear inversion
 global k_mcf_flag smooth_MCF set_MCF_EMS MCF_EMS_val      % Methyl Chloroform
 global k_co_flag use_strat interactive_OH use_other_sinks ignoreCO % Other
+global no_temporal_correlation large_prior % inversion tests on prior constraints 
+global use_MOPIT_CO
 % Plotting flags
 ftype           = 'pdf';    % Type of plots to make? (eps, pdf, tif, or png)
 plot_prior      = false;     % Plot the prior?
@@ -114,6 +116,12 @@ onlyCH4         = false;    % Only invert for methane emissions
 ignoreCO = false; % keep CO emissions fixed
 onlyMCF         = false;    % Only invert for MCF emissions
 schaefer        = false;    % Case that is most similar to Schaefer et al.
+use_MOPIT_CO = false; % replace obs with MOPIT CO obs and rescale surface obs before 2000 CE
+
+% Flags for priors in inversions
+no_temporal_correlation = true; % Run with no temporal correlation? Should be run with large_prior
+large_prior = true; % Run with large prior in emissions? 
+
 % MCF sensitivity test flags
 k_co_flag       = true;     % Use k_CO that AJT derived
 k_mcf_flag      = true;     % Use k_MCF that AJT derived
@@ -186,6 +194,11 @@ end
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
 obs = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
+if use_MOPIT_CO
+obs = useMopit(St, obs, tRes);
+end
+
+
 %
 
 if use_Turner_Bootstrap
@@ -563,11 +576,7 @@ if export_data
     save(data_filename);
 end
 
-%%% for comparison of fitted emissions versus PNAS emissions 
-a = ems_anal(:,1) + ems_anal(:,2);
-c = out_anal;
-load('case0');
-b = ems_anal(:,1) + ems_anal(:,2);
+
 
 
 %%

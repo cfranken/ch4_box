@@ -61,12 +61,11 @@ St    = getTime(sYear,eYear,tRes); % Time vector
 nT    = length(St);
 
 %%% Export variables to mat file
-export_data = false; % do we want to export data to data_filename.mat?
-data_filename  = 'case3';
+export_data = true; % do we want to export data to data_filename.mat?
+data_filename  = 'MOPIT_test';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Case 3: Fixed OH source, Turned on OH feedbacks, and turned on CO.'
-
+disp('*** Commencing the CO test with MOPIT versus Surface CO ***')
 
 %%% Execute in parallel?
 run_parallel = false;
@@ -417,18 +416,40 @@ obs_surface = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs
     %[jacobian_ems,jacobian_IC] = define_Jacobian( St, ems, IC, params, run_parallel );
 
 
-    plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
+%    plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
     
     %%% Try plotting the solution
     ems_anal = anal_soln{1};
     IC_anal  = anal_soln{2};
     % Comment this out for now:
     out_anal = boxModel_wrapper(St,ems_anal,IC_anal,params);
-    plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
+%    plotNewObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
     %writeData(St,obs,out_anal,ems_anal,IC_anal,sprintf('%s/%s/anal_%%s.csv',outDir,tRes));
     %plotObs(St,out_anal,obs,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype));
     %plotDrivers(St,ems_anal,ems,sprintf('%s/%s/anal_%%s.%s',outDir,tRes,ftype),dataDir);
     
+end
+
+% plot the original mopit obs 
+
+mopit = xlsread('mopit_co.xlsx');
+
+nh_co = mopit(:,4);
+nh_co_err = mopit(:,3);
+
+
+sh_co = mopit(:,7);
+sh_co_err = mopit(:,6);
+
+% Take annual averages of the data 
+nh_co = annualAvg(nh_co);
+sh_co = annualAvg(sh_co);
+nh_co_err = annualAvg(nh_co_err);
+sh_co_err = annualAvg(sh_co_err);
+
+if export_data
+    fprintf('Exporting all variables in this run to %s \n', data_filename)
+    save(data_filename);
 end
 
 %%% Plot the results 
@@ -436,29 +457,82 @@ clf
 close all
 
 
-figure(6)
+figure(8)
 time = [1: length(St)];
 
-subplot(221)
+subplot(211)
 plot(time, obs_surface.nh_co, 'ro', time, obs_mopit.nh_co, 'bo')
-title('NH CO obs')
+title('NH CO obs rescaled')
 xlabel('years')
 ylabel('ppb')
+legend('Surface Obs', 'MOPIT Obs');
 
-subplot(223)
+subplot(212)
 plot(time, obs_surface.sh_co, 'ro', time, obs_mopit.sh_co, 'bo')
-title('SH CO obs')
+title('SH CO obs rescaled')
 
-subplot(222)
-plot(time, anal_soln{1}(:,1), 'ro', time, anal_soln2{1}(:,1), 'bo')
+saveas(figure(8), 'mopit_co_scaled.png', 'png')
+figure(7)
+subplot(211)
+plot(time, anal_soln{1}(:,13), 'ro', time, anal_soln2{1}(:,13), 'bo')
 title('NH CH4 Ems')
 ylabel('Tg')
 xlabel('years')
 
-subplot(224)
-plot(time, anal_soln{1}(:,2), 'ro', time, anal_soln2{1}(:,2), 'bo')
+subplot(212)
+plot(time, anal_soln{1}(:,14), 'ro', time, anal_soln2{1}(:,14), 'bo')
 title('SH CH4 Ems')
 ylabel('Tg')
 xlabel('years')
+legend('MOPIT CO', 'Surface CO')
+saveas(figure(7), 'mopit_co_ems', 'png')
 
-saveas(figure(1), 'mopit_co.pdf', 'pdf')
+
+% plot the original mopit obs 
+
+mopit = xlsread('mopit_co.xlsx');
+
+nh_co = mopit(:,4);
+nh_co_err = mopit(:,3);
+
+
+sh_co = mopit(:,7);
+sh_co_err = mopit(:,6);
+
+% Take annual averages of the data 
+nh_co = annualAvg(nh_co);
+sh_co = annualAvg(sh_co);
+nh_co_err = annualAvg(nh_co_err);
+sh_co_err = annualAvg(sh_co_err);
+time = [2000:2017];
+
+
+figure(9)
+subplot (211)
+plot(time, obs_surface.nh_co(21:end), 'ro', time , nh_co, 'go')
+xlabel('years')
+ylabel('ppb')
+title('Unscaled NH CO obs')
+
+subplot(212)
+plot(time, obs_surface.sh_co(21:end), 'ro', time , sh_co, 'go');
+xlabel('years')
+ylabel('ppb')
+title('Unscaled SH CO obs')
+saveas(figure(9), 'mopit_co_unscaled', 'png')
+
+function annual_avg = annualAvg(data)
+%%% Takes the annual average of a timeseries 
+%%% inputs:
+%%% 1. data: The (nX1) array to take an average over
+%%% outputs:
+%%% 1. mean value (double)
+
+n_blocks = floor(length(data)/12);
+annual_avg = nan(n_blocks,1);
+for i = 1:n_blocks
+ind1 = 12*(i-1) + 1;
+ind2 = ind1 + 11;
+annual_avg(i) = nanmean(data(ind1:ind2));
+end
+end

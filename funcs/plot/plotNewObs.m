@@ -139,24 +139,27 @@ datetick('x','yyyy','keeplimits')
 % MCF
 subplot(5,1,5);
 
-if add_error
-    for i = 1:length(St)
-        yV = data.nh_mcf(i); yE = data.nh_mcf_err(i);
-        if ~isnan(yV) && ~isnan(yE)
-            semilogy([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
-        end
-        yV = data.sh_mcf(i); yE = data.sh_mcf_err(i);
-        if ~isnan(yV) && ~isnan(yE)
-            semilogy([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
-        end
-    end
-end
-hold on
+%if add_error
+%    for i = 1:length(St)
+%        yV = data.nh_mcf(i); yE = data.nh_mcf_err(i);
+%        if ~isnan(yV) && ~isnan(yE)
+%            semilogy([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
+%        end
+%        yV = data.sh_mcf(i); yE = data.sh_mcf_err(i);
+%        if ~isnan(yV) && ~isnan(yE)
+%            semilogy([St(i),St(i)],[yV-yE,yV+yE],eOpts{:})
+%        end
+%    end
+%end
+%hold on
 %disp('MCF')
-semilogy(St,data.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-semilogy(St,data.sh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
-semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
-semilogy(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
+%semilogy(St,data.nh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+%semilogy(St,data.sh_mcf,'^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+%semilogy(St,model.nh_mcf,'-','Color',nhCol,'LineWidth',2)
+%semilogy(St,model.sh_mcf,'-','Color',shCol,'LineWidth',2)
+plot(St,log(data.nh_mcf)-log(model.nh_mcf), '^','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+plot(St,log(data.sh_mcf)-log(model.sh_mcf), 'x','Color',obsCol,'MarkerSize',6,'MarkerFaceColor',obsCol,'MarkerEdgeColor','none')
+
 %box on
 set(gca,'YGrid','on','LineWidth',2,'TickDir','out','FontSize',12,'FontName','Helvetica')
 ylabel('CH_3CCl_3 (ppt)','FontSize',16)

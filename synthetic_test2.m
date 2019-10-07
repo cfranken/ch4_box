@@ -67,7 +67,7 @@ export_data = false; % do we want to export data to data_filename.mat?
 data_filename  = 'case2';
 
 %%% Describing experiment to be exported to .mat file 
-experiment_description = 'Turned on interactive OH and kept OH anomalies fixed.'
+fprintf('***Beginning Synthetic ENSO test***')
 
 
 %%% Execute in parallel?
@@ -381,8 +381,8 @@ IC(1:14) = [out.nh_ch4(end), out.sh_ch4(end), out.nh_ch4(end) * (1 - 47.6/1000),
 ch4_perturb = 35.8; % Tg/yr in 1997
 co_perturb = 587; % Tg/yr in 1997
 perturb_year = 100; % when to apply perturbation 
-co_perturb_duration = 3; % months
-ch4_perturb_duration = 12; %months 
+co_perturb_duration = 1; % months
+ch4_perturb_duration = 1; %months 
 
 
 % NN: Test 1: Only enhanced CH4 emissions from fires

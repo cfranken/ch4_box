@@ -351,14 +351,14 @@ IC     = params.IC;         % Guess for the inital conditions
 % create perturbation 
 ems_large = ems;
 ems_small = ems;
-DH_large = 15; % size of purturbation  in Tg/yr
-DH_small = 5; % small perturbation example  in Tg/yr
+DH_large = 15*12; % size of purturbation  in Tg/yr
+DH_small = 5*12; % small perturbation example  in Tg/yr
 
 
 
 % Create purturbation for box model input
-ems_large(100,1)= ems(100,1)+DH_large*12;
-ems_small(100,1)= ems(100,1)+ DH_small*12; % Small perturbation 
+ems_large(100,1)= ems(100,1)+DH_large;
+ems_small(100,1)= ems(100,1)+ DH_small; % Small perturbation 
 
 ems_large(100,2)= ems(100,2)+DH_large;
 ems_small(100,2)= ems(100,2)+ DH_small; % Small perturbation 
@@ -399,14 +399,7 @@ out_large_noninteractive.delta_ch4 = out_large_noninteractive.ch4 - out_large_no
 out_small_noninteractive.ch4 = (out_small_noninteractive.nh_ch4 + out_small_noninteractive.sh_ch4)/2;
 out_small_noninteractive.delta_ch4 = out_small_noninteractive.ch4 - out_small_noninteractive.ch4(1)*ones(size(St));
 
-time = [1: length(St)];
-figure(1)
-plot(time, out_large.delta_ch4, 'r', time, out_large_noninteractive.delta_ch4, 'b')
-xlabel('months')
-ylabel('$\delta CH_4 with respect to Steady State Concentration$','Interpreter','latex')
-title('Perturbation Test')
-legend('Interactive Chemistry', 'Noninteractive Chemistry')
-saveas(figure(1), 'forward_model_test.pdf', 'pdf')
+
 
 ems_large = makeEmsStruct(ems_large);
 ems_small = makeEmsStruct(ems_small);
