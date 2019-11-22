@@ -356,9 +356,14 @@ IC(13) = 87;
 IC(14) = 53;
 
 %%% Define new emissions 
+ems_halfx = ems;
 ems_1x = ems;
 ems_2x = ems;
 ems_4x = ems;
+
+ems_halfx(:,1) = 0.5*ems(:,1);
+ems_halfx(:,2) = 0.5*ems(:,2);
+
 
 ems_2x(:,1) = 2*ems(:,1);
 ems_2x(:,2) = 2*ems(:,2);
@@ -367,6 +372,15 @@ ems_4x(:,1) = 4*ems(:,1);
 ems_4x(:,2) = 4*ems(:,2);
 
 interactive_OH = true;
+interactive_out_halfx = boxModel_wrapper(St,ems_halfx,IC,params);
+interactive_out_halfx.ch4 = (interactive_out_halfx.nh_ch4 + interactive_out_halfx.sh_ch4)/2;
+interactive_out_halfx.ch4 = (interactive_out_halfx.nh_ch4 + interactive_out_halfx.sh_ch4)/2;
+interactive_out_halfx.oh = (interactive_out_halfx.nh_oh + interactive_out_halfx.sh_oh)/2;
+lifetimes_halfx = calcFeedback(interactive_out_halfx, params, kX_NH, kX_SH);
+feedback_halfx = lifetimes_halfx.ch4_global_lifetime ./ lifetimes_halfx.ch4_ss;
+
+
+
 interactive_out_1x = boxModel_wrapper(St,ems_1x,IC,params);
 interactive_out_1x.ch4 = (interactive_out_1x.nh_ch4 + interactive_out_1x.sh_ch4)/2;
 interactive_out_1x.ch4 = (interactive_out_1x.nh_ch4 + interactive_out_1x.sh_ch4)/2;
@@ -391,6 +405,13 @@ feedback_4x = lifetimes_4x.ch4_global_lifetime ./ lifetimes_4x.ch4_ss;
 
 
 interactive_OH = false;
+noninteractive_out_halfx = boxModel_wrapper(St,ems_halfx,IC,params);
+noninteractive_out_halfx.ch4 = (noninteractive_out_halfx.nh_ch4 + noninteractive_out_halfx.sh_ch4)/2;
+noninteractive_out_halfx.ch4 = (noninteractive_out_halfx.nh_ch4 + noninteractive_out_halfx.sh_ch4)/2;
+noninteractive_out_halfx.oh = (noninteractive_out_halfx.nh_oh + noninteractive_out_halfx.sh_oh)/2;
+
+
+
 
 noninteractive_out_1x = boxModel_wrapper(St,ems_1x,IC,params);
 noninteractive_out_1x.ch4 = (noninteractive_out_1x.nh_ch4 + noninteractive_out_1x.sh_ch4)/2;
@@ -407,6 +428,7 @@ noninteractive_out_4x = boxModel_wrapper(St,ems_4x,IC,params);
 noninteractive_out_4x.ch4 = (noninteractive_out_4x.nh_ch4 + noninteractive_out_4x.sh_ch4)/2;
 noninteractive_out_4x.oh = (noninteractive_out_4x.nh_oh + noninteractive_out_4x.sh_oh)/2;
 
+ems_halfx = makeEmsStruct(ems_halfx);
 ems_1x = makeEmsStruct(ems_1x);
 ems_2x = makeEmsStruct(ems_2x);
 ems_4x = makeEmsStruct(ems_4x);
