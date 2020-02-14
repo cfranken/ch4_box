@@ -1,0 +1,524 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AGUtmpl.tex: this template file is for articles formatted with LaTeX2e,
+% Modified December 2018
+%
+% This template includes commands and instructions
+% given in the order necessary to produce a final output that will
+% satisfy AGU requirements.
+%
+% FOR FIGURES, DO NOT USE \psfrag
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% IMPORTANT NOTE:
+%
+% SUPPORTING INFORMATION DOCUMENTATION IS NOT COPYEDITED BEFORE PUBLICATION.
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Step 1: Set the \documentclass
+%
+%
+% PLEASE USE THE DRAFT OPTION TO SUBMIT YOUR PAPERS.
+% The draft option produces double spaced output.
+%
+% Choose the journal abbreviation for the journal you are
+% submitting to:
+
+% jgrga JOURNAL OF GEOPHYSICAL RESEARCH (use for all of them)
+% gbc   GLOBAL BIOCHEMICAL CYCLES
+% grl   GEOPHYSICAL RESEARCH LETTERS
+% pal   PALEOCEANOGRAPHY
+% ras   RADIO SCIENCE
+% rog   REVIEWS OF GEOPHYSICS
+% tec   TECTONICS
+% wrr   WATER RESOURCES RESEARCH
+% gc    GEOCHEMISTRY, GEOPHYSICS, GEOSYSTEMS
+% sw    SPACE WEATHER
+% ms    JAMES
+% ef    EARTH'S FUTURE
+%
+%
+%
+% (If you are submitting to a journal other than jgrga,
+% substitute the initials of the journal for "jgrga" below.)
+
+%\documentclass[draft,grl]{agutexSI2019}
+\documentclass[grl]{agutexSI2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  SUPPORTING INFORMATION TEMPLATE
+%
+%% ------------------------------------------------------------------------ %%
+%
+%
+%Please use this template when formatting and submitting your Supporting Information.
+
+%This template serves as both a “table of contents” for the supporting information for your article and as a summary of files.
+%
+%
+%OVERVIEW
+%
+%Please note that all supporting information will be peer reviewed with your manuscript. It will not be copyedited if the paper is accepted.
+%In general, the purpose of the supporting information is to enable authors to provide and archive auxiliary information such as data tables, method information, figures, video, or computer software, in digital formats so that other scientists can use it.
+%The key criteria are that the data:
+% 1. supplement the main scientific conclusions of the paper but are not essential to the conclusions (with the exception of
+%    including %data so the experiment can be reproducible);
+% 2. are likely to be usable or used by other scientists working in the field;
+% 3. are described with sufficient precision that other scientists can understand them, and
+% 4. are not exe files.
+%
+%USING THIS TEMPLATE
+%
+%***All references should be included in the reference list of the main paper so that they can be indexed, linked, and counted as citations.  The reference section does not count toward length limits.
+%
+%All Supporting text and figures should be included in this document. Insert supporting information content into each appropriate section of the template. To add additional captions, simply copy and paste each sample as needed.
+
+%Tables may be included, but can also be uploaded separately, especially if they are larger than 1 page, or if necessary for retaining table formatting. Data sets, large tables, movie files, and audio files should be uploaded separately. Include their captions in this document and list the file name with the caption. You will be prompted to upload these files on the Upload Files tab during the submission process, using file type “Supporting Information (SI)”
+
+%IMPORTANT NOTE ON FIGURES AND TABLES
+% Placeholders for figures and tables appear after the \end{article} command, after references.
+% DO NOT USE \psfrag or \subfigure commands.
+%
+ \usepackage{graphicx}
+%
+%  Uncomment the following command to allow illustrations to print
+%   when using Draft:
+% \setkeys{Gin}{draft=false}
+%
+% You may need to use one of these options for graphicx depending on the driver program you are using. 
+%
+% [xdvi], [dvipdf], [dvipsone], [dviwindo], [emtex], [dviwin],
+% [pctexps],  [pctexwin],  [pctexhp],  [pctex32], [truetex], [tcidvi],
+% [oztex], [textures]
+%
+%
+%% ------------------------------------------------------------------------ %%
+%
+%  ENTER PREAMBLE
+%
+%% ------------------------------------------------------------------------ %%
+
+% Author names in capital letters:
+%\authorrunninghead{BALES ET AL.}
+
+% Shorter version of title entered in capital letters:
+%\titlerunninghead{SHORT TITLE}
+
+%Corresponding author mailing address and e-mail address:
+%\authoraddr{Corresponding author: A. B. Smith,
+%Department of Hydrology and Water Resources, University of
+%Arizona, Harshbarger Building 11, Tucson, AZ 85721, USA.
+%(a.b.smith@hwr.arizona.edu)}
+
+\begin{document}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  TITLE
+%
+%% ------------------------------------------------------------------------ %%
+
+%\includegraphics{agu_pubart-white_reduced.eps}
+
+
+\title{Supporting Information for "Effects of Chemical Feedbacks on Decadal Methane Emissions Estimates"}
+%
+% e.g., \title{Supporting Information for "Terrestrial ring current:
+% Origin, formation, and decay $\alpha\beta\Gamma\Delta$"}
+%
+%DOI: 10.1002/%insert paper number here%
+
+%% ------------------------------------------------------------------------ %%
+%
+%  AUTHORS AND AFFILIATIONS
+%
+%% ------------------------------------------------------------------------ %%
+
+
+% List authors by first name or initial followed by last name and
+% separated by commas. Use \affil{} to number affiliations, and
+% \thanks{} for author notes.
+% Additional author notes should be indicated with \thanks{} (for
+% example, for current addresses).
+
+% Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
+% Author\affil{3,4}\thanks{Also funded by Monsanto.}}
+\authors{Newton H. Nguyen\affil{1}, Alexander J. Turner\affil{2,3,4}, Yi Yin\affil{1}, Michael J. Prather\affil{5}, Christian Frankenberg\affil{1,4}}
+
+
+\affiliation{1}{Division of Geological and Planetary Sciences, California Institute of Technology, Pasadena, CA, 91125, USA}
+\affiliation{2}{Department of Earth and Planetary Sciences, University of California, Berkeley, Berkeley, CA, 94720, USA}
+\affiliation{3}{College of Chemistry, University of California, Berkeley, Berkeley, CA, 94720, USA}
+\affiliation{4}{NASA Jet Propulsion Lab, California Institute of Technology, Pasadena, CA, 91109, USA}
+\affiliation{5}{Department of Earth System Science, University of California, Irvine, Irvine, CA, 92697, USA}
+
+
+
+
+% \affiliation{1}{First Affiliation}
+% \affiliation{2}{Second Affiliation}
+% \affiliation{3}{Third Affiliation}
+% \affiliation{4}{Fourth Affiliation}
+
+
+
+
+
+%% ------------------------------------------------------------------------ %%
+%
+%  BEGIN ARTICLE
+%
+%% ------------------------------------------------------------------------ %%
+
+% The body of the article must start with a \begin{article} command
+%
+% \end{article} must follow the references section, before the figures
+%  and tables.
+
+\begin{article}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  TEXT
+%
+%% ------------------------------------------------------------------------ %%
+
+
+
+\noindent\textbf{Contents of this file}
+%%%Remove or add items as needed%%%
+\begin{enumerate}
+\item Text S1 to S4
+\item Tables S1 to S2
+%if Tables are larger than 1 page, upload as separate excel file
+\end{enumerate}
+%\noindent\textbf{Additional Supporting Information (Files uploaded separately)}
+
+\section{Two-Hemispheres Box Model}
+The equations in Table \ref{chemical_equations} are solved in our 2-hemispheres box model with temperature at $\sim270^\circ$\,K. Interhemispheric transport is dependent on the difference in species concentrations and interhemispheric exchange time (1\,yr). We use variations of MCF observations as proxy for global OH variability, which have declined since implementation of the Montreal Protocol Ban \cite{montzka_small_2011, naus_constraints_2019}. Also note that our box model excludes non-OH sinks, such as loss to the stratosphere, chlorine oxidation, and soil oxidation, and therefore only includes methane and CO loss via OH oxidation. Neglecting these minor processes could alias errors onto our OH concentrations.
+
+\section{Hemispheric Average Concentration} \label{Sec:A2}
+We use observations of methane (NOAA), CO (NOAA), and MCF (NOAA, GAGE/AGAGE) concentrations, where hemispheric averaging was done following \citeA{turner_ambiguity_2017}. In short, hemispheric averaging was done by bootstrapping from deseasonalized surface observations. We sampled from the observational record in each hemisphere with replacement, where number of times sampled is equal to the number of observational records available in that hemisphere for that species. We also rejected sites that had less than 5\,yr of data and required that older observations had higher uncertainties than more recent observations, with a minimum uncertainty of 2\,ppb. The randomly drawn observations were blocked-averaged into 1\,yr windows. This process was repeated 50 times, so the mean and varience can be computed from these 50 timeseries. 
+
+CO is not well-mixed in the atmosphere, exhibiting large spatial gradients. In addition, each species experiences its own oxidative capacities \cite{naus_constraints_2019, lawrence_what_2001}. Therefore, in order to model CO oxidation by OH, we selected stations in the tropics ($23.5^\circ$ S to $23.5^\circ$ N). This is because most oxidation of CO occurs in the tropics, where OH concentrations are highest. We refer the reader to Table \ref{tbl:sites1} and \ref{tbl:sites2} for station locations and details. The hemispherically averaged concentrations were calculated with the same bootstrapping procedure outlined above.
+
+\section{OH feedback}
+In order to obtain the correct perturbation lifetime seen in Fig. \ref{forward_model}A, we adjusted the OH source ($S_{OH}$) and additional loss term ($k_3[x]$). The values we obtained are in Table \ref{chemical_equations}. This results in the 13.2\,yr perturbation lifetime.
+
+\section{Bayesian Inversion} 
+We used a non-linear bayesian inversion to obtain the methane fluxes seen in Fig. \ref{synthetic_emissions} and \ref{all_runs} \cite{rodgers_inverse_2000}. The elements of the state vector being fitted for are in Table \ref{Tbl:1} alongside the observations being used to constrain the inversion. The a priori assumptions and prior error for our inversion are shown in Table \ref{chemical_equations}. For the MCF prior in the Northern Hemisphere, we set the error to 20\% of the a priori with a minimum of 1.5 Gg. It should also be noted that the temporal correlation we employed was different for the case corresponding to \cite{rigby_role_2017} and \cite{turner_ambiguity_2017} (+I +[OH]) as compared to the other cases, which is the reason why the methane timeseries looks much smoother. We employed much shorter temporal correlations to the other cases in order to make the inter-annual variability more clear. 
+
+%The loss of OH due to methane and CO ($L_{CH_4:CO}$) was calculated using the following equation:
+%\begin{equation}
+%L_{CH_4:CO} = \frac{k_1[CH_4] + k_2[CO]}{k_1[CH_4] + k_2[CO] + k_3[X]}
+%\end{equation}
+%The values in this equation are found in Table \ref{chemical_equations} with concentration typical of the modern atmosphere ([CH$_4$]=xx\,ppb and [CO]=yy\,ppb). OUr calculations show that methane and CO are responsible for $\sim$40\% of OH loss in the Northern Hemisphere and $\sim$27\% in the Southern Hemisphere. This is lower than the number obtained by [citation] (xx\%), but we believe that this is within a reasonable range. 
+
+
+
+
+
+
+
+% \bibliography{citations}
+%
+% no need to specify bibliographystyle
+%
+% Note that ALL references in this supporting information file must also be referenced in the primary manuscript
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% if you get an error about newblock being undefined, uncomment this line:
+%\newcommand{\newblock}{}
+
+% \bibliography{citations} 
+
+
+
+
+%Reference citation instructions and examples:
+%
+% Please use ONLY \cite and \citeA for reference citations.
+% \cite for parenthetical references
+% ...as shown in recent studies (Simpson et al., 2019)
+% \citeA for in-text citations
+% ...Simpson et al (2019) have shown...
+% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
+%
+%
+%...as shown by \citeA{jskilby}.
+%...as shown by \citeA{lewin76}, \citeA{carson86}, \citeA{bartoldy02}, and \citeA{rinaldi03}.
+%...has been shown \cite<e.g.,>{jskilbye}.
+%...has been shown \cite{lewin76,carson86,bartoldy02,rinaldi03}.
+%...has been shown \cite{lewin76,carson86,bartoldy02,rinaldi03}.
+%
+% apacite uses < > for prenotes, not [ ]
+% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
+%
+
+%% ------------------------------------------------------------------------ %%
+%
+%  END ARTICLE
+%
+%% ------------------------------------------------------------------------ %%
+\end{article}
+%\clearpage
+
+% Copy/paste for multiples of each file type as needed.
+
+% enter figures and tables below here: %%%%%%%
+\begin{table} [ht] 
+\footnotesize % So the table fits on the pdf page
+\caption{Monitoring stations used for methane observations.\label{tbl:sites1}}
+\begin{tabular}{lcr@{$^\circ$}ll}
+\hline
+Station						&	Code	&	\multicolumn{2}{c}{Latitude}	&	Laboratory			\\
+\hline
+\multicolumn{5}{l}{\hspace{-5pt}\textit{Methane measurements}}	\\
+Alert, Canada				&	ALT		&	82	&	N						&	NOAA/ESRL/INSTAAR	\\
+Ascension Island, UK		&	ASC		&	8	&	S						&	NOAA/ESRL/INSTAAR	\\
+Terceira Island, Azores		&	AZR		&	39	&	N						&	NOAA/ESRL/INSTAAR	\\
+Baring Head, NZ				&	BHD		&	41	&	S						&	NOAA/ESRL/INSTAAR	\\
+Barrow, USA					&	BRW		&	71	&	N						&	NOAA/ESRL/INSTAAR	\\
+Cold Bay, USA				&	CBA		&	55	&	N						&	NOAA/ESRL/INSTAAR	\\
+Cape Grim, Australia		&	CGO		&	41	&	S						&	NOAA/ESRL/INSTAAR	\\
+Cape Kumukahi, USA			&	KUM		&	20	&	N						&	NOAA/ESRL/INSTAAR	\\
+Lac La Biche, Canada		&	LLB		&	55	&	N						&	NOAA/ESRL/INSTAAR	\\
+High Altitude Global Climate Observation Center, Mexico	&MEX&19&N			&	NOAA/ESRL/INSTAAR	\\
+Mace Head, Ireland			&	MHD		&	53	&	N						&	NOAA/ESRL/INSTAAR	\\
+Mauna Loa, USA				&	MLO		&	20	&	N						&	NOAA/ESRL/INSTAAR	\\
+Niwot Ridge, USA			&	NWR		&	40	&	N						&	NOAA/ESRL/INSTAAR	\\
+Cape Matatula, Samoa		&	SMO		&	14	&	S						&	NOAA/ESRL/INSTAAR	\\
+South Pole, Antarctica		&	SPO		&	90	&	S						&	NOAA/ESRL/INSTAAR	\\
+Summit, Greenland			&	SUM		&	73	&	N						&	NOAA/ESRL/INSTAAR	\\
+Tae-ahn Peninsula, Korea	&	TAP		&	37	&	N						&	NOAA/ESRL/INSTAAR	\\
+Mt.\@ Waliguan, China		&	WLG		&	36	&	N						&	NOAA/ESRL/INSTAAR	\\
+Ny-Alesund, Norway			&	ZEP		&	80	&	N						&	NOAA/ESRL/INSTAAR	\\
+Alert, Canada				&	ALT		&	82	&	N						&	U.\@ Heidelberg		\\
+Izana, Portugal				&	IZA		&	28	&	N						&	U.\@ Heidelberg		\\
+Neumayer, Antarctica		&	NEU		&	71	&	S						&	U.\@ Heidelberg		\\
+Niwot Ridge, USA			&	NWR		&	41	&	N						&	U.C.\@ Irvine		\\
+Montana de Oro, USA			&	MDO		&	35	&	N						&	U.C.\@ Irvine		\\
+Cape Grim, Australia		&	CGO		&	41	&	S						&	U.\@ Washington		\\
+Olympic Peninsula, USA		&	OPW		&	48	&	N						&	U.\@ Washington		\\
+Fraserdale, Canada			&	FSD		&	50	&	N						&	U.\@ Washington		\\
+Majuro, Marshall Islands	&	MMI		&	7	&	N						&	U.\@ Washington		\\
+Mauna Loa, USA				&	MLO		&	19	&	N						&	U.\@ Washington		\\
+Baring Head, NZ				&	BHD		&	41	&	S						&	U.\@ Washington		\\
+Barrow, USA					&	BRW		&	71	&	N						&	U.\@ Washington		\\
+Tutuila, Samoa				&	SMO		&	14	&	S						&	U.\@ Washington		\\
+\hline
+\end{tabular}
+\end{table}
+
+% Move to next page 
+\pagebreak
+\begin{table} [ht] 
+\caption{Methyl Chloroform and Carbon Monoxide observation stations \label{tbl:sites2}}
+\begin{tabular}{lcr@{$^\circ$}ll}
+\hline
+Station						&	Code	&	\multicolumn{2}{c}{Latitude}	&	Laboratory			\\
+\hline
+\multicolumn{5}{l}{\hspace{-5pt}\textit{Methyl Chloroform measurements}}	\\
+Alert, Canada				&	ALT		&	82	&	N						&	NOAA/ESRL		\\
+Barrow, USA					&	BRW		&	71	&	N						&	NOAA/ESRL		\\
+Cape Grim, Australia		&	CGO		&	41	&	S						&	NOAA/ESRL		\\
+Cape Kumukahi, USA			&	KUM		&	20	&	N						&	NOAA/ESRL		\\
+Mace Head, Ireland			&	MHD		&	53	&	N						&	NOAA/ESRL		\\
+Mauna Loa, USA				&	MLO		&	20	&	N						&	NOAA/ESRL		\\
+Palmer Station, Antarctica	&	PSA		&	65	&	S						&	NOAA/ESRL		\\
+Niwot Ridge, USA			&	NWR		&	40	&	N						&	NOAA/ESRL		\\
+Cape Matatula, Samoa		&	SMO		&	14	&	S						&	NOAA/ESRL		\\
+South Pole, Antarctica		&	SPO		&	90	&	S						&	NOAA/ESRL		\\
+Summit, Greenland			&	SUM		&	73	&	N						&	NOAA/ESRL		\\
+Trinidad Head, USA			&	THD		&	41	&	N						&	NOAA/ESRL		\\
+Cape Grim, Australia		&	CGO		&	41	&	S						&	GAGE			\\
+Mace Head, Ireland			&	MHD		&	53	&	N						&	GAGE			\\
+Cape Meares, USA			&	ORG		&	45	&	N						&	GAGE			\\
+Ragged Point Barbados		&	RPB		&	13	&	N						&	GAGE			\\
+Cape Matatula, Samoa		&	SMO		&	14	&	S						&	GAGE			\\
+Cape Grim, Australia		&	CGO		&	41	&	S						&	AGAGE			\\
+Mace Head, Ireland			&	MHD		&	53	&	N						&	AGAGE			\\
+Ragged Point Barbados		&	RPB		&	13	&	N						&	AGAGE			\\
+Cape Matatula, Samoa		&	SMO		&	14	&	S						&	AGAGE			\\
+Trinidad Head, USA			&	THD		&	41	&	N						&	AGAGE			\\
+\hline
+Station						&	Code	&	\multicolumn{2}{c}{Latitude}	&	Laboratory			\\
+\hline
+\multicolumn{5}{l}{\hspace{-5pt}\textit{Carbon Monoxide measurements}}	\\
+Mauna Loa, USA				&	MLO		&	20	&	N						&	INSTAAR		\\
+Ragged Point Barbados		&	RPB		&	13	&	N						&	INSTAAR			\\
+Cape Matatula, Samoa		&	SMO		&	14	&	S						&	INSTAAR		\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+More Information and Advice:
+
+%% ------------------------------------------------------------------------ %%
+%
+%  SECTION HEADS
+%
+%% ------------------------------------------------------------------------ %%
+
+% Capitalize the first letter of each word (except for
+% prepositions, conjunctions, and articles that are
+% three or fewer letters).
+
+% AGU follows standard outline style; therefore, there cannot be a section 1 without
+% a section 2, or a section 2.3.1 without a section 2.3.2.
+% Please make sure your section numbers are balanced.
+% ---------------
+% Level 1 head
+%
+% Use the \section{} command to identify level 1 heads;
+% type the appropriate head wording between the curly
+% brackets, as shown below.
+%
+%An example:
+%\section{Level 1 Head: Introduction}
+%
+% ---------------
+% Level 2 head
+%
+% Use the \subsection{} command to identify level 2 heads.
+%An example:
+%\subsection{Level 2 Head}
+%
+% ---------------
+% Level 3 head
+%
+% Use the \subsubsection{} command to identify level 3 heads
+%An example:
+%\subsubsection{Level 3 Head}
+%
+%---------------
+% Level 4 head
+%
+% Use the \subsubsubsection{} command to identify level 3 heads
+% An example:
+%\subsubsubsection{Level 4 Head} An example.
+%
+%% ------------------------------------------------------------------------ %%
+%
+%  IN-TEXT LISTS
+%
+%% ------------------------------------------------------------------------ %%
+%
+% Do not use bulleted lists; enumerated lists are okay.
+% \begin{enumerate}
+% \item
+% \item
+% \item
+% \end{enumerate}
+%
+%% ------------------------------------------------------------------------ %%
+%
+%  EQUATIONS
+%
+%% ------------------------------------------------------------------------ %%
+
+% Single-line equations are centered.
+% Equation arrays will appear left-aligned.
+
+Math coded inside display math mode \[ ...\]
+ will not be numbered, e.g.,:
+ \[ x^2=y^2 + z^2\]
+
+ Math coded inside \begin{equation} and \end{equation} will
+ be automatically numbered, e.g.,:
+ \begin{equation}
+ x^2=y^2 + z^2
+ \end{equation}
+
+% IF YOU HAVE MULTI-LINE EQUATIONS, PLEASE
+% BREAK THE EQUATIONS INTO TWO OR MORE LINES
+% OF SINGLE COLUMN WIDTH (20 pc, 8.3 cm)
+% using double backslashes (\\).
+
+% To create multiline equations, use the
+% \begin{eqnarray} and \end{eqnarray} environment
+% as demonstrated below.
+\begin{eqnarray}
+  x_{1} & = & (x - x_{0}) \cos \Theta \nonumber \\
+        && + (y - y_{0}) \sin \Theta  \nonumber \\
+  y_{1} & = & -(x - x_{0}) \sin \Theta \nonumber \\
+        && + (y - y_{0}) \cos \Theta.
+\end{eqnarray}
+
+%If you don't want an equation number, use the star form:
+%\begin{eqnarray*}...\end{eqnarray*}
+
+% Break each line at a sign of operation
+% (+, -, etc.) if possible, with the sign of operation
+% on the new line.
+
+% Indent second and subsequent lines to align with
+% the first character following the equal sign on the
+% first line.
+
+% Use an \hspace{} command to insert horizontal space
+% into your equation if necessary. Place an appropriate
+% unit of measure between the curly braces, e.g.
+% \hspace{1in}; you may have to experiment to achieve
+% the correct amount of space.
+
+
+%% ------------------------------------------------------------------------ %%
+%
+%  EQUATION NUMBERING: COUNTER
+%
+%% ------------------------------------------------------------------------ %%
+
+% You may change equation numbering by resetting
+% the equation counter or by explicitly numbering
+% an equation.
+
+% To explicitly number an equation, type \eqnum{}
+% (with the desired number between the brackets)
+% after the \begin{equation} or \begin{eqnarray}
+% command.  The \eqnum{} command will affect only
+% the equation it appears with; LaTeX will number
+% any equations appearing later in the manuscript
+% according to the equation counter.
+%
+
+% If you have a multiline equation that needs only
+% one equation number, use a \nonumber command in
+% front of the double backslashes (\\) as shown in
+% the multiline equation above.
+
+%% ------------------------------------------------------------------------ %%
+%
+%  SIDEWAYS FIGURE AND TABLE EXAMPLES
+%
+%% ------------------------------------------------------------------------ %%
+%
+% For tables and figures, add \usepackage{rotating} to the paper and add the rotating.sty file to the folder.
+% AGU prefers the use of {sidewaystable} over {landscapetable} as it causes fewer problems.
+%
+% \begin{sidewaysfigure}
+% \includegraphics[width=20pc]{samplefigure.eps}
+% \caption{caption here}
+% \label{label_here}
+% \end{sidewaysfigure}
+%
+%
+%
+% \begin{sidewaystable}
+% \caption{}
+% \begin{tabular}
+% Table layout here.
+% \end{tabular}
+% \end{sidewaystable}
+%
+%
+

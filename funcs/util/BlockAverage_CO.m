@@ -27,7 +27,7 @@ xO = St;
 yO = zeros(size(xO));
 E  = zeros(size(xO));
 % Sort the data
-[~,I] = sort(x); 
+[~,I] = sort(x);
 I;
 %size(I)
 size(y)
