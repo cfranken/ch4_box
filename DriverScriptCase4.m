@@ -1,15 +1,15 @@
 %%% ==============                                           =========================================================
 %%%                                                          = DriverScript.m
+
 %%%                                                          = Alex Turner
 %%%                                                          = Originally created on 04/12/2016
-%%%                                                          =----------------------------------------------------------------------
-%%%                                                          =----------------------------------------------------------------------
 %%% Modified by Newton Nguyen
-%%% Case: -I/+[OH]
-%%% Non-interactive Chemistry and fitting for OH concentrations via MCF
 %%%                                                          =----------------------------------------------------------------------
 %%%                                                          = NOTES:
 %%%                                                          =
+%%%                                                          = Case: Case+I/+SOH
+%%%                                                          = Interactive OH and fitting for OH source
+%%%                                                          =----------------------------------------------------------------------
 %%%                                                          = This is the driver script for the 2-box model methane inversion.
 %%%                                                          = There are currently two different inversions implemented: (1) a
 %%%                                                          = linear or non-linear deterministic inversion following Rodgers (2000)
@@ -32,6 +32,7 @@ profile off
 clf
 clear all
 close all
+clc
 
 %%% Header
 fprintf('\n ***********************************\n')
@@ -57,7 +58,7 @@ addpath(sprintf('%s/inv/stochastic',    utilDir));
 
 %%% Define the time period
 sYear                                                        = 1980;
-eYear                                                        = 2019;
+eYear                                                        = 2017;
 %eYear                                                       = 2100;
 tRes                                                         = 'year';     % Can be 'year' or 'month' (year preferred)
 tAvg                                                         = 'year';     % Smooth the observations
@@ -66,10 +67,10 @@ nT                                                           = length(St);
 
 %%% Export variables to mat file
 export_data                                                  = true; % do we want to export data to data_filename.mat?
-data_filename                                                = 'case0';
+data_filename                                                = 'case4';
 
 %%% Describing experiment to be exported to .mat file
-%experiment_description                                      = 'Case 3: Turned on interactive OH andturned off fixed OH'
+experiment_description                                       = 'Turned on interactive OH and kept OH anomalies fixed.'
 
 
 %%% Execute in parallel?
@@ -86,7 +87,7 @@ do_cmaes                                                     = false;    % Covar
 
 %%% For reading the observations
 % Do we want to reread the raw data?
-reread.flag                                                  = true;
+reread.flag                                                  = false;
 % Other flags for re-reading
 reread.sYear                                                 = sYear;
 reread.eYear                                                 = eYear;
@@ -106,7 +107,7 @@ plot_prior                                                   = false;     % Plot
 plot_raw                                                     = false;    % Plot the raw observations?
 plot_old_cmaes                                               = false;    % Plot an old CMA-ES solution (false means run a new one)
 % General flags
-use_strat                                                    = true;     % Use a stratosphere?
+use_strat                                                    = false;     % Use a stratosphere?
 interactive_OH                                               = true;     % Allow OH feedbacks?
 use_other_sinks                                              = false;     % Use non-OH sinks?
 % Linear inversion flags
@@ -114,9 +115,9 @@ use_other_sinks                                              = false;     % Use 
 % Linear inversion flags
 det_linear                                                   = false;     % Use a linear deterministic inversion?
 fixedCH4                                                     = false;    % Use fixed methane emissions
-fixedOH                                                      = false;    % Use fixed OH anomalies
+fixedOH                                                      = false;    % Use fixed OH sources
 onlyCH4                                                      = false;    % Only invert for methane emissions
-ignoreCO                                                     = true;     % keep CO emissions fixed
+ignoreCO                                                     = true; % keep CO emissions fixed
 onlyMCF                                                      = false;    % Only invert for MCF emissions
 schaefer                                                     = false;    % Case that is most similar to Schaefer et al.
 % Flags for priors in inversions
@@ -124,7 +125,7 @@ no_temporal_correlation                                      = true; % Run with 
 large_prior                                                  = true; % Run with large prior in emissions?
 
 % MCF sensitivity test flags
-k_co_flag                                                    = false;     % Use k_CO that AJT derived
+k_co_flag                                                    = true;     % Use k_CO that AJT derived
 k_mcf_flag                                                   = true;     % Use k_MCF that AJT derived
 smooth_MCF                                                   = false;    % Smooth the MCF emissions with a 5-year filter?
 set_MCF_EMS                                                  = false;    % Set post-2000 emissions to a fixed value?
@@ -163,16 +164,16 @@ try % Add a try-catch statement in case the user hasn't downloaded the data
     co_obs                                                   = getCO(dataDir,reread);       % carbon monoxide observations (ppb)
     o3strat_obs                                              = getO3strat(dataDir,reread);  % Stratospheric ozone observations (DU)
 catch % Some data is missing
-    try % See if ethane or n2o is the only problem
+    try % See if ethane is the only problem
         fprintf(' * SOME DATA IS MISSING\n');
         ch4_obs                                              = getCH4(dataDir,reread);
         ch4c13_obs                                           = getCH4C13(dataDir,reread);
         ch4h2_obs                                            = getCH4H2(dataDir,reread);
         mcf_obs                                              = getMCF(dataDir,reread);
-        try n2o_obs                                          = getN2O(dataDir,reread); catch n2o_obs = NaN; end
-        try co_obs                                           = getCO(dataDir,reread);  catch co_obs  = NaN; end
+        n2o_obs                                              = getN2O(dataDir,reread);
+        co_obs                                               = getCO(dataDir,reread);
         o3strat_obs                                          = getO3strat(dataDir,reread);
-        try c2h6_obs                                         = getC2H6(dataDir,reread); catch c2h6_obs = NaN; end
+        c2h6_obs                                             = NaN;
     catch % Otherwise, set the observation structures to NaN
         fprintf(' * UNABLE TO READ OBSERVATIONS!\n');
         ch4_obs                                              = NaN;
@@ -195,28 +196,27 @@ end
 % - NH/SH C2H6   obs & err (ppt)
 % - NH/SH CO     obs & err (ppb)
 obs                                                          = makeObs(St,tAvg,ch4_obs,ch4c13_obs,mcf_obs,n2o_obs,c2h6_obs,co_obs,dataDir,reread);
-
-%%% AJT EDIT HERE (2019/05/02)
+%
 
 if use_Turner_Bootstrap
     turnerFname                                              = sprintf('%sobs/StoredData/Turner_InputData_%4i-%4i_%s-%s.mat',...
         dataDir,reread.sYear,reread.eYear,reread.tRes,reread.tAvg);
     ajt_obs                                                  = load(turnerFname);
     obs                                                      = ajt_obs.out;
+    
+    % Get rid of CO data
+    coYear                                                   = datenum(1991, 1, 1);
+    ind                                                      = find(St<coYear);
+    obs.nh_co(ind(1) : ind(end))                             = nan;
+    obs.sh_co(ind(1) : ind(end))                             = nan;
+    
 end
 
-coYear                                                       = datenum(1991, 1, 1);
-ind                                                          = find(St<coYear);
-obs.nh_co(ind(1) : ind(end))                                 = nan;
-obs.sh_co(ind(1) : ind(end))                                 = nan;
 
-
-%
 % blow up CO error:
 %obs.nh_co_err(:)                                            =500;
 %obs.sh_co_err(:)                                            =500;
-%%% Usems
-% eEd Dlugokencky's obs? (sensitivity test)
+%%% Use Ed Dlugokencky's obs? (sensitivity test)
 if use_Ed
     ajt_obs                                                  = obs;
     ed_obs                                                   = getEdObs(dataDir,ajt_obs,St,tAvg,reread);
@@ -288,16 +288,13 @@ c2h6_ems                                                     = getC2H6ems(St,tRe
 % - "sh": OH emissions from the Southern hemisphere (Tg/yr)
 oh_ems                                                       = getOHems(St,tRes,dataDir);
 
-if ~interactive_OH && ~fixedOH
-    oh_ems.nh                                                = ones(size(oh_ems.nh));
-    oh_ems.sh                                                = ones(size(oh_ems.sh));
-end
-
 %%% Get the CO emissions
 % Stucture with two fields
 % - "nh": CO emissions from the Northern hemisphere (Tg/yr)
 % - "sh": CO emissions from the Southern hemisphere (Tg/yr)
 co_ems                                                       = getCOems(St,tRes,dataDir);
+% somehow, the NH emissions are way too low:
+%co_ems.nh(:)                                                = 1400;
 
 %%
 %%%                                                          =======================================================================
@@ -310,7 +307,6 @@ fprintf('\n *** RUN THE 2-BOX MODEL WITH PRIOR FLUXES *** \n');
 %%% OH scaling factor
 oh_scale.nh                                                  = ones(nT,1);
 oh_scale.sh                                                  = ones(nT,1);
-
 % Derive OH from the stratospheric ozone?
 if use_OH_stratMLO
     OH_sensitivity                                           = 4.2;          % a 1% increase in strat O3 leads to a 4.2% decrease in OH (Murray et al., 2013)
@@ -332,19 +328,16 @@ end
 %%% Strat-trop exchange
 tau_TS                                                       = 9.0 * ones(nT,1); % years
 if ~use_strat
-    % Set this to something high to avoid the stratosphere loss, Inf results in trouble:
-    
+    % Set this to something high, Inf results in trouble:
+    %tau_TS(:)                                               = Inf; % No exchange with stratosphere
     tau_TS(:)                                                = 1e4;
 end
 
 %%% Arbitrary reactions with OH
 % CF Needed to adapt NH as there would otherwise be a rather large IH
 % difference in OH
-f                                                            = 2.07;
-kX_NH                                                        = 1.84*ones(nT,1); % s^-1
-kX_SH                                                        = f*ones(nT,1); % s^-1
-
-
+kX_NH                                                        = 0.99*ones(nT,1); % s^-1 for 6600 tg/yr OH source
+kX_SH                                                        = 1.23*ones(nT,1); % s^-1
 
 %%% Structure of sources with 17 fields:
 % - NH CH4 emissions
@@ -407,12 +400,12 @@ if do_deterministic
     fprintf('\n *** DETERMINISTIC INVERSION *** \n');
     
     %%% Invert
-    
+    % Newton: here is the problem
     [anal_soln,jacobian_ems,jacobian_IC,reltol,abstol, mati] = invert_methane(St,obs,ems,IC,params,det_linear,run_parallel);
     
     
     %%% Plot the Jacobians
-    [jacobian_ems,jacobian_IC]                               = define_Jacobian( St, ems, IC, params, run_parallel );
+    %[jacobian_ems,jacobian_IC]                              = define_Jacobian( St, ems, IC, params, run_parallel );
     
     
     plotJacobian(St,jacobian_ems,tRes,sprintf('%s/%s/jacobian_%%s.%s',outDir,tRes,ftype));
@@ -578,6 +571,8 @@ if export_data
     fprintf('Exporting all variables in this run to %s \n', data_filename)
     save(data_filename);
 end
+
+
 
 
 %%
