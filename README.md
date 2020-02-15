@@ -10,10 +10,10 @@ February 14, 2020
 
 # Info
 This code models the interactive methane, carbon monoxide, and
-hydroxyl chemistry in Earth's atmosphere, which was used in Nguyen et
-al, 2020. There are two tropospheric boxes and to optional stratospheric
-boxes. The simplified tropospheric chemistry is from [Prather 1994](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/94GL00840)OB. The original
-model was used in Turner et al, 2017.
+hydroxyl chemistry in Earth's atmosphere, which was used in [Nguyen et
+al, 2020](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/94GL00840). There are two tropospheric boxes and to optional stratospheric
+boxes. The simplified tropospheric chemistry is from [Prather 1994](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/94GL00840). The original
+model was used in [Turner et al, 2017](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/94GL00840).
 
 # Code Overview
 - We have included all the tests seen in Nguyen et al, 2020 (Refer to below
@@ -21,7 +21,8 @@ model was used in Turner et al, 2017.
 - The MATLAB code can be run using the "DriverScript.m" file.
 - The inversions use publicly available datasets.  As such, we have not included those datasets in our tarball.
 - We have included scripts to download all of the datasets though.  This can be done by running the "download_data.csh" script.
-- Users could also manually download the data by navigating the websites (see below), contacting the PIs for those datasets, contacting Alex Turner (aturner@fas.harvard.edu), or Christian Frankenberg (cfranken@caltech.edu).
+- Users could also manually download the data by navigating the websites (see
+  below), contacting the PIs for those datasets, contacting Newton Nguyen (newton@caltech.edu), Alex Turner (aturner@fas.harvard.edu), or Christian Frankenberg (cfranken@caltech.edu).
 - The code will still run without the original datasets and will just use the hemispheric averages that were bootstrapped from Turner et al.
 
 
@@ -78,11 +79,11 @@ Please refer to Tables 1 and A1 in Nguyen et al.
   Christian Frankenberg. “Effects of Chemical Feedbacks on Decadal
   Methane Emissions Estimates.” Geophysical Research Letters 47,
   no. 3 (2020): e2019GL085706. https://doi.org/10.1029/2019GL085706.
-  - Turner, Alexander J., Christian Frankenberg, Paul O. Wennberg, and Daniel
+- Turner, Alexander J., Christian Frankenberg, Paul O. Wennberg, and Daniel
     J. Jacob. “Ambiguity in the Causes for Decadal Trends in
     Atmospheric Methane and Hydroxyl.” Proceedings of the National
     Academy of Sciences, April 12,
     2017, 201616020. https://doi.org/10.1073/pnas.1616020114.
-	- Prather, Michael J. “Lifetimes and Eigenstates in Atmospheric Chemistry.” Geophysical Research Letters 21, no. 9 (May 1994): 801–4. https://doi.org/10.1029/94GL00840.
+- Prather, Michael J. “Lifetimes and Eigenstates in Atmospheric Chemistry.” Geophysical Research Letters 21, no. 9 (May 1994): 801–4. https://doi.org/10.1029/94GL00840.
 
 
